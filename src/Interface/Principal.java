@@ -1153,7 +1153,7 @@ public class Principal extends javax.swing.JFrame {
       }
   
     public boolean verificaDadosControle() {    // verifica se os campos nao estao vazios
-        if (!jComboArmeiro.getSelectedIndex().equals("") && !jTDataControle.getText().equals("")) {
+        if (!jTMatricula.getText().equals("") && !jTDataControle.getText().equals("")) {
             return true;
         } else {
             JOptionPane.showMessageDialog(null, " Campo ID ou Marca não preenchidos!");

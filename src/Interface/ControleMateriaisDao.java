@@ -62,9 +62,9 @@ public class ControleMateriaisDao {
             c1.setId(rs.getInt("Id"));  // c1.setId(Integer.toString(rs.getInt("Id")));   conversao de string para int, para enviar ao banco, nao necessario.
             c1.setDataArmeiroControle(rs.getString("dia"));
             
-            UsuarioDao usuariodao = new UsuarioDao();
-            List<Usuario> usuarios =   usuariodao.pesquisarPorId(rs.getString("nomeArmeiro"));
-            c1.setArmeiroControle(usuarios.get(0).getNome());
+         //   UsuarioDao usuariodao = new UsuarioDao();
+          // List<Usuario> usuarios =   usuariodao.pesquisarPorId(rs.getString("nomeArmeiro"));
+         //   c1.setArmeiroControle(usuarios.get(0).getNome());
             
             //c1.setArmeiroControle(rs.getString("nomeArmeiro"));
             
