@@ -1116,7 +1116,7 @@ public class Principal extends javax.swing.JFrame {
      }
         
        public void desabilitaDadosControle(){   //desabilita campos que nao queremos que sejam editadoos
-       jTArmeiroControle.setEditable(false);
+      
        jTDataControle.setEditable(false);
        jTAgente.setEditable(false);
        jTCodProduto.setEditable(false);
@@ -1237,7 +1237,7 @@ public class Principal extends javax.swing.JFrame {
               
             habilitaDadosControle();
             jTextId.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getId()));
-            jTArmeiroControle.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getArmeiroControle() ));
+           // jTArmeiroControle.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getArmeiroControle() ));
             jTDataControle.setText(controle.get(tabela.getSelectedRow()).getDataArmeiroControle()); // na tabela e coloca-os nos campos para serem editados
             jTAgente.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getAgenteControle()));
             jTCodProduto.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getCodproduto()));
@@ -1248,7 +1248,7 @@ public class Principal extends javax.swing.JFrame {
             
            verificaDevulocao ();
         } else {
-            jTArmeiroControle.setText("");
+          
             jTDataControle.setText("");
             jTAgente.setText("");
             jTCodProduto.setText("");
@@ -1455,7 +1455,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jBFinalizarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarTurnoActionPerformed
         Controle c1 = new Controle();
-        c1.setAgenteDeServicoControle2(false);                                        //  Finalizar turno
+        c1.setDevolvido(true);                                        //  Finalizar turno
     }//GEN-LAST:event_jBFinalizarTurnoActionPerformed
 
     private void jBPesquisarControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarControleActionPerformed
@@ -1481,31 +1481,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextTipoProdutoActionPerformed
   
-    private void CheckPistola() throws SQLException {
-        if (jCheckPistola.isSelected()) {
-            
-          Controle p1 = new Controle();
-         ControleMateriaisDao dao = new ControleMateriaisDao();
-         p1.setDevolvido(true);
-         p1.setId(Integer.parseInt(jTextId.getText()));
-        
-         dao.EntregaProduto(p1);
-         //jTPistola.setVisible(false);               //experimentar setVisible() ou setEditable()...
-         //jTPistola.setBackground(Color.black);         //experimentar setBackground(Color.white); para mudar a cor do fundo...
-         //jTPistola.setDisabledTextColor(Color.RED);   //nao fez nada no texto...
-         jTCodProduto.setEnabled(false);                   // esse é o metodo que eu buscava...
-         
-        }else {
-             Controle p1 = new Controle();
-         ControleMateriaisDao dao = new ControleMateriaisDao();
-         p1.setPistolaControleDv(false);
-         p1.setId(Integer.parseInt(jTextId.getText()));
-        
-         dao.EntregaPistola(p1);
-         jTCodProduto.setEnabled(true);               //deixa nao editavel mas ainda mostra a informaçao...
-        }
-               
-    }
+   
     
        private void alteraContato() throws SQLException {
         if (jTTabela.getSelectedRow() != -1) {    // se a tabela nao for negativa...
