@@ -21,7 +21,7 @@ public class CriaConexao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Conectando com o banco");
-            return DriverManager.getConnection("jdbc:mysql://localhost/armeirobd4", "root", "1704");
+            return DriverManager.getConnection("jdbc:mysql://localhost/armeirobd4", "root", "");
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null,"Erro na conexao com o banco de dados");
             throw new SQLException(e.getMessage());
