@@ -49,10 +49,10 @@ public class ControleMateriaisDao {
     
     public List<Controle> getLista(String nomeArmeiro) throws SQLException{
         System.out.println("chamada do metodo:  public List<ControleMateriais> getLista(String nomeArmeiro) ");
-        String sql = "select * from cargadiaria where nomeArmeiro like  ? and devolvido = ?";
+        String sql = "select * from cargadiaria where codArmeiro like  ? and devolvido = ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, nomeArmeiro);
-        stmt.setBoolean(2, true);
+        stmt.setBoolean(2, false);
         ResultSet rs = stmt.executeQuery();
         
         List<Controle> minhaListaControle = new ArrayList<Controle>();
@@ -67,8 +67,9 @@ public class ControleMateriaisDao {
          //   c1.setArmeiroControle(usuarios.get(0).getNome());
             
             //c1.setArmeiroControle(rs.getString("nomeArmeiro"));
-            
-            c1.setAgenteControle(rs.getString("nomeGuarda"));
+           
+            c1.setArmeiroControle(rs.getString("codArmeiro"));
+            c1.setAgenteControle(rs.getString("codGuarda"));
             c1.setCodproduto(rs.getString("codproduto"));
             c1.setObservacao(rs.getString("observacao"));       //c1.setPistolaControleDv(rs.getBoolean("pt58dv")); <-metodo boolean
             c1.setDia1(rs.getString("dia1"));
