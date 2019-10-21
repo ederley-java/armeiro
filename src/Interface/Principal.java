@@ -1000,7 +1000,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedUsuarios.addTab("Livro Parte", jPanel2);
@@ -1267,7 +1267,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void verificaDevulocao() {
         Controle p1 = new Controle();
-        if (p1.getDevolvido() == true) {
+        if (p1.getDevolvido() == false) {
             jTCodProduto.setVisible(true);         //    metodo em teste <<<<<<<<<<<
 
         }
@@ -1647,7 +1647,7 @@ public class Principal extends javax.swing.JFrame {
         p1.setObservacao(jTObservacao.getText());
         p1.setDia1(jTDataEntradaAgente.getText());
         p1.setHora1(jTHoraEntradaAgente.getText());
-        p1.setDevolvido(true);
+        p1.setDevolvido(false);
         p1.setDia2(jTDataSaidaAgente.getText());
         p1.setHora2(jTHoraSaidaAgente.getText());
 
@@ -1766,7 +1766,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jBSalvarControle;
     private javax.swing.JButton jBSalvarParte;
     private javax.swing.JButton jBSalvarProduto;
-    private javax.swing.JComboBox<String> jComboArmeiro;
+    private javax.swing.JComboBox<Object> jComboArmeiro;
     private javax.swing.JFormattedTextField jFormattedTextDataEntrada;
     private javax.swing.JFormattedTextField jFormattedTextDataSaida;
     private javax.swing.JFormattedTextField jFormattedTextHoraEntrada;
