@@ -27,7 +27,7 @@ public class ControleMateriaisDao {
     
     public void adiciona (Controle p1) throws SQLException{
         // prepara a conexao com oo banco
-        String sql = "INSERT into cargadiaria (dia, nomearmeiro, nomeguarda, codproduto, observacao, dia1, hora1, devolvido, dia2, hora2) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT into cargadiaria (dia, codarmeiro, codguarda, codproduto, observacao, dia1, hora1, devolvido, dia2, hora2) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
