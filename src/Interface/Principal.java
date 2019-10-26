@@ -84,6 +84,11 @@ public class Principal extends javax.swing.JFrame {
         jBDevCaregador = new javax.swing.JButton();
         jTObservacao = new javax.swing.JTextField();
         jComboArmeiro = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableControle = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -190,7 +195,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel6.add(jTAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 150, -1));
 
         jTCodProduto.setText("item");
-        jPanel6.add(jTCodProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 150, -1));
+        jPanel6.add(jTCodProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 150, -1));
 
         jTHoraEntradaAgente.setText("h entrada");
         jPanel6.add(jTHoraEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 100, 80, -1));
@@ -199,7 +204,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel6.add(jTHoraSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 100, 70, -1));
 
         jTDataControle.setText("data");
-        jPanel6.add(jTDataControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 87, -1));
+        jPanel6.add(jTDataControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 87, -1));
 
         jTDataEntradaAgente.setText("data entrada");
         jPanel6.add(jTDataEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 70, 80, -1));
@@ -241,7 +246,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jBFinalizarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 10, 129, 40));
-        jPanel6.add(jTPesquisaControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 180, -1));
+        jPanel6.add(jTPesquisaControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 180, -1));
 
         jBPesquisarControle.setText("Pesquisar");
         jBPesquisarControle.addActionListener(new java.awt.event.ActionListener() {
@@ -249,17 +254,32 @@ public class Principal extends javax.swing.JFrame {
                 jBPesquisarControleActionPerformed(evt);
             }
         });
-        jPanel6.add(jBPesquisarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 10, -1, -1));
-        jPanel6.add(jTextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 30, -1));
+        jPanel6.add(jBPesquisarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, -1, -1));
+        jPanel6.add(jTextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 30, -1));
 
         jBDevCaregador.setText("Dev");
         jPanel6.add(jBDevCaregador, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 60, -1));
 
         jTObservacao.setText("Observação");
-        jPanel6.add(jTObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 180, -1));
+        jPanel6.add(jTObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 180, -1));
 
         jComboArmeiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
         jPanel6.add(jComboArmeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 150, -1));
+
+        jLabel20.setText("Armeiro");
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jLabel21.setText("Guarda");
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        jLabel22.setText("Item");
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        jLabel23.setText("Observação");
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
+
+        jLabel24.setText("Data");
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
         jTableControle.setModel(tmControle);
         jTableControle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -1242,7 +1262,7 @@ public class Principal extends javax.swing.JFrame {
 
             habilitaDadosControle();
             jTextId.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getId()));
-            // jTArmeiroControle.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getArmeiroControle() ));
+           // jTArmeiroControle.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getArmeiroControle() ));
             jTDataControle.setText(controle.get(tabela.getSelectedRow()).getDataArmeiroControle()); // na tabela e coloca-os nos campos para serem editados
             jTAgente.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getAgenteControle()));
             jTCodProduto.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getCodproduto()));
@@ -1444,7 +1464,7 @@ public class Principal extends javax.swing.JFrame {
         jTDataSaidaAgente.setText(dataSistema());   //pega a data do sistema
         jTHoraEntradaAgente.setText(horaSistema());
 
-        //jComboArmeiro.(String.valueOf(setSelectedIndex("")));
+        // jComboArmeiro.(String.valueOf(setSelectedIndex("")));
         jTDataControle.setText(dataSistema());
         jTAgente.setText("");
         jTCodProduto.setText("");
@@ -1783,6 +1803,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
