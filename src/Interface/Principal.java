@@ -81,7 +81,6 @@ public class Principal extends javax.swing.JFrame {
         jTPesquisaControle = new javax.swing.JTextField();
         jBPesquisarControle = new javax.swing.JButton();
         jTextId = new javax.swing.JTextField();
-        jBDevCaregador = new javax.swing.JButton();
         jTObservacao = new javax.swing.JTextField();
         jComboArmeiro = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
@@ -89,6 +88,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableControle = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -192,10 +192,10 @@ public class Principal extends javax.swing.JFrame {
                 jTAgenteActionPerformed(evt);
             }
         });
-        jPanel6.add(jTAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 150, -1));
+        jPanel6.add(jTAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 150, -1));
 
         jTCodProduto.setText("item");
-        jPanel6.add(jTCodProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 150, -1));
+        jPanel6.add(jTCodProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 150, -1));
 
         jTHoraEntradaAgente.setText("h entrada");
         jPanel6.add(jTHoraEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 100, 80, -1));
@@ -204,7 +204,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel6.add(jTHoraSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 100, 70, -1));
 
         jTDataControle.setText("data");
-        jPanel6.add(jTDataControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 87, -1));
+        jPanel6.add(jTDataControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 87, -1));
 
         jTDataEntradaAgente.setText("data entrada");
         jPanel6.add(jTDataEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 70, 80, -1));
@@ -255,31 +255,34 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jBPesquisarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, -1, -1));
-        jPanel6.add(jTextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 30, -1));
-
-        jBDevCaregador.setText("Dev");
-        jPanel6.add(jBDevCaregador, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 60, -1));
+        jPanel6.add(jTextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 20, 20));
 
         jTObservacao.setText("Observação");
-        jPanel6.add(jTObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 180, -1));
+        jPanel6.add(jTObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 180, -1));
 
         jComboArmeiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
-        jPanel6.add(jComboArmeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 150, -1));
+        jPanel6.add(jComboArmeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 100, -1));
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel20.setText("Armeiro");
-        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel21.setText("Guarda");
-        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel22.setText("Item");
-        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel23.setText("Observação");
-        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
 
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel24.setText("Data");
-        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, -1));
 
         jTableControle.setModel(tmControle);
         jTableControle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -309,9 +312,9 @@ public class Principal extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
@@ -973,10 +976,10 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jFormattedTextHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextPesquisaParte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBPesquisaParte))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
@@ -1765,7 +1768,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jBAlterarControle;
     private javax.swing.JButton jBAlterarParte;
     private javax.swing.JButton jBAlterarProduto;
-    private javax.swing.JButton jBDevCaregador;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBExcluirControle;
     private javax.swing.JButton jBExcluirParte;
@@ -1863,6 +1865,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable jTableProduto;
     private javax.swing.JTextField jTextCodProduto;
     private javax.swing.JTextField jTextDescricaoProduto;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextArea jTextHistorico;
     private javax.swing.JTextArea jTextHistoricoProduto;
     private javax.swing.JTextField jTextIDLivro;
