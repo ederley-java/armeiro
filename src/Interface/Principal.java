@@ -37,7 +37,7 @@ public class Principal extends javax.swing.JFrame {
     List<Produto> produto;
     ListSelectionModel lsmProduto;
 
-    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data 1", "Hora 1", "Devolvido", "Data 2", "Hora 2", "?", "?", "?"});
+    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data 1", "Hora 1", "Devolvido", "Data 2", "Hora 2"});
     List<Controle> controle;
     ListSelectionModel lsmControle;
 
