@@ -59,19 +59,12 @@ public class ControleMateriaisDao {
         
         while(rs.next()){
             Controle c1 = new Controle();
-            c1.setId(rs.getInt("Id"));  // c1.setId(Integer.toString(rs.getInt("Id")));   conversao de string para int, para enviar ao banco, nao necessario.
+            c1.setId(rs.getInt("Id"));  
             c1.setDataArmeiroControle(rs.getString("dia"));
-            
-         //   UsuarioDao usuariodao = new UsuarioDao();
-          // List<Usuario> usuarios =   usuariodao.pesquisarPorId(rs.getString("nomeArmeiro"));
-         //   c1.setArmeiroControle(usuarios.get(0).getNome());
-            
-            //c1.setArmeiroControle(rs.getString("nomeArmeiro"));
-           
             c1.setArmeiroControle(rs.getString("codArmeiro"));
             c1.setAgenteControle(rs.getString("codGuarda"));
             c1.setCodproduto(rs.getString("codproduto"));
-            c1.setObservacao(rs.getString("observacao"));       //c1.setPistolaControleDv(rs.getBoolean("pt58dv")); <-metodo boolean
+            c1.setObservacao(rs.getString("observacao"));       
             c1.setDia1(rs.getString("dia1"));
             c1.setHora1(rs.getString("hora1"));
             c1.setDevolvido(rs.getBoolean("devolvido"));
