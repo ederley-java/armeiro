@@ -89,6 +89,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableControle = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -186,31 +191,24 @@ public class Principal extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTAgente.setText("agente");
         jTAgente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTAgenteActionPerformed(evt);
             }
         });
         jPanel6.add(jTAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 150, -1));
-
-        jTCodProduto.setText("item");
         jPanel6.add(jTCodProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 150, -1));
 
-        jTHoraEntradaAgente.setText("h entrada");
-        jPanel6.add(jTHoraEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 100, 80, -1));
-
-        jTHoraSaidaAgente.setText("h saida");
-        jPanel6.add(jTHoraSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 100, 70, -1));
-
-        jTDataControle.setText("data");
+        jTHoraEntradaAgente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTHoraEntradaAgenteActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jTHoraEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 110, 80, -1));
+        jPanel6.add(jTHoraSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 110, 80, -1));
         jPanel6.add(jTDataControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 87, -1));
-
-        jTDataEntradaAgente.setText("data entrada");
-        jPanel6.add(jTDataEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 70, 80, -1));
-
-        jTDataSaidaAgente.setText("data saida");
-        jPanel6.add(jTDataSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 70, 70, -1));
+        jPanel6.add(jTDataEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, 80, -1));
+        jPanel6.add(jTDataSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 70, 80, -1));
 
         jBNovoControle.setText("Novo");
         jBNovoControle.addActionListener(new java.awt.event.ActionListener() {
@@ -218,7 +216,7 @@ public class Principal extends javax.swing.JFrame {
                 jBNovoControleActionPerformed(evt);
             }
         });
-        jPanel6.add(jBNovoControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 93, -1));
+        jPanel6.add(jBNovoControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 93, -1));
 
         jBAlterarControle.setText("Aletar");
         jBAlterarControle.addActionListener(new java.awt.event.ActionListener() {
@@ -226,10 +224,10 @@ public class Principal extends javax.swing.JFrame {
                 jBAlterarControleActionPerformed(evt);
             }
         });
-        jPanel6.add(jBAlterarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 93, -1));
+        jPanel6.add(jBAlterarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 93, -1));
 
         jBExcluirControle.setText("Excluir");
-        jPanel6.add(jBExcluirControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 93, -1));
+        jPanel6.add(jBExcluirControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 93, -1));
 
         jBSalvarControle.setText("Salvar");
         jBSalvarControle.addActionListener(new java.awt.event.ActionListener() {
@@ -237,7 +235,7 @@ public class Principal extends javax.swing.JFrame {
                 jBSalvarControleActionPerformed(evt);
             }
         });
-        jPanel6.add(jBSalvarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 93, -1));
+        jPanel6.add(jBSalvarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 110, 93, -1));
 
         jBFinalizarTurno.setText("Finalizar Turno");
         jBFinalizarTurno.addActionListener(new java.awt.event.ActionListener() {
@@ -245,8 +243,8 @@ public class Principal extends javax.swing.JFrame {
                 jBFinalizarTurnoActionPerformed(evt);
             }
         });
-        jPanel6.add(jBFinalizarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 10, 129, 40));
-        jPanel6.add(jTPesquisaControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 180, -1));
+        jPanel6.add(jBFinalizarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1139, 60, 150, 50));
+        jPanel6.add(jTPesquisaControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 390, -1));
 
         jBPesquisarControle.setText("Pesquisar");
         jBPesquisarControle.addActionListener(new java.awt.event.ActionListener() {
@@ -254,11 +252,9 @@ public class Principal extends javax.swing.JFrame {
                 jBPesquisarControleActionPerformed(evt);
             }
         });
-        jPanel6.add(jBPesquisarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, -1, -1));
+        jPanel6.add(jBPesquisarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, -1, -1));
         jPanel6.add(jTextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 20, 20));
-
-        jTObservacao.setText("Observação");
-        jPanel6.add(jTObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 180, -1));
+        jPanel6.add(jTObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 520, -1));
 
         jComboArmeiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
         jPanel6.add(jComboArmeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 100, -1));
@@ -272,17 +268,37 @@ public class Principal extends javax.swing.JFrame {
         jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel22.setText("Item");
-        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        jLabel22.setText("ID");
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel23.setText("Observação");
-        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
+        jLabel23.setText("Hora Saída");
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel24.setText("Data");
         jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
         jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, -1));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel25.setText("Observação");
+        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel26.setText("Data Entrada");
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 60, -1, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel27.setText("Hora Entrada");
+        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 100, -1, -1));
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel28.setText("Data Saída");
+        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 60, -1, -1));
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel29.setText("Item");
+        jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         jTableControle.setModel(tmControle);
         jTableControle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -1509,6 +1525,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextTipoProdutoActionPerformed
 
+    private void jTHoraEntradaAgenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTHoraEntradaAgenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTHoraEntradaAgenteActionPerformed
+
     private void alteraContato() throws SQLException {
         if (jTTabela.getSelectedRow() != -1) {    // se a tabela nao for negativa...
             if (verificaDados()) {                // e se passar por esse metodo...
@@ -1810,6 +1830,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
