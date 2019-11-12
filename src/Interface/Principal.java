@@ -66,37 +66,38 @@ public class Principal extends javax.swing.JFrame {
         jTabbedUsuarios = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jTAgente = new javax.swing.JTextField();
-        jTCodProduto = new javax.swing.JTextField();
-        jTHoraEntradaAgente = new javax.swing.JTextField();
-        jTHoraSaidaAgente = new javax.swing.JTextField();
         jTDataControle = new javax.swing.JTextField();
-        jTDataEntradaAgente = new javax.swing.JTextField();
-        jTDataSaidaAgente = new javax.swing.JTextField();
-        jBNovoControle = new javax.swing.JButton();
-        jBAlterarControle = new javax.swing.JButton();
-        jBExcluirControle = new javax.swing.JButton();
-        jBSalvarControle = new javax.swing.JButton();
-        jBFinalizarTurno = new javax.swing.JButton();
         jTPesquisaControle = new javax.swing.JTextField();
         jBPesquisarControle = new javax.swing.JButton();
         jTextId = new javax.swing.JTextField();
-        jTObservacao = new javax.swing.JTextField();
         jComboArmeiro = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableControle = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jBFinalizarTurno = new javax.swing.JButton();
+        jTHoraSaidaAgente = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jTDataSaidaAgente = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jTHoraEntradaAgente = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jTDataEntradaAgente = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jBSalvarControle = new javax.swing.JButton();
+        jBExcluirControle = new javax.swing.JButton();
+        jBAlterarControle = new javax.swing.JButton();
+        jBNovoControle = new javax.swing.JButton();
+        jTObservacao = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jTCodProduto = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jTAgente = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTTabela = new javax.swing.JTable();
@@ -188,61 +189,8 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTAgente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTAgenteActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jTAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 150, -1));
-        jPanel6.add(jTCodProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 150, -1));
-
-        jTHoraEntradaAgente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTHoraEntradaAgenteActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jTHoraEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 110, 80, -1));
-        jPanel6.add(jTHoraSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 110, 80, -1));
         jPanel6.add(jTDataControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 87, -1));
-        jPanel6.add(jTDataEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, 80, -1));
-        jPanel6.add(jTDataSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 70, 80, -1));
-
-        jBNovoControle.setText("Novo");
-        jBNovoControle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBNovoControleActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jBNovoControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 93, -1));
-
-        jBAlterarControle.setText("Aletar");
-        jBAlterarControle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAlterarControleActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jBAlterarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 93, -1));
-
-        jBExcluirControle.setText("Excluir");
-        jPanel6.add(jBExcluirControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 93, -1));
-
-        jBSalvarControle.setText("Salvar");
-        jBSalvarControle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBSalvarControleActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jBSalvarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 110, 93, -1));
-
-        jBFinalizarTurno.setText("Finalizar Turno");
-        jBFinalizarTurno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBFinalizarTurnoActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jBFinalizarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1139, 60, 150, 50));
-        jPanel6.add(jTPesquisaControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 390, -1));
+        jPanel6.add(jTPesquisaControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 390, -1));
 
         jBPesquisarControle.setText("Pesquisar");
         jBPesquisarControle.addActionListener(new java.awt.event.ActionListener() {
@@ -250,57 +198,28 @@ public class Principal extends javax.swing.JFrame {
                 jBPesquisarControleActionPerformed(evt);
             }
         });
-        jPanel6.add(jBPesquisarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, -1, -1));
-        jPanel6.add(jTextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 20, 20));
-        jPanel6.add(jTObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 520, -1));
+        jPanel6.add(jBPesquisarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, -1, -1));
+        jPanel6.add(jTextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 20, 20));
 
         jComboArmeiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
-        jPanel6.add(jComboArmeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 100, -1));
+        jPanel6.add(jComboArmeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 100, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel20.setText("Armeiro:");
-        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 3, -1, 20));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel21.setText("Guarda:");
-        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 43, -1, 20));
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 20));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel22.setText("ID:");
-        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 123, -1, 20));
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel23.setText("Hora Saída:");
-        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 93, -1, 20));
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 20));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel24.setText("Pesquisar:");
-        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 3, 60, 20));
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, -1));
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel25.setText("Observação:");
-        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 43, -1, 20));
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel26.setText("Data Entrada:");
-        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 53, -1, 20));
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel27.setText("Hora Entrada:");
-        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 93, -1, 20));
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel28.setText("Data Saída:");
-        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 53, -1, 20));
-
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel29.setText("Item:");
-        jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 83, -1, 20));
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 60, 20));
+        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 150, -1));
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel30.setText("Data:");
-        jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 3, -1, 20));
+        jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, 20));
 
         jTableControle.setModel(tmControle);
         jTableControle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -315,6 +234,91 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(jTableControle);
 
+        jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBFinalizarTurno.setText("Finalizar Turno");
+        jBFinalizarTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFinalizarTurnoActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jBFinalizarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 150, 50));
+        jPanel11.add(jTHoraSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 60, 80, -1));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel23.setText("Hora Saída:");
+        jPanel11.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 50, -1, -1));
+        jPanel11.add(jTDataSaidaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 20, 80, -1));
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel28.setText("Data Saída:");
+        jPanel11.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 10, -1, -1));
+
+        jTHoraEntradaAgente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTHoraEntradaAgenteActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jTHoraEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 80, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel27.setText("Hora Entrada:");
+        jPanel11.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, 10));
+        jPanel11.add(jTDataEntradaAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 80, -1));
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel26.setText("Data Entrada:");
+        jPanel11.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, 10));
+
+        jBSalvarControle.setText("Salvar");
+        jBSalvarControle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarControleActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jBSalvarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, 93, -1));
+
+        jBExcluirControle.setText("Excluir");
+        jPanel11.add(jBExcluirControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 93, -1));
+
+        jBAlterarControle.setText("Aletar");
+        jBAlterarControle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAlterarControleActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jBAlterarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 93, -1));
+
+        jBNovoControle.setText("Novo");
+        jBNovoControle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNovoControleActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jBNovoControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 93, -1));
+        jPanel11.add(jTObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 520, -1));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel25.setText("Observação:");
+        jPanel11.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, 10));
+        jPanel11.add(jTCodProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 150, -1));
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel29.setText("Item:");
+        jPanel11.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 10));
+
+        jTAgente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTAgenteActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jTAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, -1));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel21.setText("Guarda:");
+        jPanel11.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 10));
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -323,17 +327,20 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1325, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6))
+                    .addComponent(jScrollPane6)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         jTabbedUsuarios.addTab("Controle de Materiais", jPanel5);
@@ -1545,6 +1552,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTelefone;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
