@@ -1009,7 +1009,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void verificaDevulocao() {
         Controle p1 = new Controle();
-        if (p1.getDevolvido() == false) {
+        if (p1.getDevolvido() == "Nao") {
             jTCodProduto.setVisible(true);         //    metodo em teste <<<<<<<<<<<
 
         }
@@ -1202,7 +1202,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jBFinalizarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarTurnoActionPerformed
         Controle c1 = new Controle();
-        c1.setDevolvido(true);                                        //  Finalizar turno
+        c1.setDevolvido("Sim");                                        //  Finalizar turno
     }//GEN-LAST:event_jBFinalizarTurnoActionPerformed
 
     private void jBPesquisarControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarControleActionPerformed
@@ -1393,7 +1393,7 @@ public class Principal extends javax.swing.JFrame {
         p1.setObservacao(jTObservacao.getText());
         p1.setDia1(jTDataEntradaAgente.getText());
         p1.setHora1(jTHoraEntradaAgente.getText());
-        p1.setDevolvido(false);
+        p1.setDevolvido("Nao");
         p1.setDia2(jTDataSaidaAgente.getText());
         p1.setHora2(jTHoraSaidaAgente.getText());
 
