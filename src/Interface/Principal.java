@@ -74,7 +74,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextArmeiroControle = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableControle = new javax.swing.JTable();
@@ -215,7 +215,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel24.setText("Pesquisar:");
         jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 60, 20));
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 150, -1));
+        jPanel6.add(jTextArmeiroControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 150, -1));
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel30.setText("Data:");
@@ -900,7 +900,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public boolean verificaDadosControle() {    // verifica se os campos nao estao vazios
-        if (!jTMatricula.getText().equals("") && !jTDataControle.getText().equals("")) {
+        if (!jTextArmeiroControle.getText().equals("") && !jTDataControle.getText().equals("")) {
             return true;
         } else {
             JOptionPane.showMessageDialog(null, " Campo ID ou Marca não preenchidos!");
@@ -1386,7 +1386,7 @@ public class Principal extends javax.swing.JFrame {
     public void cadastroControle() {
         //jTDataControle.getText();
         Controle p1 = new Controle();
-        p1.setArmeiroControle(String.valueOf(jComboArmeiro.getSelectedIndex()));
+        p1.setArmeiroControle(jTextArmeiroControle.getText());
         p1.setDataArmeiroControle(jTDataControle.getText());
         p1.setAgenteControle(jTAgente.getText());
         p1.setCodproduto(jTCodProduto.getText());
@@ -1590,9 +1590,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedUsuarios;
     private javax.swing.JTable jTableControle;
     private javax.swing.JTable jTableProduto;
+    private javax.swing.JTextField jTextArmeiroControle;
     private javax.swing.JTextField jTextCodProduto;
     private javax.swing.JTextField jTextDescricaoProduto;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextArea jTextHistorico;
     private javax.swing.JTextArea jTextHistoricoProduto;
     private javax.swing.JTextField jTextIDLivro;
