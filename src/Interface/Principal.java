@@ -237,7 +237,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBFinalizarTurno.setText("Finalizar Turno");
+        jBFinalizarTurno.setText("Devolver Material");
         jBFinalizarTurno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBFinalizarTurnoActionPerformed(evt);
@@ -277,10 +277,10 @@ public class Principal extends javax.swing.JFrame {
                 jBSalvarControleActionPerformed(evt);
             }
         });
-        jPanel11.add(jBSalvarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, 93, -1));
+        jPanel11.add(jBSalvarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 93, -1));
 
         jBExcluirControle.setText("Excluir");
-        jPanel11.add(jBExcluirControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 93, -1));
+        jPanel11.add(jBExcluirControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, 93, -1));
 
         jBAlterarControle.setText("Aletar");
         jBAlterarControle.addActionListener(new java.awt.event.ActionListener() {
@@ -288,7 +288,7 @@ public class Principal extends javax.swing.JFrame {
                 jBAlterarControleActionPerformed(evt);
             }
         });
-        jPanel11.add(jBAlterarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 93, -1));
+        jPanel11.add(jBAlterarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 93, -1));
 
         jBNovoControle.setText("Novo");
         jBNovoControle.addActionListener(new java.awt.event.ActionListener() {
@@ -410,8 +410,8 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel10.add(jTMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 392, -1));
-        jPanel10.add(jTNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 390, -1));
+        jPanel10.add(jTMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 180, -1));
+        jPanel10.add(jTNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 280, -1));
         jPanel10.add(jTEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 392, -1));
         jPanel10.add(jTTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 392, -1));
 
@@ -443,7 +443,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel10.add(jLabelSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
 
         jLabelSituacao.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabelSituacao.setText("Situação:");
+        jLabelSituacao.setText("Função:");
         jPanel10.add(jLabelSituacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
         jPanel10.add(jTIdUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 25, 20));
 
