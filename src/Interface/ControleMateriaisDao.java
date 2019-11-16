@@ -50,7 +50,6 @@ public class ControleMateriaisDao {
     public List<Controle> getLista(String nomeArmeiro) throws SQLException{
         System.out.println("chamada do metodo:  public List<ControleMateriais> getLista(String nomeArmeiro) ");
         String sql = "select ca.id,\n" +
-"select ca.id,\n" +
 "ar.nome,\n" +
 "gu.nome,\n" +
 "ca.dia,\n" +
@@ -65,7 +64,10 @@ public class ControleMateriaisDao {
 "inner join guardas ar on (ar.id = ca.codArmeiro)\n" +
 "inner join guardas gu on (gu.id = ca.codGuarda)\n" +
 "inner join produto pr on (pr.id = ca.codProduto)\n" +
-"order by 1 where codArmeiro like  ? and deservico = ?";
+"group by gu.id, ar.nome, gu.nome, ca.dia, pr.descricao, \n" +
+"pr.observacao, ca.dia1, ca.hora1,\n" +
+"ca.devolvido, ca.dia2, ca.hora2\n" +
+"order by 1 and  codArmeiro like ? and devolvido = ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, nomeArmeiro);
         stmt.setBoolean(2, false);
