@@ -18,7 +18,7 @@ public class Controle {
     private String observacao;
     private String dia1;
     private String hora1;
-    private Boolean devolvido;
+    private String devolvido;
     private String dia2;
     private String hora2;
 
@@ -88,11 +88,11 @@ public class Controle {
         this.hora1 = hora1;
     }
 
-    public Boolean getDevolvido() {
+    public String getDevolvido() {
         return devolvido;
     }
 
-    public void setDevolvido(Boolean devolvido) {
+    public void setDevolvido(String devolvido) {
         this.devolvido = devolvido;
     }
 
