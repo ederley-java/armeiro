@@ -23,6 +23,7 @@ import models.Controle;
 import models.LivroParte;
 import models.Produto;
 import models.Usuario;
+import utils.Formatter;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -1710,6 +1711,7 @@ public class Principal extends javax.swing.JFrame {
             String[] linha = new String[]{null, null, null, null, null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
             // para receber os dados da lista que vem do banco. sempre inicia com nulo.
             // o for adiciona os valores na jtable
+
             for (int i = 0; i < controle.size(); i++) {
                 tmControle.addRow(linha);
                 tmControle.setValueAt(controle.get(i).getId(), i, 0);
@@ -1720,10 +1722,9 @@ public class Principal extends javax.swing.JFrame {
                 tmControle.setValueAt(controle.get(i).getObservacao(), i, 5);
                 tmControle.setValueAt(controle.get(i).getDia1(), i, 6);    //pega a variavel da classe "controle" por exemplo e joga para a tabela
                 tmControle.setValueAt(controle.get(i).getHora1(), i, 7);
-                tmControle.setValueAt(controle.get(i).isCautelado(), i, 8);
+                tmControle.setValueAt(Formatter.getLabelSimOuNao(controle.get(i).isCautelado()), i, 8);
                 tmControle.setValueAt(controle.get(i).getDia2(), i, 9);        //a Numeraçao deve começar em zero pois isso determina a ordem na tabela
                 tmControle.setValueAt(controle.get(i).getHora2(), i, 10);
-
             }
         }
     }
