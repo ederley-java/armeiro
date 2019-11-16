@@ -27,7 +27,7 @@ public class ControleMateriaisDao {
     
     public void adiciona (Controle p1) throws SQLException{
         // prepara a conexao com oo banco
-        String sql = "INSERT into cargadiaria (dia, codarmeiro, codguarda, codproduto, observacao, dia1, hora1, devolvido, dia2, hora2) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT into cargadiaria (dia, codarmeiro, codguarda, codproduto, observacao, dia1, hora1, cautelado, dia2, hora2) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
@@ -38,7 +38,7 @@ public class ControleMateriaisDao {
         stmt.setString(5, p1.getObservacao());
         stmt.setString(6, p1.getDia1());
         stmt.setString(7, p1.getHora1());
-        stmt.setString(8, p1.getDevolvido());
+        stmt.setBoolean(8, p1.getCautelado());
         stmt.setString(9, p1.getDia2());
         stmt.setString(10, p1.getHora2());
         
@@ -57,7 +57,7 @@ public class ControleMateriaisDao {
 "ca.observacao,\n" +
 "ca.dia1,\n" +
 "ca.hora1,\n" +
-"ca.devolvido,\n" +
+"ca.cautelado,\n" +
 "ca.dia2,\n" +
 "ca.hora2\n" +
 "from cargadiaria ca\n" +
@@ -66,8 +66,8 @@ public class ControleMateriaisDao {
 "inner join produto pr on (pr.id = ca.codProduto)\n" +
 "group by gu.id, ar.nome, gu.nome, ca.dia, pr.descricao, \n" +
 "pr.observacao, ca.dia1, ca.hora1,\n" +
-"ca.devolvido, ca.dia2, ca.hora2\n" +
-"order by 1 and  codArmeiro like ? and devolvido = ?";
+"ca.cautelado, ca.dia2, ca.hora2\n" +
+"order by 1 and  codArmeiro like ? and cautelado = ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, nomeArmeiro);
         stmt.setBoolean(2, false);
@@ -85,7 +85,7 @@ public class ControleMateriaisDao {
             c1.setObservacao(rs.getString("observacao"));       
             c1.setDia1(rs.getString("dia1"));
             c1.setHora1(rs.getString("hora1"));
-            c1.setDevolvido(rs.getString("devolvido"));
+            c1.setCautelado(rs.getBoolean("cautelado"));
             c1.setDia2(rs.getString("dia2"));
             c1.setHora2(rs.getString("hora2"));
           
@@ -110,7 +110,7 @@ public class ControleMateriaisDao {
         stmt.setString(5, p1.getObservacao());
         stmt.setString(6, p1.getDia1());
         stmt.setString(7, p1.getHora1());
-        stmt.setString(8, p1.getDevolvido());
+        stmt.setBoolean(8, p1.getCautelado());
         stmt.setString(9, p1.getDia2());
         stmt.setString(9, p1.getHora2());
                
@@ -122,7 +122,7 @@ public class ControleMateriaisDao {
     public void remove(Controle c1) throws SQLException{
         String sql = "delete from cargadiaria where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, c1.getDevolvido());                 // remover esse metodo todo por nao ser necessario.
+        stmt.setBoolean(1, c1.getCautelado());                 // remover esse metodo todo por nao ser necessario.
         stmt.execute();
         stmt.close();
         
@@ -130,11 +130,11 @@ public class ControleMateriaisDao {
     
      public void EntregaProduto(Controle p1) throws SQLException{
         // prepara a conexao com oo banco
-        String sql = "update cargadiaria set devolvido=? where id=?";
+        String sql = "update cargadiaria set cautelado=? where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql); // tem que arruma esse comando SQL
         
         // seta os valores 
-        stmt.setString(1, p1.getDevolvido());
+        stmt.setBoolean(1, p1.getCautelado());
         stmt.setInt(2, p1.getId());
 
         // executa o codigo sql

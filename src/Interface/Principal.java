@@ -37,7 +37,7 @@ public class Principal extends javax.swing.JFrame {
     List<Produto> produto;
     ListSelectionModel lsmProduto;
 
-    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data 1", "Hora 1", "Devolvido", "Data 2", "Hora 2"});
+    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data 1", "Hora 1", "Cautelado", "Data 2", "Hora 2"});
     List<Controle> controle;
     ListSelectionModel lsmControle;
 
@@ -1015,7 +1015,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void verificaDevulocao() {
         Controle p1 = new Controle();
-        if (p1.getDevolvido() == "Nao") {
+        if (!p1.getCautelado()) {
             jTCodProduto.setVisible(true);         //    metodo em teste <<<<<<<<<<<
 
         }
@@ -1216,7 +1216,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jBFinalizarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarTurnoActionPerformed
         Controle c1 = new Controle();
-        c1.setDevolvido("Sim");
+        c1.setCautelado(false);
          //  Finalizar turno
     }//GEN-LAST:event_jBFinalizarTurnoActionPerformed
 
@@ -1399,23 +1399,22 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void cadastroControle() {
-        //jTDataControle.getText();
-        Controle p1 = new Controle();
-        p1.setArmeiroControle(jTextArmeiroControle.getText());
-        p1.setDataArmeiroControle(jTDataControle.getText());
-        p1.setAgenteControle(jTAgente.getText());
-        p1.setCodproduto(jTCodProduto.getText());
-        p1.setObservacao(jTObservacao.getText());
-        p1.setDia1(jTDataEntradaAgente.getText());
-        p1.setHora1(jTHoraEntradaAgente.getText());
-        p1.setDevolvido("Nao");
-        p1.setDia2(jTDataSaidaAgente.getText());
-        p1.setHora2(jTHoraSaidaAgente.getText());
+        Controle controle = new Controle();
+        controle.setArmeiroControle(jTextArmeiroControle.getText());
+        controle.setDataArmeiroControle(jTDataControle.getText());
+        controle.setAgenteControle(jTAgente.getText());
+        controle.setCodproduto(jTCodProduto.getText());
+        controle.setObservacao(jTObservacao.getText());
+        controle.setDia1(jTDataEntradaAgente.getText());
+        controle.setHora1(jTHoraEntradaAgente.getText());
+        controle.setCautelado(true);
+        controle.setDia2(jTDataSaidaAgente.getText());
+        controle.setHora2(jTHoraSaidaAgente.getText());
 
         ControleMateriaisDao dao;
         try {
             dao = new ControleMateriaisDao();
-            dao.adiciona(p1);
+            dao.adiciona(controle);
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1716,7 +1715,7 @@ public class Principal extends javax.swing.JFrame {
                 tmControle.setValueAt(controle.get(i).getObservacao(), i, 5);
                 tmControle.setValueAt(controle.get(i).getDia1(), i, 6);    //pega a variavel da classe "controle" por exemplo e joga para a tabela
                 tmControle.setValueAt(controle.get(i).getHora1(), i, 7);
-                tmControle.setValueAt(controle.get(i).getDevolvido(), i, 8);
+                tmControle.setValueAt(controle.get(i).getCautelado(), i, 8);
                 tmControle.setValueAt(controle.get(i).getDia2(), i, 9);        //a Numeraçao deve começar em zero pois isso determina a ordem na tabela
                 tmControle.setValueAt(controle.get(i).getHora2(), i, 10);
 
