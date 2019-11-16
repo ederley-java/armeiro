@@ -5,6 +5,14 @@
  */
 package Interface;
 
+import dao.ProdutoDao;
+import dao.ControleMateriaisDao;
+import dao.UsuarioDao;
+import dao.LivroParteDao;
+import models.Controle;
+import models.LivroParte;
+import models.Produto;
+import models.Usuario;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
