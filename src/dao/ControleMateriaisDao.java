@@ -18,13 +18,11 @@ import java.util.List;
  * @author Lemes
  */
 public class ControleMateriaisDao {
-         private Connection conexao;
+    private Connection conexao;
     
     public ControleMateriaisDao() throws SQLException{
         this.conexao = CriaConexao.getConexao();
     }
-    
-   
     
     public void adiciona (Controle p1) throws SQLException{
         // prepara a conexao com oo banco
@@ -42,60 +40,56 @@ public class ControleMateriaisDao {
         stmt.setBoolean(8, p1.getCautelado());
         stmt.setString(9, p1.getDia2());
         stmt.setString(10, p1.getHora2());
-        
      
         stmt.execute();
         stmt.close();
     }
     
-    public List<Controle> getLista(String nomeArmeiro) throws SQLException{
-        System.out.println("chamada do metodo:  public List<ControleMateriais> getLista(String nomeArmeiro) ");
+    public List<Controle> getLista(String codArmeiro) throws SQLException{
         String sql = "select ca.id,\n" +
-"ar.nome,\n" +
-"gu.nome,\n" +
-"ca.dia,\n" +
-"pr.cod,\n" +
-"ca.observacao,\n" +
-"ca.dia1,\n" +
-"ca.hora1,\n" +
-"ca.cautelado,\n" +
-"ca.dia2,\n" +
-"ca.hora2\n" +
-"from cargadiaria ca\n" +
-"inner join guardas ar on (ar.id = ca.codArmeiro)\n" +
-"inner join guardas gu on (gu.id = ca.codGuarda)\n" +
-"inner join produto pr on (pr.id = ca.codProduto)\n" +
-"group by gu.id, ar.nome, gu.nome, ca.dia, pr.descricao, \n" +
-"pr.observacao, ca.dia1, ca.hora1,\n" +
-"ca.cautelado, ca.dia2, ca.hora2\n" +
-"order by 1 and  codArmeiro like ? and cautelado = ?";
+        "ar.nome,\n" +
+        "gu.nome,\n" +
+        "ca.dia,\n" +
+        "pr.cod,\n" +
+        "ca.observacao,\n" +
+        "ca.dia1,\n" +
+        "ca.hora1,\n" +
+        "ca.cautelado,\n" +
+        "ca.dia2,\n" +
+        "ca.hora2\n" +
+        "from cargadiaria ca\n" +
+        "inner join guardas ar on (ar.id = ca.codArmeiro)\n" +
+        "inner join guardas gu on (gu.id = ca.codGuarda)\n" +
+        "inner join produto pr on (pr.id = ca.codProduto)\n" +
+        "where ca.codArmeiro like  ? and ca.cautelado = ? order by 1";
+
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
-        stmt.setString(1, nomeArmeiro);
-        stmt.setBoolean(2, false);
+        stmt.setString(1, codArmeiro);
+        stmt.setBoolean(2, true);
         ResultSet rs = stmt.executeQuery();
         
         List<Controle> minhaListaControle = new ArrayList<Controle>();
         
         while(rs.next()){
-            Controle c1 = new Controle();
-            c1.setId(rs.getInt("Id"));  
-            c1.setDataArmeiroControle(rs.getString("dia"));
-            c1.setArmeiroControle(rs.getString("nome"));
-            c1.setAgenteControle(rs.getString("nome"));
-            c1.setCodproduto(rs.getString("cod"));
-            c1.setObservacao(rs.getString("observacao"));       
-            c1.setDia1(rs.getString("dia1"));
-            c1.setHora1(rs.getString("hora1"));
-            c1.setCautelado(rs.getBoolean("cautelado"));
-            c1.setDia2(rs.getString("dia2"));
-            c1.setHora2(rs.getString("hora2"));
+            Controle controle = new Controle();
+            controle.setId(rs.getInt("Id"));  
+            controle.setDataArmeiroControle(rs.getString("dia"));
+            controle.setArmeiroControle(rs.getString("nome"));
+            controle.setAgenteControle(rs.getString("nome"));
+            controle.setCodproduto(rs.getString("cod"));
+            controle.setObservacao(rs.getString("observacao"));       
+            controle.setDia1(rs.getString("dia1"));
+            controle.setHora1(rs.getString("hora1"));
+            controle.setCautelado(rs.getBoolean("cautelado"));
+            controle.setDia2(rs.getString("dia2"));
+            controle.setHora2(rs.getString("hora2"));
           
-                   
-            minhaListaControle.add(c1);
+            minhaListaControle.add(controle);
        }
-        rs.close();
-        stmt.close();
-        return minhaListaControle;
+
+       rs.close();
+       stmt.close();
+       return minhaListaControle;
     }
       
        public void altera (Controle p1) throws SQLException{

@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  * @author Lemes
  */
 public class CriaConexao {
-    private static String driver = "org.postgresql.Driver";
-    private static String password = "Abc_1234";
+    private static String driver = "com.mysql.jdbc.Driver";
+    private static String password = "";
     private static String url = "jdbc:mysql://localhost/armeirobd4";
     private static String user = "root";
 

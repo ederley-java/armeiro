@@ -3,16 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
-
-import dao.ProdutoDao;
-import dao.ControleMateriaisDao;
-import dao.UsuarioDao;
-import dao.LivroParteDao;
-import models.Controle;
-import models.LivroParte;
-import models.Produto;
-import models.Usuario;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -24,6 +14,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
+import dao.ControleMateriaisDao;
+import dao.LivroParteDao;
+import dao.ProdutoDao;
+import dao.UsuarioDao;
+import models.Controle;
+import models.LivroParte;
+import models.Produto;
+import models.Usuario;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
