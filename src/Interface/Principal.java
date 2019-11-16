@@ -412,8 +412,8 @@ public class Principal extends javax.swing.JFrame {
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel10.add(jTMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 180, -1));
         jPanel10.add(jTNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 280, -1));
-        jPanel10.add(jTEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 392, -1));
-        jPanel10.add(jTTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 392, -1));
+        jPanel10.add(jTEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 280, -1));
+        jPanel10.add(jTTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 280, -1));
 
         jLabelMatricula.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabelMatricula.setText("Matricula:");
@@ -425,26 +425,28 @@ public class Principal extends javax.swing.JFrame {
 
         jLabelEndereco.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabelEndereco.setText("Endereço:");
-        jPanel10.add(jLabelEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel10.add(jLabelEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
 
         jLabelTelefone.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabelTelefone.setText("Telefone:");
-        jPanel10.add(jLabelTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
-        jPanel10.add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 503, -1));
-        jPanel10.add(jTSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 503, -1));
-        jPanel10.add(jTSituacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 503, -1));
+        jPanel10.add(jLabelTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
+        jPanel10.add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 280, -1));
+        jPanel10.add(jTSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 230, -1));
+        jPanel10.add(jTSituacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 60, 230, -1));
 
         jLabelEmail.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabelEmail.setText("Email:");
-        jPanel10.add(jLabelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, -1));
+        jPanel10.add(jLabelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         jLabelSexo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabelSexo.setText("Sexo:");
-        jPanel10.add(jLabelSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
+        jPanel10.add(jLabelSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
 
         jLabelSituacao.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabelSituacao.setText("Função:");
-        jPanel10.add(jLabelSituacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
+        jPanel10.add(jLabelSituacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
+
+        jTIdUsuario.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jPanel10.add(jTIdUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 25, 20));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -467,11 +469,11 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -773,6 +775,7 @@ public class Principal extends javax.swing.JFrame {
         //limpa os campos
         habilitaDados();
 
+        jTIdUsuario.setText("");
         jTNome.setText("");
         jTMatricula.setText("");
         jTEndereco.setText("");
@@ -780,6 +783,7 @@ public class Principal extends javax.swing.JFrame {
         jTSexo.setText("");
         jTSituacao.setText("");
         jTTelefone.setText("");
+        jTIdUsuario.setEditable(true);
 
     }//GEN-LAST:event_jBNovoActionPerformed
 
@@ -1018,6 +1022,11 @@ public class Principal extends javax.swing.JFrame {
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         if (verificaDados()) {
             cadastro();
+            try {
+                listarContatos();
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jBSalvarActionPerformed
 
@@ -1202,7 +1211,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jBFinalizarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarTurnoActionPerformed
         Controle c1 = new Controle();
-        c1.setDevolvido("Sim");                                        //  Finalizar turno
+        c1.setDevolvido("Sim");
+         //  Finalizar turno
     }//GEN-LAST:event_jBFinalizarTurnoActionPerformed
 
     private void jBPesquisarControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarControleActionPerformed
