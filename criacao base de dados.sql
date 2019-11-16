@@ -11,7 +11,7 @@ telefone varchar (50),
 email varchar (50),
 sexo varchar (15),
 situacao varchar (50),
-status varchar (15)            
+status varchar (15),
 primary key (id));
 
 create table livroparte (
