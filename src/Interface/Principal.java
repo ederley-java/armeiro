@@ -199,6 +199,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jBPesquisarControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, -1, -1));
+
+        jTextId.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jPanel6.add(jTextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 20, 20));
 
         jComboArmeiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
@@ -1066,6 +1068,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jBNovoParteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoParteActionPerformed
         habilitaDadosLivroParte();
+        jTextIDLivro.setText("");
         jTextNomeArmeiro.setText("");
         jFormattedTextDataEntrada.setText(dataSistema());
         jFormattedTextHoraEntrada.setText(horaSistema());
@@ -1120,7 +1123,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jBNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoProdutoActionPerformed
         habilitaDadosProduto();
-
+        
+        jTextIdProduto.setText("");
         jTextCodProduto.setText("");
         jTextMarcaProduto.setText("");
         jTextTipoProduto.setText("");
@@ -1196,6 +1200,7 @@ public class Principal extends javax.swing.JFrame {
         jTHoraEntradaAgente.setText(horaSistema());
 
         // jComboArmeiro.(String.valueOf(setSelectedIndex("")));
+        jTextId.setText("");
         jTDataControle.setText(dataSistema());
         jTAgente.setText("");
         jTCodProduto.setText("");
