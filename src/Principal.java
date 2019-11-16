@@ -32,7 +32,6 @@ import javax.swing.event.ListSelectionListener;
  * @author Lemes
  */
 public class Principal extends javax.swing.JFrame {
-
     DefaultTableModel tmUsuario = new DefaultTableModel(null, new String[]{"ID", "Maticula", "Nome", "Endereço", "Telefone", "Email", "Sexo", "Situação"});   // modelo que a tabela pegará para criar as culunas (tem que inserir tmusuarios nas 
     List<Usuario> usuarios;                                                                                                                              // propriedades da tabela "model".         
     ListSelectionModel lsmUsuario;
@@ -70,7 +69,6 @@ public class Principal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jTabbedUsuarios = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -1023,7 +1021,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void verificaDevulocao() {
         Controle p1 = new Controle();
-        if (!p1.getCautelado()) {
+        if (!p1.isCautelado()) {
             jTCodProduto.setVisible(true);         //    metodo em teste <<<<<<<<<<<
 
         }
@@ -1641,7 +1639,6 @@ public class Principal extends javax.swing.JFrame {
             //para receber os dados da lista que vem do banco. sempre inicia com nulo.
             // o for adiciona os valores na jtable
             for (int i = 0; i < usuarios.size(); i++) {
-
                 tmUsuario.addRow(linha);
                 tmUsuario.setValueAt(usuarios.get(i).getIdUsuario(), i, 0);
                 tmUsuario.setValueAt(usuarios.get(i).getMatricula(), i, 1);
@@ -1723,7 +1720,7 @@ public class Principal extends javax.swing.JFrame {
                 tmControle.setValueAt(controle.get(i).getObservacao(), i, 5);
                 tmControle.setValueAt(controle.get(i).getDia1(), i, 6);    //pega a variavel da classe "controle" por exemplo e joga para a tabela
                 tmControle.setValueAt(controle.get(i).getHora1(), i, 7);
-                tmControle.setValueAt(controle.get(i).getCautelado(), i, 8);
+                tmControle.setValueAt(controle.get(i).isCautelado(), i, 8);
                 tmControle.setValueAt(controle.get(i).getDia2(), i, 9);        //a Numeraçao deve começar em zero pois isso determina a ordem na tabela
                 tmControle.setValueAt(controle.get(i).getHora2(), i, 10);
 

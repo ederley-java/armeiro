@@ -73,7 +73,4 @@ public class LivroParte {
     public void setHistorico(String historico) {
         this.historico = historico;
     }
-    
-    
-    
 }

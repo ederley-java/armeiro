@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import models.Controle;
@@ -25,11 +20,9 @@ public class ControleMateriaisDao {
     }
     
     public void adiciona (Controle p1) throws SQLException{
-        // prepara a conexao com oo banco
         String sql = "INSERT into cargadiaria (dia, codarmeiro, codguarda, codproduto, observacao, dia1, hora1, cautelado, dia2, hora2) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
-        // seta os valores 
         stmt.setString(1, p1.getDataArmeiroControle());
         stmt.setString(2, p1.getArmeiroControle());
         stmt.setString(3, p1.getAgenteControle());
@@ -37,7 +30,7 @@ public class ControleMateriaisDao {
         stmt.setString(5, p1.getObservacao());
         stmt.setString(6, p1.getDia1());
         stmt.setString(7, p1.getHora1());
-        stmt.setBoolean(8, p1.getCautelado());
+        stmt.setBoolean(8, p1.isCautelado());
         stmt.setString(9, p1.getDia2());
         stmt.setString(10, p1.getHora2());
      
@@ -105,7 +98,7 @@ public class ControleMateriaisDao {
         stmt.setString(5, p1.getObservacao());
         stmt.setString(6, p1.getDia1());
         stmt.setString(7, p1.getHora1());
-        stmt.setBoolean(8, p1.getCautelado());
+        stmt.setBoolean(8, p1.isCautelado());
         stmt.setString(9, p1.getDia2());
         stmt.setString(9, p1.getHora2());
                
@@ -117,7 +110,7 @@ public class ControleMateriaisDao {
     public void remove(Controle c1) throws SQLException{
         String sql = "delete from cargadiaria where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setBoolean(1, c1.getCautelado());                 // remover esse metodo todo por nao ser necessario.
+        stmt.setBoolean(1, c1.isCautelado());                 // remover esse metodo todo por nao ser necessario.
         stmt.execute();
         stmt.close();
         
@@ -129,7 +122,7 @@ public class ControleMateriaisDao {
         PreparedStatement stmt = conexao.prepareStatement(sql); // tem que arruma esse comando SQL
         
         // seta os valores 
-        stmt.setBoolean(1, p1.getCautelado());
+        stmt.setBoolean(1, p1.isCautelado());
         stmt.setInt(2, p1.getId());
 
         // executa o codigo sql

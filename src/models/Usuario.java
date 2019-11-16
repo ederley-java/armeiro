@@ -18,7 +18,6 @@ public class Usuario {
     private String email;
     private String sexo;
     private String situacao;
-   // private int hora;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -27,10 +26,6 @@ public class Usuario {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-
-  
-
-    
     
     public Long getMatricula() {
         return matricula;
@@ -52,8 +47,8 @@ public class Usuario {
         return endereco;
     }
 
-    public void setEndereco(String endereço) {
-        this.endereco = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {
@@ -86,17 +81,5 @@ public class Usuario {
 
     public void setSituacao(String situacao) {
         this.situacao = situacao;
-    }
-
-   // public int getHora() {
-    //    return hora;
-   // }
-
-    //public void setHora(int hora) {
-    //    this.hora = hora;
-    //}
-    
-    
-    
-    
+    } 
 }

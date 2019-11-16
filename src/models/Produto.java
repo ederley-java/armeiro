@@ -35,8 +35,6 @@ public class Produto {
     public void setCod(String cod) {
         this.cod = cod;
     }
-    
-    
 
     public String getMarcaProduto() {
         return marcaProduto;
@@ -93,8 +91,4 @@ public class Produto {
     public void setHistoricoManutencaoProduto(String historicoManutencaoProduto) {
         this.historicoManutencaoProduto = historicoManutencaoProduto;
     }
-    
-    
-    
-    
 }
