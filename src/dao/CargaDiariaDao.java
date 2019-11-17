@@ -51,7 +51,7 @@ public class CargaDiariaDao {
         "ca.cautelado,\n" +
         "ca.dia2,\n" +
         "ca.hora2\n" +
-        "from cargadiaria ca\n" +
+        "from carga_diaria ca\n" +
         "inner join guarda ar on (ar.id = ca.id_armeiro)\n" +
         "inner join guarda gu on (gu.id = ca.id_guarda)\n" +
         "inner join produto pr on (pr.id = ca.id_produto)\n" +
@@ -65,20 +65,22 @@ public class CargaDiariaDao {
         List<CargaDiaria> minhaListaControle = new ArrayList<CargaDiaria>();
         
         while(rs.next()){
-            CargaDiaria controle = new CargaDiaria();
-            controle.setId(rs.getInt("Id"));  
-            controle.setDataArmeiroControle(rs.getString("dia"));
-            controle.setArmeiroControle(rs.getString("armeiro"));
-            controle.setAgenteControle(rs.getString("guarda"));
-            controle.setid_produto(rs.getString("cod"));
-            controle.setObservacao(rs.getString("observacao"));       
-            controle.setDia1(rs.getString("dia1"));
-            controle.setHora1(rs.getString("hora1"));
-            controle.setCautelado(rs.getBoolean("cautelado"));
-            controle.setDia2(rs.getString("dia2"));
-            controle.setHora2(rs.getString("hora2"));
+            CargaDiaria cargaDiaria = new CargaDiaria();
+
+            cargaDiaria.setId(rs.getInt("Id"));  
+            cargaDiaria.setDataArmeiroControle(rs.getString("dia"));
+            cargaDiaria.setArmeiroControle(rs.getString("armeiro"));
+            cargaDiaria.setAgenteControle(rs.getString("guarda"));
+            cargaDiaria.setCodproduto(rs.getString("cod"));
+            
+            cargaDiaria.setObservacao(rs.getString("observacao"));
+            cargaDiaria.setDia1(rs.getString("dia1"));
+            cargaDiaria.setHora1(rs.getString("hora1"));
+            cargaDiaria.setDia2(rs.getString("dia2"));
+            cargaDiaria.setHora2(rs.getString("hora2"));
+            cargaDiaria.setCautelado(rs.getBoolean("cautelado"));
           
-            minhaListaControle.add(controle);
+            minhaListaControle.add(cargaDiaria);
        }
 
        rs.close();
@@ -87,7 +89,7 @@ public class CargaDiariaDao {
     }
       
        public void altera (CargaDiaria p1) throws SQLException{
-        String sql = "update cargadiaria set nome_armeiro=?, dia=?, nomeGuarda=?, pt58=?, carregador=?, municao=?, spark=?, vtr=?" +
+        String sql = "update carga_diaria set nome_armeiro=?, dia=?, nomeGuarda=?, pt58=?, carregador=?, municao=?, spark=?, vtr=?" +
          ",cal12=?, municao12=?, bandoleira=?, tablet=?, impressora=?, guia=?, diversos=?, dia1=?, hora1=?, dia2=?, hora2=? where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
@@ -109,17 +111,17 @@ public class CargaDiariaDao {
     }
             
     public void remove(CargaDiaria c1) throws SQLException{
-        String sql = "delete from cargadiaria where id=?";
+        String sql = "delete from carga_diaria where id=?";
+
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setBoolean(1, c1.isCautelado());                 // remover esse metodo todo por nao ser necessario.
         stmt.execute();
         stmt.close();
-        
     }
     
      public void EntregaProduto(CargaDiaria p1) throws SQLException{
         // prepara a conexao com oo banco
-        String sql = "update cargadiaria set cautelado=? where id=?";
+        String sql = "update carga_diaria set cautelado=? where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql); // tem que arruma esse comando SQL
         
         // seta os valores 

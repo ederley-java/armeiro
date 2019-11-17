@@ -26,7 +26,7 @@ public class UsuarioDao {
 
     public void adiciona(Usuario c1) throws SQLException {
         // prepara a conexao com oo banco
-        String sql = "insert into guardas (matricula, nome, endereco, telefone, email, sexo, situacao )" + "values (?,?,?,?,?,?,?)";
+        String sql = "insert into guarda (matricula, nome, endereco, telefone, email, sexo, situacao )" + "values (?,?,?,?,?,?,?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
         // seta os valores 
@@ -44,7 +44,7 @@ public class UsuarioDao {
     }
 
     public List<Usuario> getLista(String nome) throws SQLException {
-        String sql = "select * from guardas where nome like ?";
+        String sql = "select * from guarda where nome like ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, nome);
         ResultSet rs = stmt.executeQuery();
@@ -70,7 +70,7 @@ public class UsuarioDao {
     }
 
     public void altera(Usuario c1) throws SQLException {
-        String sql = "update guardas set nome=?, endereco=?, telefone=?, email=?"
+        String sql = "update guarda set nome=?, endereco=?, telefone=?, email=?"
                 + ",sexo=?, situacao=? where matricula=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
@@ -89,7 +89,7 @@ public class UsuarioDao {
     }
 
     public void remove(Usuario c1) throws SQLException {
-        String sql = "delete from guardas where matricula=?";
+        String sql = "DELETE FROM guarda WHERE matricula=?";
 
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
@@ -104,7 +104,7 @@ public class UsuarioDao {
 
         try {
             con = CriaConexao.getConexao();
-            sql = "SELECT nome FROM guardas group by id order by id asc";
+            sql = "SELECT nome FROM guarda GROUP BY id ORDER BY id ASC";
             pstm = con.prepareStatement(sql);
             rs = pstm.executeQuery(sql);
 
