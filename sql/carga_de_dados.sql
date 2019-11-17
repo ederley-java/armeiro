@@ -1,8 +1,8 @@
-DELETE FROM cargaDiaria WHERE id > 0;
+DELETE FROM carga_diaria WHERE id > 0;
 DELETE FROM produto WHERE id > 0;
-DELETE FROM guardas WHERE id > 0;
+DELETE FROM guarda WHERE id > 0;
 
-INSERT INTO guardas
+INSERT INTO guarda
     (matricula, nome, status)
 VALUES
     ('1', 'Ezequias Albuquerque', 2),
@@ -37,25 +37,25 @@ VALUES
 
 -- RESERVA DIA 10
 
-INSERT INTO cargaDiaria
-    (dia, codArmeiro, codGuarda, codProduto, dia1, hora1, cautelado)
+INSERT INTO carga_diaria
+    (dia, id_armeiro, id_guarda, id_produto, dia1, hora1, cautelado)
 VALUES
-    ('10/09/19', 2, 1, 1, '10/09/19', '08:00:', true),
-    ('10/09/19', 2, 1, 8, '10/09/19', '08:00:', true),
-    ('10/09/19', 2, 1, 10, '10/09/19', '08:00:', true),
-    ('10/09/19', 2, 4, 2, '10/09/19', '08:00:', true),
-    ('10/09/19', 2, 4, 11, '10/09/19', '08:00:', true);
+    ('10/09/19', 2, 1, 1, '10/09/19', '08:00', true),
+    ('10/09/19', 2, 1, 8, '10/09/19', '08:00', true),
+    ('10/09/19', 2, 1, 10, '10/09/19', '08:00', true),
+    ('10/09/19', 2, 4, 2, '10/09/19', '08:00', true),
+    ('10/09/19', 2, 4, 11, '10/09/19', '08:00', true);
 
-INSERT INTO cargaDiaria
-    (dia, codArmeiro, codGuarda, codProduto, dia1, hora1, cautelado)
+INSERT INTO carga_diaria
+    (dia, id_armeiro, id_guarda, id_produto, dia1, hora1, cautelado)
 VALUES
-    ('10/09/19', 2, 4, 2, '10/09/19', '20:00:', false),
-    ('10/09/19', 2, 4, 11, '10/09/19', '20:00:', false);
+    ('10/09/19', 2, 4, 2, '10/09/19', '20:00', false),
+    ('10/09/19', 2, 4, 11, '10/09/19', '20:00', false);
 
 -- RESERVA DIA 15
 
-INSERT INTO cargaDiaria
-    (dia, codArmeiro, codGuarda, codProduto, dia1, hora1, cautelado)
+INSERT INTO carga_diaria
+    (dia, id_armeiro, id_guarda, id_produto, dia1, hora1, cautelado)
 VALUES
-    ('15/09/19', 6, 4, 2, '15/09/19', '08:00:', true),
-    ('15/09/19', 6, 4, 11, '15/09/19', '08:00:', true);
+    ('15/09/19', 6, 4, 2, '15/09/19', '08:00', true),
+    ('15/09/19', 6, 4, 11, '15/09/19', '08:00', true);

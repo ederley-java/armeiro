@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import models.Usuario;
@@ -13,15 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-//import ronaldo.bancodados.CriaConexao;
-//import ronaldo.logica.Contato;
 
 /**
  *
  * @author Lemes
  */
 public class UsuarioDao {
-
     private Connection conexao;
     Connection con = null;
     String sql;
@@ -52,8 +44,6 @@ public class UsuarioDao {
     }
 
     public List<Usuario> getLista(String nome) throws SQLException {
-        System.out.println("chamada do metodo:  public List<Usuario> getLista(String nome) ");
-
         String sql = "select * from guardas where nome like ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, nome);
@@ -73,6 +63,7 @@ public class UsuarioDao {
             c1.setSituacao(rs.getString("situacao"));
             minhaLista.add(c1);
         }
+
         rs.close();
         stmt.close();
         return minhaLista;
@@ -95,47 +86,41 @@ public class UsuarioDao {
         // executa o codigo sql
         stmt.execute();
         stmt.close();
-
     }
 
     public void remove(Usuario c1) throws SQLException {
         String sql = "delete from guardas where matricula=?";
+
         PreparedStatement stmt = conexao.prepareStatement(sql);
+        
         stmt.setLong(1, c1.getMatricula());
+        
         stmt.execute();
         stmt.close();
-
     }
 
     public List<Usuario> listarGuardas() {
         ArrayList<Usuario> listUser = new ArrayList<>();
 
         try {
-
             con = CriaConexao.getConexao();
             sql = "SELECT nome FROM guardas group by id order by id asc";
             pstm = con.prepareStatement(sql);
             rs = pstm.executeQuery(sql);
 
             while (rs.next()) {
-
                 Usuario user = new Usuario();
 
                 user.setNome(rs.getString("nome"));
                 //user.setCatDescricao(rs.getString(2));
                 //user.setCatValorDiaria(rs.getDouble(3));           
                 listUser.add(user);
-       
             }
 
         } catch (Exception erro) {
-
             JOptionPane.showMessageDialog(null, "Erro PSTM " + erro.getMessage());
-
         }
 
         return listUser;
-
     }
-
 }
