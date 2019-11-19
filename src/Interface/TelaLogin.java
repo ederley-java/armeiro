@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Lemes
  */
 public class TelaLogin extends javax.swing.JFrame {
-    CriaConexao con = new CriaConexao();
+    //CriaConexao con = new CriaConexao();
     /**
      * Creates new form TelaLogin
      */
@@ -37,10 +37,10 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jButtonAcessar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jLabelUsuario = new javax.swing.JLabel();
         jLabelSenha = new javax.swing.JLabel();
+        jLabelUsuario = new javax.swing.JLabel();
         jTextUsuario = new javax.swing.JTextField();
-        jTextSenha = new javax.swing.JTextField();
+        jPasswordSenha = new javax.swing.JPasswordField();
         jLabelFundoLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,23 +53,25 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonAcessar);
-        jButtonAcessar.setBounds(260, 190, 73, 23);
+        jButtonAcessar.setBounds(253, 190, 80, 30);
 
         jButtonSair.setText("Sair");
         getContentPane().add(jButtonSair);
-        jButtonSair.setBounds(360, 190, 73, 23);
+        jButtonSair.setBounds(353, 190, 80, 30);
 
+        jLabelSenha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelSenha.setText("Senha:");
+        getContentPane().add(jLabelSenha);
+        jLabelSenha.setBounds(200, 140, 50, 20);
+
+        jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelUsuario.setText("Usuário:");
         getContentPane().add(jLabelUsuario);
         jLabelUsuario.setBounds(200, 100, 50, 20);
-
-        jLabelSenha.setText("Senha:");
-        getContentPane().add(jLabelSenha);
-        jLabelSenha.setBounds(200, 140, 50, 14);
         getContentPane().add(jTextUsuario);
-        jTextUsuario.setBounds(260, 100, 170, 20);
-        getContentPane().add(jTextSenha);
-        jTextSenha.setBounds(260, 140, 170, 20);
+        jTextUsuario.setBounds(260, 100, 170, 30);
+        getContentPane().add(jPasswordSenha);
+        jPasswordSenha.setBounds(260, 140, 170, 30);
 
         jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fotoGMSJ01.jpg"))); // NOI18N
         getContentPane().add(jLabelFundoLogin);
@@ -84,12 +86,9 @@ public class TelaLogin extends javax.swing.JFrame {
             LoginBean c1 = new LoginBean();
             LoginDao dao = new LoginDao();
             c1.setUsuario(jTextUsuario.getText());
-            c1.setSenha(jTextSenha.getText());
+            c1.setSenha(jPasswordSenha.getText());
             
             dao.logar(c1);
-            
-            Principal tela = new Principal();
-            tela.setVisible(true);
             dispose();
         } catch (SQLException ex) {
            // JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválido!");
@@ -139,7 +138,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFundoLogin;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JTextField jTextSenha;
+    private javax.swing.JPasswordField jPasswordSenha;
     private javax.swing.JTextField jTextUsuario;
     // End of variables declaration//GEN-END:variables
 }
