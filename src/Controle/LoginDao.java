@@ -7,6 +7,7 @@ package Controle;
 
 import Interface.CriaConexao;
 import Interface.Principal;
+import Interface.TelaCadastroLogin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,6 +39,27 @@ public class LoginDao {
             if (rs.next()){
                 Principal tela = new Principal();
                 tela.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null,"Usuário ou Senha Inválido!");
+            }
+           
+        }
+        catch (Exception e){
+            
+        }
+    }
+        
+        public void CadastarUsuario(LoginBean c1){
+        String sql = "select * from login where usuario=? and senha=?";
+        try{
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, c1.getUsuario());
+            pst.setString(2, c1.getSenha());
+            
+            rs = pst.executeQuery();
+            if (rs.next()){
+                TelaCadastroLogin cadastro = new TelaCadastroLogin();
+                cadastro.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null,"Usuário ou Senha Inválido!");
             }

@@ -41,9 +41,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelUsuario = new javax.swing.JLabel();
         jTextUsuario = new javax.swing.JTextField();
         jPasswordSenha = new javax.swing.JPasswordField();
+        jButtonNovoUsuario = new javax.swing.JButton();
         jLabelFundoLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jButtonAcessar.setText("Acessar");
@@ -53,25 +55,39 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonAcessar);
-        jButtonAcessar.setBounds(253, 190, 80, 30);
+        jButtonAcessar.setBounds(260, 170, 90, 30);
 
         jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonSair);
-        jButtonSair.setBounds(353, 190, 80, 30);
+        jButtonSair.setBounds(280, 250, 120, 30);
 
-        jLabelSenha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelSenha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelSenha.setText("Senha:");
         getContentPane().add(jLabelSenha);
-        jLabelSenha.setBounds(200, 140, 50, 20);
+        jLabelSenha.setBounds(200, 130, 50, 20);
 
-        jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelUsuario.setText("Usuário:");
         getContentPane().add(jLabelUsuario);
-        jLabelUsuario.setBounds(200, 100, 50, 20);
+        jLabelUsuario.setBounds(200, 90, 50, 20);
         getContentPane().add(jTextUsuario);
-        jTextUsuario.setBounds(260, 100, 170, 30);
+        jTextUsuario.setBounds(260, 90, 180, 30);
         getContentPane().add(jPasswordSenha);
-        jPasswordSenha.setBounds(260, 140, 170, 30);
+        jPasswordSenha.setBounds(260, 130, 180, 30);
+
+        jButtonNovoUsuario.setText("Cadastrar");
+        jButtonNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonNovoUsuario);
+        jButtonNovoUsuario.setBounds(350, 170, 90, 30);
 
         jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fotoGMSJ01.jpg"))); // NOI18N
         getContentPane().add(jLabelFundoLogin);
@@ -96,6 +112,27 @@ public class TelaLogin extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButtonAcessarActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        
+        dispose();
+    }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
+        try {
+            LoginBean c1 = new LoginBean();
+            LoginDao dao = new LoginDao();
+            c1.setUsuario(jTextUsuario.getText());
+            c1.setSenha(jPasswordSenha.getText());
+            
+            dao.CadastarUsuario(c1);
+            dispose();
+        } catch (SQLException ex) {
+           // JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválido!");
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,6 +171,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAcessar;
+    private javax.swing.JButton jButtonNovoUsuario;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabelFundoLogin;
     private javax.swing.JLabel jLabelSenha;
