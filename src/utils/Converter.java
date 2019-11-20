@@ -15,11 +15,16 @@ public class Converter {
         return new SimpleDateFormat(pattern).format(date);
     }
 
-    public static Date stringToDate(String date) throws ParseException {
+    public static Date stringToDate(String date) {
         return stringToDate(date, PATTERN_DATETIME);
     }
 
-    public static Date stringToDate(String date, String pattern) throws ParseException {
-        return new SimpleDateFormat(pattern).parse(date);
+    public static Date stringToDate(String date, String pattern) {
+        try {
+            return new SimpleDateFormat(pattern).parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

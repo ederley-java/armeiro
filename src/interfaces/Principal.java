@@ -17,7 +17,6 @@ import dao.CargaDiariaDao;
 import dao.LivroParteDao;
 import dao.ProdutoDao;
 import dao.UsuarioDao;
-import java.text.ParseException;
 import models.CargaDiaria;
 import models.LivroParte;
 import models.Produto;
@@ -45,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
     DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data", "Cautelado", "Data 2", "Hora 2"});
     List<CargaDiaria> cargaDiaria;
     ListSelectionModel lsmControle;
+    
 
     /**
      * Creates new form Principal
@@ -985,19 +985,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void jTTabelaLinhaSelecionadaControle(JTable tabela) {     //metodo que pega os valores que estao sendo exibidos
         if (jTableControle.getSelectedRow() != -1) {                  //se a linha selecionada da tabela for diferente de -1, entao...
-
             habilitaDadosControle();
-            jTextId.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getId()));
-           // jTArmeiroControle.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getArmeiroControle() ));
-            jTDataControle.setText(controle.get(tabela.getSelectedRow()).getDataArmeiroControle()); // na tabela e coloca-os nos campos para serem editados
-            jTAgente.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getAgenteControle()));
-            jTCodProduto.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getCodproduto()));
-            String createdAt = Converter.dateToString(controle.get(tabela.getSelectedRow()).getCreatedAt());
-            jTDataEntradaAgente.setText(createdAt);
-            jTDataSaidaAgente.setText(controle.get(tabela.getSelectedRow()).getDia2());
-            jTHoraSaidaAgente.setText(controle.get(tabela.getSelectedRow()).getHora2());
 
-            verificaDevulocao();
+            jTextId.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getId()));
+           // jTArmeiroControle.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getArmeiroControle() ));
+            jTDataControle.setText(cargaDiaria.get(tabela.getSelectedRow()).getDataArmeiroControle()); // na tabela e coloca-os nos campos para serem editados
+            jTAgente.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getAgenteControle()));
+            jTCodProduto.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getCodproduto()));
+            String createdAt = Converter.dateToString(cargaDiaria.get(tabela.getSelectedRow()).getCreatedAt());
+            jTDataEntradaAgente.setText(createdAt);
+            jTDataSaidaAgente.setText(cargaDiaria.get(tabela.getSelectedRow()).getDia2());
+            jTHoraSaidaAgente.setText(cargaDiaria.get(tabela.getSelectedRow()).getHora2());
+
+            verificaDevolucao();
         } else {
             jTDataControle.setText("");
             jTAgente.setText("");
@@ -1009,15 +1009,14 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    private void verificaDevulocao() {
-        CargaDiaria p1 = new CargaDiaria();
-        if (!p1.isCautelado()) {
+    private void verificaDevolucao() {
+        CargaDiaria cargaDiaria = new CargaDiaria();
+        if (!cargaDiaria.isCautelado()) {
             jTCodProduto.setVisible(true);         //    metodo em teste <<<<<<<<<<<
-
         }
     }
 
-    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {
         if (verificaDados()) {
             cadastro();
             try {
@@ -1026,19 +1025,17 @@ public class Principal extends javax.swing.JFrame {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jBSalvarActionPerformed
+    }
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
         try {
-            System.out.println("chamada do metodo: listarContatos() ");
             listarContatos();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " problemas no campo pesquisar!");
         }
-    }//GEN-LAST:event_jBPesquisarActionPerformed
+    }
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-        // TODO add your handling code here:
         try {
             excluirContato();
             mostraPesquisa(usuarios);
@@ -1046,12 +1043,11 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro no botao jBExluir");
         }
         try {
-            // System.out.println("chamada do metodo: listarContatos() ");
             listarContatos();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " problemas no metodo pesquisar da opcao excluir!");
         }
-    }//GEN-LAST:event_jBExcluirActionPerformed
+    }
 
     private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
         try {
@@ -1060,10 +1056,11 @@ public class Principal extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problema no jBAlterar!");
         }
-    }//GEN-LAST:event_jBAlterarActionPerformed
+    }
 
-    private void jBNovoParteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoParteActionPerformed
+    private void jBNovoParteActionPerformed(java.awt.event.ActionEvent evt) {
         habilitaDadosLivroParte();
+
         jTextIDLivro.setText("");
         jTextNomeArmeiro.setText("");
         jFormattedTextDataEntrada.setText(dataSistema());
@@ -1072,27 +1069,22 @@ public class Principal extends javax.swing.JFrame {
         jFormattedTextHoraSaida.setText(horaSistema());
         jTextPesquisaParte.setText("");
         jTextHistorico.setText("");
+    }
 
-
-    }//GEN-LAST:event_jBNovoParteActionPerformed
-
-    private void jBSalvarParteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarParteActionPerformed
+    private void jBSalvarParteActionPerformed(java.awt.event.ActionEvent evt) {
         if (verificaDadosLivroParte()) {
             cadastroLivroParte();
             desabilitaDadosLivroParte();
         }
+    }
 
-    }//GEN-LAST:event_jBSalvarParteActionPerformed
-
-    private void jBPesquisaParteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisaParteActionPerformed
-        //  jTextPesquisaParte.setText("");  //LImpa o campo antes de fazer qualquer coisa
-        System.out.println("chamada do metodo: listarLivroParte() ");
+    private void jBPesquisaParteActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             listarLivroParte();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " problemas no campo pesquisar!");
         }
-    }//GEN-LAST:event_jBPesquisaParteActionPerformed
+    }
 
     private void jBExcluirParteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirParteActionPerformed
         try {
@@ -1101,12 +1093,11 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro no botao jBExluir");
         }
         try {
-            // System.out.println("chamada do metodo: listarContatos() ");
             listarLivroParte();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " problemas no metodo pesquisar da opcao excluir!");
         }
-    }//GEN-LAST:event_jBExcluirParteActionPerformed
+    }
 
     private void jBAlterarParteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarParteActionPerformed
         try {
@@ -1371,8 +1362,8 @@ public class Principal extends javax.swing.JFrame {
 
     public void listarControle() throws SQLException {
         CargaDiariaDao dao = new CargaDiariaDao();
-        controle = dao.getLista("%" + jTPesquisaControle.getText() + "%");
-        mostraPesquisaControle(controle);
+        cargaDiaria = dao.getLista("%" + jTPesquisaControle.getText() + "%");
+        mostraPesquisaControle(cargaDiaria);
         System.out.println("chamada do metodo: mostraPesquisaProduto(produto) ");
     }
 
@@ -1394,23 +1385,23 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    public void cadastroControle() throws ParseException {
-        CargaDiaria controle = new CargaDiaria();
-        controle.setArmeiroControle(jTextArmeiroControle.getText());
-        controle.setDataArmeiroControle(jTDataControle.getText());
-        controle.setAgenteControle(jTAgente.getText());
-        controle.setCodproduto(jTCodProduto.getText());
-        controle.setObservacao(jTObservacao.getText());
+    public void cadastroControle() {
+        CargaDiaria cargaDiaria = new CargaDiaria();
+        cargaDiaria.setArmeiroControle(jTextArmeiroControle.getText());
+        cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
+        cargaDiaria.setAgenteControle(jTAgente.getText());
+        cargaDiaria.setCodproduto(jTCodProduto.getText());
+        cargaDiaria.setObservacao(jTObservacao.getText());
         Date createdAt = Converter.stringToDate(jTDataEntradaAgente.getText());
-        controle.setCreatedAt(createdAt);
-        controle.setCautelado(true);
-        controle.setDia2(jTDataSaidaAgente.getText());
-        controle.setHora2(jTHoraSaidaAgente.getText());
+        cargaDiaria.setCreatedAt(createdAt);
+        cargaDiaria.setCautelado(true);
+        cargaDiaria.setDia2(jTDataSaidaAgente.getText());
+        cargaDiaria.setHora2(jTHoraSaidaAgente.getText());
 
         CargaDiariaDao dao;
         try {
             dao = new CargaDiariaDao();
-            dao.adiciona(controle);
+            dao.adiciona(cargaDiaria);
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1694,6 +1685,7 @@ public class Principal extends javax.swing.JFrame {
         while (tmControle.getRowCount() > 0) {          // trecho de codigo para que serve para,
             tmControle.removeRow(0);                // exibir somente as linhas selecionadas.
         }
+        
         if (cargaDiaria.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
         } else {
