@@ -1,3 +1,5 @@
+USE armeirobd4;
+
 DELETE FROM carga_diaria WHERE id > 0;
 DELETE FROM produto WHERE id > 0;
 DELETE FROM guarda WHERE id > 0;

@@ -22,7 +22,9 @@ public class CriaConexao {
             System.out.println("Conectando com o banco");
             
             return DriverManager.getConnection(url, user, password);
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+
             JOptionPane.showMessageDialog(null, "Erro na conexao com o banco de dados");
             
             throw new SQLException(e.getMessage());

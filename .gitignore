@@ -1,5 +1,5 @@
-nbproject/
 build/
 bin/
 
 src/dao/CriaConexao.java
+/dist/

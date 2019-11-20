@@ -1,3 +1,5 @@
+USE armeirobd4;
+
 SELECT ca.id,
        ar.nome,
        gu.nome,

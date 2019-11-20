@@ -108,10 +108,10 @@ import models.LoginDTO;
  */
 public class LoginDao {
     private Connection conexao;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    private PreparedStatement pst = null;
+    private ResultSet rs = null;
     
-    public LoginDao() throws SQLException{
+    public LoginDao() throws SQLException {
         this.conexao = CriaConexao.getConexao();
     }
         
@@ -132,7 +132,7 @@ public class LoginDao {
             }
             
         } catch (Exception e) {
-            
+            e.printStackTrace();
         }
     }
 }
