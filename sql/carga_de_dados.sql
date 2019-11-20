@@ -1,12 +1,23 @@
 DELETE FROM carga_diaria WHERE id > 0;
 DELETE FROM produto WHERE id > 0;
 DELETE FROM guarda WHERE id > 0;
+DELETE FROM login WHERE id > 0;
+
+INSERT INTO login
+    (usuario, senha)
+VALUES
+    ('zeca', 'zeca'),
+    ('lemes', 'lemes');
+
+INSERT INTO guarda
+    (id_login, matricula, nome, status)
+VALUES
+    (1, '1', 'Ezequias Albuquerque', 2),
+    (2, '2', 'Marcio Lemes', 1);
 
 INSERT INTO guarda
     (matricula, nome, status)
 VALUES
-    ('1', 'Ezequias Albuquerque', 2),
-    ('2', 'Marcio Lemes', 1),
     ('3', 'Jorge Bruno Batista', 2),
     ('4', 'Otávio Kauê Figueiredo', 2),
     ('5', 'Vicente Carlos Fernandes', 2),
@@ -38,24 +49,24 @@ VALUES
 -- RESERVA DIA 10
 
 INSERT INTO carga_diaria
-    (dia, id_armeiro, id_guarda, id_produto, dia1, hora1, cautelado)
+    (dia, id_armeiro, id_guarda, id_produto, created_at, cautelado)
 VALUES
-    ('10/09/19', 2, 1, 1, '10/09/19', '08:00', true),
-    ('10/09/19', 2, 1, 8, '10/09/19', '08:00', true),
-    ('10/09/19', 2, 1, 10, '10/09/19', '08:00', true),
-    ('10/09/19', 2, 4, 2, '10/09/19', '08:00', true),
-    ('10/09/19', 2, 4, 11, '10/09/19', '08:00', true);
+    ('2019-09-10', 2, 1, 1, '2019-09-10 08:00', true),
+    ('2019-09-10', 2, 1, 8, '2019-09-10 08:00', true),
+    ('2019-09-10', 2, 1, 10, '2019-09-10 08:00', true),
+    ('2019-09-10', 2, 4, 2, '2019-09-10 08:00', true),
+    ('2019-09-10', 2, 4, 11, '2019-09-10 08:00', true);
 
 INSERT INTO carga_diaria
-    (dia, id_armeiro, id_guarda, id_produto, dia1, hora1, cautelado)
+    (dia, id_armeiro, id_guarda, id_produto, created_at, cautelado)
 VALUES
-    ('10/09/19', 2, 4, 2, '10/09/19', '20:00', false),
-    ('10/09/19', 2, 4, 11, '10/09/19', '20:00', false);
+    ('2019-09-10', 2, 4, 2, '2019-09-10 20:00', false),
+    ('2019-09-10', 2, 4, 11, '2019-09-10 20:00', false);
 
 -- RESERVA DIA 15
 
 INSERT INTO carga_diaria
-    (dia, id_armeiro, id_guarda, id_produto, dia1, hora1, cautelado)
+    (dia, id_armeiro, id_guarda, id_produto, created_at, cautelado)
 VALUES
-    ('15/09/19', 6, 4, 2, '15/09/19', '08:00', true),
-    ('15/09/19', 6, 4, 11, '15/09/19', '08:00', true);
+    ('2019-09-15', 6, 4, 2, '2019-09-15 08:00', true),
+    ('2019-09-15', 6, 4, 11, '2019-09-15 08:00', true);

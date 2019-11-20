@@ -21,7 +21,7 @@ public class CargaDiariaDao {
     }
     
     public void adiciona (CargaDiaria cargaDiaria) throws SQLException{
-        String sql = "INSERT INTO carga_diaria (dia, id_armeiro, id_guarda, id_produto, observacao, dia1, hora1, cautelado, dia2, hora2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO carga_diaria (dia, id_armeiro, id_guarda, id_produto, observacao, created_at, cautelado, dia2, hora2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         stmt.setString(1, cargaDiaria.getDataArmeiroControle());
@@ -29,8 +29,7 @@ public class CargaDiariaDao {
         stmt.setString(3, cargaDiaria.getAgenteControle());
         stmt.setString(4, cargaDiaria.getCodproduto());
         stmt.setString(5, cargaDiaria.getObservacao());
-        stmt.setString(6, cargaDiaria.getDia1());
-        stmt.setString(7, cargaDiaria.getHora1());
+        stmt.setDate(6, cargaDiaria.getCreatedAt());
         stmt.setBoolean(8, cargaDiaria.isCautelado());
         stmt.setString(9, cargaDiaria.getDia2());
         stmt.setString(10, cargaDiaria.getHora2());
@@ -46,8 +45,7 @@ public class CargaDiariaDao {
         "ca.dia,\n" +
         "pr.cod,\n" +
         "ca.observacao,\n" +
-        "ca.dia1,\n" +
-        "ca.hora1,\n" +
+        "ca.created_at,\n" +
         "ca.cautelado,\n" +
         "ca.dia2,\n" +
         "ca.hora2\n" +
@@ -74,8 +72,7 @@ public class CargaDiariaDao {
             cargaDiaria.setCodproduto(rs.getString("cod"));
             
             cargaDiaria.setObservacao(rs.getString("observacao"));
-            cargaDiaria.setDia1(rs.getString("dia1"));
-            cargaDiaria.setHora1(rs.getString("hora1"));
+            cargaDiaria.setCreatedAt(rs.getDate("created_at"));
             cargaDiaria.setDia2(rs.getString("dia2"));
             cargaDiaria.setHora2(rs.getString("hora2"));
             cargaDiaria.setCautelado(rs.getBoolean("cautelado"));
@@ -90,7 +87,7 @@ public class CargaDiariaDao {
       
        public void altera (CargaDiaria p1) throws SQLException{
         String sql = "update carga_diaria set nome_armeiro=?, dia=?, nomeGuarda=?, pt58=?, carregador=?, municao=?, spark=?, vtr=?" +
-         ",cal12=?, municao12=?, bandoleira=?, tablet=?, impressora=?, guia=?, diversos=?, dia1=?, hora1=?, dia2=?, hora2=? where id=?";
+         ",cal12=?, municao12=?, bandoleira=?, tablet=?, impressora=?, guia=?, diversos=?, created_at=?, dia2=?, hora2=? where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
@@ -99,8 +96,7 @@ public class CargaDiariaDao {
         stmt.setString(3, p1.getAgenteControle());     // veificar esse metodo pois deve estar errado, nao pode ser update livro parte...
         stmt.setString(4, p1.getCodproduto());
         stmt.setString(5, p1.getObservacao());
-        stmt.setString(6, p1.getDia1());
-        stmt.setString(7, p1.getHora1());
+        stmt.setDate(6, p1.getCreatedAt());
         stmt.setBoolean(8, p1.isCautelado());
         stmt.setString(9, p1.getDia2());
         stmt.setString(9, p1.getHora2());

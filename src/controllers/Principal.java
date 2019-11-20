@@ -1,3 +1,5 @@
+package controllers;
+
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -20,6 +22,7 @@ import models.CargaDiaria;
 import models.LivroParte;
 import models.Produto;
 import models.Usuario;
+import utils.Converter;
 import utils.Formatter;
 
 /**
@@ -39,8 +42,8 @@ public class Principal extends javax.swing.JFrame {
     List<Produto> produto;
     ListSelectionModel lsmProduto;
 
-    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data 1", "Hora 1", "Cautelado", "Data 2", "Hora 2"});
-    List<CargaDiaria> controle;
+    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data", "Cautelado", "Data 2", "Hora 2"});
+    List<CargaDiaria> cargaDiaria;
     ListSelectionModel lsmControle;
 
     /**
@@ -989,8 +992,8 @@ public class Principal extends javax.swing.JFrame {
             jTDataControle.setText(controle.get(tabela.getSelectedRow()).getDataArmeiroControle()); // na tabela e coloca-os nos campos para serem editados
             jTAgente.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getAgenteControle()));
             jTCodProduto.setText(String.valueOf(controle.get(tabela.getSelectedRow()).getCodproduto()));
-            jTDataEntradaAgente.setText(controle.get(tabela.getSelectedRow()).getDia1());
-            jTHoraEntradaAgente.setText(controle.get(tabela.getSelectedRow()).getHora1());
+            String createdAt = Converter.dateToString(controle.get(tabela.getSelectedRow()).getCreatedAt());
+            jTDataEntradaAgente.setText(createdAt);
             jTDataSaidaAgente.setText(controle.get(tabela.getSelectedRow()).getDia2());
             jTHoraSaidaAgente.setText(controle.get(tabela.getSelectedRow()).getHora2());
 
@@ -1400,7 +1403,7 @@ public class Principal extends javax.swing.JFrame {
         controle.setAgenteControle(jTAgente.getText());
         controle.setCodproduto(jTCodProduto.getText());
         controle.setObservacao(jTObservacao.getText());
-        controle.setDia1(jTDataEntradaAgente.getText());
+        controle.setCreatedAt(jTDataEntradaAgente.getText());
         controle.setHora1(jTHoraEntradaAgente.getText());
         controle.setCautelado(true);
         controle.setDia2(jTDataSaidaAgente.getText());
@@ -1689,30 +1692,31 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    private void mostraPesquisaControle(List<CargaDiaria> controle) {
+    private void mostraPesquisaControle(List<CargaDiaria> cargaDiaria) {
         while (tmControle.getRowCount() > 0) {          // trecho de codigo para que serve para,
             tmControle.removeRow(0);                // exibir somente as linhas selecionadas.
         }
-        if (controle.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
+        if (cargaDiaria.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
         } else {
             String[] linha = new String[]{null, null, null, null, null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
             // para receber os dados da lista que vem do banco. sempre inicia com nulo.
             // o for adiciona os valores na jtable
 
-            for (int i = 0; i < controle.size(); i++) {
+            for (int i = 0; i < cargaDiaria.size(); i++) {
                 tmControle.addRow(linha);
-                tmControle.setValueAt(controle.get(i).getId(), i, 0);
-                tmControle.setValueAt(controle.get(i).getDataArmeiroControle(), i, 1);
-                tmControle.setValueAt(controle.get(i).getArmeiroControle(), i, 2);    //pega a variavel da classe "controle" por exemplo e joga para a tabela
-                tmControle.setValueAt(controle.get(i).getAgenteControle(), i, 3);     //pega a variavel da classe "controle" por exemplo e joga para a tabela
-                tmControle.setValueAt(controle.get(i).getCodproduto(), i, 4);
-                tmControle.setValueAt(controle.get(i).getObservacao(), i, 5);
-                tmControle.setValueAt(controle.get(i).getDia1(), i, 6);    //pega a variavel da classe "controle" por exemplo e joga para a tabela
-                tmControle.setValueAt(controle.get(i).getHora1(), i, 7);
-                tmControle.setValueAt(Formatter.getLabelSimOuNao(controle.get(i).isCautelado()), i, 8);
-                tmControle.setValueAt(controle.get(i).getDia2(), i, 9);        //a Numeraçao deve começar em zero pois isso determina a ordem na tabela
-                tmControle.setValueAt(controle.get(i).getHora2(), i, 10);
+                tmControle.setValueAt(cargaDiaria.get(i).getId(), i, 0);
+                tmControle.setValueAt(cargaDiaria.get(i).getDataArmeiroControle(), i, 1);
+                tmControle.setValueAt(cargaDiaria.get(i).getArmeiroControle(), i, 2);
+                tmControle.setValueAt(cargaDiaria.get(i).getAgenteControle(), i, 3);
+                tmControle.setValueAt(cargaDiaria.get(i).getCodproduto(), i, 4);
+                tmControle.setValueAt(cargaDiaria.get(i).getObservacao(), i, 5);
+                String createdAt = Converter.dateToString(cargaDiaria.get(i).getCreatedAt());
+                tmControle.setValueAt(createdAt, i, 6);
+                String labelCautelado = Formatter.getLabelSimOuNao(cargaDiaria.get(i).isCautelado());
+                tmControle.setValueAt(labelCautelado, i, 7);
+                tmControle.setValueAt(cargaDiaria.get(i).getDia2(), i, 8);
+                tmControle.setValueAt(cargaDiaria.get(i).getHora2(), i, 9);
             }
         }
     }
