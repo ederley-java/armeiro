@@ -1,3 +1,4 @@
+<<<<<<< master
 package dao;
 
 import Interface.CriaConexao;
@@ -88,3 +89,51 @@ public class LoginDao {
         } 
     }
 }
+=======
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
+import interfaces.Principal;
+import dao.CriaConexao;
+import models.LoginDTO;
+
+/**
+ *
+ * @author Lemes
+ */
+public class LoginDao {
+    private Connection conexao;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
+    public LoginDao() throws SQLException{
+        this.conexao = CriaConexao.getConexao();
+    }
+        
+    public void logar(LoginDTO login) {
+        String sql = "select * from login where usuario=? and senha=?;";
+        try {
+            pst = conexao.prepareStatement(sql);
+            
+            pst.setString(1, login.getUsuario());
+            pst.setString(2, login.getSenha());
+            
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                Principal tela = new Principal();
+                tela.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inválido!");
+            }
+            
+        } catch (Exception e) {
+            
+        }
+    }
+}
+>>>>>>> Organizando projeto

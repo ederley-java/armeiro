@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package controllers;
+package interfaces;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import models.Login;
+import models.LoginDTO;
 import dao.LoginDao;
 
 /**
  *
  * @author Lemes
  */
-public class LoginCtrl extends javax.swing.JFrame {
-    public LoginCtrl() {
+public class Login extends javax.swing.JFrame {
+    public Login() {
         initComponents();
     }
 
@@ -87,16 +82,16 @@ public class LoginCtrl extends javax.swing.JFrame {
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
         try {
-            Login c1 = new Login();
-            LoginDao dao = new LoginDao();
-            c1.setUsuario(jTextUsuario.getText());
-            c1.setSenha(jPasswordSenha.getText());
+            LoginDTO login = new LoginDTO();
+            login.setUsuario(jTextUsuario.getText());
+            login.setSenha(jPasswordSenha.getText());
             
-            dao.logar(c1);
+            LoginDao dao = new LoginDao();
+            dao.logar(login);
             dispose();
         } catch (SQLException ex) {
            // JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválido!");
-            Logger.getLogger(LoginCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -136,18 +131,18 @@ public class LoginCtrl extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginCtrl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginCtrl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginCtrl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginCtrl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginCtrl().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }

@@ -1,4 +1,4 @@
-package controllers;
+package interfaces;
 
 import java.awt.Color;
 import java.sql.SQLException;
