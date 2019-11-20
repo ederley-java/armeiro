@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +30,7 @@ public class CargaDiariaDao {
         stmt.setString(3, cargaDiaria.getAgenteControle());
         stmt.setString(4, cargaDiaria.getCodproduto());
         stmt.setString(5, cargaDiaria.getObservacao());
-        stmt.setDate(6, cargaDiaria.getCreatedAt());
+        stmt.setDate(6, new Date(cargaDiaria.getCreatedAt().getTime()));
         stmt.setBoolean(8, cargaDiaria.isCautelado());
         stmt.setString(9, cargaDiaria.getDia2());
         stmt.setString(10, cargaDiaria.getHora2());
@@ -85,53 +86,47 @@ public class CargaDiariaDao {
        return minhaListaControle;
     }
       
-       public void altera (CargaDiaria p1) throws SQLException{
+       public void altera (CargaDiaria cargaDiaria) throws SQLException{
         String sql = "update carga_diaria set nome_armeiro=?, dia=?, nomeGuarda=?, pt58=?, carregador=?, municao=?, spark=?, vtr=?" +
          ",cal12=?, municao12=?, bandoleira=?, tablet=?, impressora=?, guia=?, diversos=?, created_at=?, dia2=?, hora2=? where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
-        stmt.setString(1, p1.getDataArmeiroControle());
-        stmt.setString(2, p1.getArmeiroControle());
-        stmt.setString(3, p1.getAgenteControle());     // veificar esse metodo pois deve estar errado, nao pode ser update livro parte...
-        stmt.setString(4, p1.getCodproduto());
-        stmt.setString(5, p1.getObservacao());
-        stmt.setDate(6, p1.getCreatedAt());
-        stmt.setBoolean(8, p1.isCautelado());
-        stmt.setString(9, p1.getDia2());
-        stmt.setString(9, p1.getHora2());
+        stmt.setString(1, cargaDiaria.getDataArmeiroControle());
+        stmt.setString(2, cargaDiaria.getArmeiroControle());
+        stmt.setString(3, cargaDiaria.getAgenteControle());     // veificar esse metodo pois deve estar errado, nao pode ser update livro parte...
+        stmt.setString(4, cargaDiaria.getCodproduto());
+        stmt.setString(5, cargaDiaria.getObservacao());
+        stmt.setDate(6, new Date(cargaDiaria.getCreatedAt().getTime()));
+        stmt.setBoolean(8, cargaDiaria.isCautelado());
+        stmt.setString(9, cargaDiaria.getDia2());
+        stmt.setString(9, cargaDiaria.getHora2());
                
         // executa o codigo sql
         stmt.execute();
         stmt.close();   
     }
             
-    public void remove(CargaDiaria c1) throws SQLException{
+    public void remove(CargaDiaria cargaDiaria) throws SQLException{
         String sql = "delete from carga_diaria where id=?";
 
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setBoolean(1, c1.isCautelado());                 // remover esse metodo todo por nao ser necessario.
+        stmt.setBoolean(1, cargaDiaria.isCautelado());                 // remover esse metodo todo por nao ser necessario.
         stmt.execute();
         stmt.close();
     }
     
-     public void EntregaProduto(CargaDiaria p1) throws SQLException{
+     public void EntregaProduto(CargaDiaria cargaDiaria) throws SQLException{
         // prepara a conexao com oo banco
         String sql = "update carga_diaria set cautelado=? where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql); // tem que arruma esse comando SQL
         
         // seta os valores 
-        stmt.setBoolean(1, p1.isCautelado());
-        stmt.setInt(2, p1.getId());
+        stmt.setBoolean(1, cargaDiaria.isCautelado());
+        stmt.setInt(2, cargaDiaria.getId());
 
         // executa o codigo sql
         stmt.execute();
         stmt.close();
     }
-         
-   
-  
-    
-    
-    
 }

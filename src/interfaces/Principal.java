@@ -1,6 +1,5 @@
 package interfaces;
 
-import java.awt.Color;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +17,7 @@ import dao.CargaDiariaDao;
 import dao.LivroParteDao;
 import dao.ProdutoDao;
 import dao.UsuarioDao;
+import java.text.ParseException;
 import models.CargaDiaria;
 import models.LivroParte;
 import models.Produto;
@@ -753,7 +753,7 @@ public class Principal extends javax.swing.JFrame {
         jTabbedUsuarios.setBounds(0, 0, 1350, 630);
 
         setBounds(0, 0, 1370, 704);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     public static String dataSistema() {
         Date data = new Date();
@@ -999,7 +999,6 @@ public class Principal extends javax.swing.JFrame {
 
             verificaDevulocao();
         } else {
-
             jTDataControle.setText("");
             jTAgente.setText("");
             jTCodProduto.setText("");
@@ -1007,7 +1006,6 @@ public class Principal extends javax.swing.JFrame {
             jTHoraEntradaAgente.setText("");
             jTDataSaidaAgente.setText("");
             jTHoraSaidaAgente.setText("");
-
         }
     }
 
@@ -1396,15 +1394,15 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    public void cadastroControle() {
+    public void cadastroControle() throws ParseException {
         CargaDiaria controle = new CargaDiaria();
         controle.setArmeiroControle(jTextArmeiroControle.getText());
         controle.setDataArmeiroControle(jTDataControle.getText());
         controle.setAgenteControle(jTAgente.getText());
         controle.setCodproduto(jTCodProduto.getText());
         controle.setObservacao(jTObservacao.getText());
-        controle.setCreatedAt(jTDataEntradaAgente.getText());
-        controle.setHora1(jTHoraEntradaAgente.getText());
+        Date createdAt = Converter.stringToDate(jTDataEntradaAgente.getText());
+        controle.setCreatedAt(createdAt);
         controle.setCautelado(true);
         controle.setDia2(jTDataSaidaAgente.getText());
         controle.setHora2(jTHoraSaidaAgente.getText());
