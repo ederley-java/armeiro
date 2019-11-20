@@ -80,12 +80,12 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
+    private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {                                               
         try {
             LoginDTO login = new LoginDTO();
             login.setUsuario(jTextUsuario.getText());
             login.setSenha(jPasswordSenha.getText());
-            
+
             LoginDao dao = new LoginDao();
             dao.logar(login);
             dispose();

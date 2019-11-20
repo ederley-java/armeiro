@@ -108,8 +108,6 @@ import models.LoginDTO;
  */
 public class LoginDao {
     private Connection conexao;
-    private PreparedStatement pst = null;
-    private ResultSet rs = null;
     
     public LoginDao() throws SQLException {
         this.conexao = CriaConexao.getConexao();
@@ -118,12 +116,12 @@ public class LoginDao {
     public void logar(LoginDTO login) {
         String sql = "select * from login where usuario=? and senha=?;";
         try {
-            pst = conexao.prepareStatement(sql);
+            PreparedStatement pst = conexao.prepareStatement(sql);
             
             pst.setString(1, login.getUsuario());
             pst.setString(2, login.getSenha());
             
-            rs = pst.executeQuery();
+            ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 Principal tela = new Principal();
                 tela.setVisible(true);
