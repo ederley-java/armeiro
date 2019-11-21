@@ -70,7 +70,7 @@ public class LoginDao {
     }
     
     public void CadastrarUsuarioNovo(LoginBean c1){
-        String sql = "insert into login (usuario, senha)" + "values (?,?)";
+        String sql = "Insert into login (usuario, senha) values (?,?)";
                
          try{
             pst = conexao.prepareStatement(sql);
