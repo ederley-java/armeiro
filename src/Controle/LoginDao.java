@@ -50,13 +50,12 @@ public class LoginDao {
         }
     }
         
-        public void CadastrarUsuario(LoginBean c1){
+    public void CadastrarUsuario(LoginBean c1){
         String sql = "select * from login where usuario=? and senha=?";
         try{
             pst = conexao.prepareStatement(sql);
             pst.setString(1, c1.getUsuario());
             pst.setString(2, c1.getSenha());
-            
             rs = pst.executeQuery();
             if (rs.next()){
                 TelaCadastroLogin cadastro = new TelaCadastroLogin();
@@ -64,18 +63,15 @@ public class LoginDao {
             }else{
                 JOptionPane.showMessageDialog(null,"Usuário ou Senha Inválido!");
             }
-           
         }
         catch (Exception e){
-            
         }
-        
-         
-     }
+    }
     
     public void CadastrarUsuarioNovo(LoginBean c1){
         String sql = "insert into login (usuario, senha)" + "values (?,?)";
-        try{
+               
+         try{
             pst = conexao.prepareStatement(sql);
             pst.setString(1, c1.getUsuario());
             pst.setString(2, c1.getSenha());
@@ -87,15 +83,15 @@ public class LoginDao {
             }else{
                 JOptionPane.showMessageDialog(null,"Usuário ou Senha Inválido!");
             }
-           
-        }
-        catch (Exception e){
-            
-        }
+         } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Não foi possível salvar!");
+        } 
+    }
+        
         
          
-     }
-        
-        
-    
 }
+        
+      
+    
+
