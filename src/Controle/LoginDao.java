@@ -70,7 +70,7 @@ public class LoginDao {
     }
     
     public void CadastrarUsuarioNovo(LoginBean c1){
-        String sql = "Insert into login (usuario, senha) values (?,?)";
+        String sql = "INSERT INTO login (usuario, senha) values (?,?)";
                
          try{
             pst = conexao.prepareStatement(sql);
@@ -78,6 +78,7 @@ public class LoginDao {
             pst.setString(2, c1.getSenha());
             
             rs = pst.executeQuery();
+            
             if (rs.next()){
                 TelaLogin log = new TelaLogin();
                 log.setVisible(true);
