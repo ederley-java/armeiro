@@ -46,7 +46,7 @@ public class LoginDao {
            
         }
         catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null,"Não foi possível acessar o sistema!");
         }
     }
         
@@ -65,6 +65,7 @@ public class LoginDao {
             }
         }
         catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Não foi possível cadastrar!");
         }
     }
     
