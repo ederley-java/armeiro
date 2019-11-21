@@ -125,7 +125,7 @@ public class TelaLogin extends javax.swing.JFrame {
             c1.setUsuario(jTextUsuario.getText());
             c1.setSenha(jPasswordSenha.getText());
             
-            dao.CadastarUsuario(c1);
+            dao.CadastrarUsuario(c1);
             dispose();
         } catch (SQLException ex) {
            // JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválido!");

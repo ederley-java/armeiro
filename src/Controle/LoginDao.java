@@ -8,6 +8,7 @@ package Controle;
 import Interface.CriaConexao;
 import Interface.Principal;
 import Interface.TelaCadastroLogin;
+import Interface.TelaLogin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,7 +50,7 @@ public class LoginDao {
         }
     }
         
-        public void CadastarUsuario(LoginBean c1){
+        public void CadastrarUsuario(LoginBean c1){
         String sql = "select * from login where usuario=? and senha=?";
         try{
             pst = conexao.prepareStatement(sql);
@@ -72,5 +73,29 @@ public class LoginDao {
          
      }
     
+    public void CadastrarUsuarioNovo(LoginBean c1){
+        String sql = "insert into login (usuario, senha)" + "values (?,?)";
+        try{
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, c1.getUsuario());
+            pst.setString(2, c1.getSenha());
+            
+            rs = pst.executeQuery();
+            if (rs.next()){
+                TelaLogin log = new TelaLogin();
+                log.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null,"Usuário ou Senha Inválido!");
+            }
+           
+        }
+        catch (Exception e){
+            
+        }
+        
+         
+     }
+        
+        
     
 }
