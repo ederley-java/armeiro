@@ -77,9 +77,9 @@ public class LoginDao {
             pst.setString(1, c1.getUsuario());
             pst.setString(2, c1.getSenha());
             
-            rs = pst.executeQuery();
+            int i = pst.executeUpdate();
             
-            if (rs.next()){
+            if (i == 1){
                 TelaLogin log = new TelaLogin();
                 log.setVisible(true);
             }else{
