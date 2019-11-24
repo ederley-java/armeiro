@@ -5,17 +5,20 @@
  */
 package Interface;
 
-import Controle.LoginBean;
-import Controle.LoginDao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import models.LoginDTO;
+import dao.LoginDao;
+import interfaces.Login;
 
 /**
  *
  * @author Lemes
  */
 public class TelaCadastroLogin extends javax.swing.JFrame {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Creates new form TelaCadastroLogin
@@ -70,7 +73,7 @@ public class TelaCadastroLogin extends javax.swing.JFrame {
 
     private void jButtonCadastrarUsuarioNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarUsuarioNovoActionPerformed
          try {
-            LoginBean c1 = new LoginBean();
+            LoginDTO c1 = new LoginDTO();
             LoginDao dao = new LoginDao();
             c1.setUsuario(jTextNomeUsuarioNovo.getText());
             c1.setSenha(jTextSenhaUsuarioNovo.getText());
@@ -79,7 +82,7 @@ public class TelaCadastroLogin extends javax.swing.JFrame {
             dispose();
         } catch (SQLException ex) {
            // JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválido!");
-            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonCadastrarUsuarioNovoActionPerformed
 

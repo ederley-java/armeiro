@@ -95,7 +95,6 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
-<<<<<<< master:src/Interface/TelaLogin.java
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         
         dispose();
@@ -103,7 +102,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
         try {
-            LoginBean c1 = new LoginBean();
+            LoginDTO c1 = new LoginDTO();
             LoginDao dao = new LoginDao();
             c1.setUsuario(jTextUsuario.getText());
             c1.setSenha(jPasswordSenha.getText());
@@ -112,7 +111,7 @@ public class Login extends javax.swing.JFrame {
             dispose();
         } catch (SQLException ex) {
            // JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválido!");
-            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
@@ -120,8 +119,6 @@ public class Login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-=======
->>>>>>> Organizando projeto:src/controllers/LoginCtrl.java
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
