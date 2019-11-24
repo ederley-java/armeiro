@@ -1,2 +1,5 @@
-/nbproject/private/
-/build/
+build/
+bin/
+
+src/dao/CriaConexao.java
+/dist/

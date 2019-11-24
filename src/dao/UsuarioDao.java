@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Interface;
+package dao;
 
+import models.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,15 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-//import ronaldo.bancodados.CriaConexao;
-//import ronaldo.logica.Contato;
 
 /**
  *
  * @author Lemes
  */
 public class UsuarioDao {
-
     private Connection conexao;
     Connection con = null;
     String sql;
@@ -33,7 +26,7 @@ public class UsuarioDao {
 
     public void adiciona(Usuario c1) throws SQLException {
         // prepara a conexao com oo banco
-        String sql = "insert into guardas (matricula, nome, endereco, telefone, email, sexo, situacao )" + "values (?,?,?,?,?,?,?)";
+        String sql = "insert into guarda (matricula, nome, endereco, telefone, email, sexo, situacao )" + "values (?,?,?,?,?,?,?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
         // seta os valores 
@@ -51,9 +44,7 @@ public class UsuarioDao {
     }
 
     public List<Usuario> getLista(String nome) throws SQLException {
-        System.out.println("chamada do metodo:  public List<Usuario> getLista(String nome) ");
-
-        String sql = "select * from guardas where nome like ?";
+        String sql = "select * from guarda where nome like ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, nome);
         ResultSet rs = stmt.executeQuery();
@@ -72,13 +63,14 @@ public class UsuarioDao {
             c1.setSituacao(rs.getString("situacao"));
             minhaLista.add(c1);
         }
+
         rs.close();
         stmt.close();
         return minhaLista;
     }
 
     public void altera(Usuario c1) throws SQLException {
-        String sql = "update guardas set nome=?, endereco=?, telefone=?, email=?"
+        String sql = "update guarda set nome=?, endereco=?, telefone=?, email=?"
                 + ",sexo=?, situacao=? where matricula=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
@@ -94,47 +86,41 @@ public class UsuarioDao {
         // executa o codigo sql
         stmt.execute();
         stmt.close();
-
     }
 
     public void remove(Usuario c1) throws SQLException {
-        String sql = "delete from guardas where matricula=?";
+        String sql = "DELETE FROM guarda WHERE matricula=?";
+
         PreparedStatement stmt = conexao.prepareStatement(sql);
+        
         stmt.setLong(1, c1.getMatricula());
+        
         stmt.execute();
         stmt.close();
-
     }
 
     public List<Usuario> listarGuardas() {
         ArrayList<Usuario> listUser = new ArrayList<>();
 
         try {
-
             con = CriaConexao.getConexao();
-            sql = "SELECT nome FROM guardas group by id order by id asc";
+            sql = "SELECT nome FROM guarda GROUP BY id ORDER BY id ASC";
             pstm = con.prepareStatement(sql);
             rs = pstm.executeQuery(sql);
 
             while (rs.next()) {
-
                 Usuario user = new Usuario();
 
                 user.setNome(rs.getString("nome"));
                 //user.setCatDescricao(rs.getString(2));
                 //user.setCatValorDiaria(rs.getDouble(3));           
                 listUser.add(user);
-       
             }
 
         } catch (Exception erro) {
-
             JOptionPane.showMessageDialog(null, "Erro PSTM " + erro.getMessage());
-
         }
 
         return listUser;
-
     }
-
 }

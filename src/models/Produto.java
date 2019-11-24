@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Interface;
+package models;
 
 /**
  *
@@ -35,8 +30,6 @@ public class Produto {
     public void setCod(String cod) {
         this.cod = cod;
     }
-    
-    
 
     public String getMarcaProduto() {
         return marcaProduto;
@@ -93,8 +86,4 @@ public class Produto {
     public void setHistoricoManutencaoProduto(String historicoManutencaoProduto) {
         this.historicoManutencaoProduto = historicoManutencaoProduto;
     }
-    
-    
-    
-    
 }

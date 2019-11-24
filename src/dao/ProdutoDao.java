@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+package dao;
 
+import models.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +28,7 @@ public class ProdutoDao {
     
     public void adiciona (Produto c1) throws SQLException{
         // prepara a conexao com o banco
-        String sql = "insert into produto (cod, marca, tipo, numeroSerie, descricao, observacao, localizacao, historico )" + "values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into produto (cod, marca, tipo, numero_serie, descricao, observacao, localizacao, historico )" + "values (?,?,?,?,?,?,?,?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
@@ -56,37 +57,39 @@ public class ProdutoDao {
         List<Produto> minhaLista = new ArrayList<Produto>();
         
         while(rs.next()){
-            Produto c1 = new Produto();
-            c1.setIdProduto(rs.getInt("id"));
-            c1.setCod(rs.getString("cod"));
-            c1.setMarcaProduto(rs.getString("marca"));
-            c1.setTipoProduto(rs.getString("tipo"));
-            c1.setNumeroSerieProduto(rs.getString("numeroSerie"));
-            c1.setDescricaoProduto(rs.getString("descricao"));
-            c1.setObservacaoProduto(rs.getString("observacao"));
-            c1.setLocalizacaoProduto(rs.getString("localizacao"));
-            c1.setHistoricoManutencaoProduto(rs.getString("historico"));
-            minhaLista.add(c1);
+            Produto produto = new Produto();
+
+            produto.setIdProduto(rs.getInt("id"));
+            produto.setCod(rs.getString("cod"));
+            produto.setMarcaProduto(rs.getString("marca"));
+            produto.setTipoProduto(rs.getString("tipo"));
+            produto.setNumeroSerieProduto(rs.getString("numero_serie"));
+            produto.setDescricaoProduto(rs.getString("descricao"));
+            produto.setObservacaoProduto(rs.getString("observacao"));
+            produto.setLocalizacaoProduto(rs.getString("localizacao"));
+            produto.setHistoricoManutencaoProduto(rs.getString("historico"));
+            
+            minhaLista.add(produto);
        }
         rs.close();
         stmt.close();
         return minhaLista;
     }
     
-       public void altera (Produto c1) throws SQLException{
-        String sql = "update produto set marca=?, tipo=?, numeroSerie=?, descricao=?" +
+       public void altera (Produto produto) throws SQLException{
+        String sql = "update produto set marca=?, tipo=?, numero_serie=?, descricao=?" +
                 ",observacao=?, localizacao=?, historico=? where id=?";          // String sql
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
-        stmt.setString(1, c1.getMarcaProduto());
-        stmt.setString(2, c1.getTipoProduto());
-        stmt.setString(3, c1.getNumeroSerieProduto());
-        stmt.setString(4, c1.getDescricaoProduto());
-        stmt.setString(5, c1.getObservacaoProduto());     // A ordem passada tem que ser a mesma da String sql (lá em cima)
-        stmt.setString(6, c1.getLocalizacaoProduto());
-        stmt.setString(7, c1.getHistoricoManutencaoProduto());
-        stmt.setString(8, c1.getCod());
+        stmt.setString(1, produto.getMarcaProduto());
+        stmt.setString(2, produto.getTipoProduto());
+        stmt.setString(3, produto.getNumeroSerieProduto());
+        stmt.setString(4, produto.getDescricaoProduto());
+        stmt.setString(5, produto.getObservacaoProduto());     // A ordem passada tem que ser a mesma da String sql (lá em cima)
+        stmt.setString(6, produto.getLocalizacaoProduto());
+        stmt.setString(7, produto.getHistoricoManutencaoProduto());
+        stmt.setString(8, produto.getCod());
         
         // executa o codigo sql
         stmt.execute();

@@ -4,53 +4,70 @@ DROP DATABASE armeirobd4;
 CREATE DATABASE armeirobd4;
 USE armeirobd4;
 
-create table guardas (
-id int (15) not null auto_increment,
-matricula varchar (15),
-nome varchar (50),
-endereco varchar (50),
-telefone varchar (50),
-email varchar (50),
-sexo varchar (15),
-situacao varchar (50),
-status varchar (15),
-primary key (id));
+CREATE TABLE login (
+    id        INT (15) NOT NULL auto_increment,
+    usuario  VARCHAR (50),
+    senha    VARCHAR (50),
 
-create table livroparte (
-id int (10) not null auto_increment,
-nomeArmeiro varchar (15),
-dia_entrada varchar (10),
-hora_entrada varchar (10),
-historico varchar (1000),
-dia_saida varchar (10),
-hora_saida varchar (10),
-primary key (id));
+    PRIMARY KEY (id)
+);
 
-create table produto (
-id int (15) not null auto_increment,	
-cod varchar (10),
-marca varchar (15),
-tipo varchar (20),
-numeroSerie varchar (20),
-descricao varchar (50),
-observacao varchar (80),
-localizacao varchar (50),
-historico varchar (1000),
-primary key (id));
+CREATE TABLE guarda (
+    id        INT (15) NOT NULL auto_increment,
+    id_login  INT (15),
+    matricula VARCHAR (15),
+    nome      VARCHAR (50),
+    endereco  VARCHAR (50),
+    telefone  VARCHAR (50),
+    email     VARCHAR (50),
+    sexo      VARCHAR (15),
+    situacao  VARCHAR (50),
+    status    VARCHAR (15),
 
-create table cargaDiaria (
-id int (15) not null auto_increment,
-dia varchar (10) not null,
-codArmeiro int (15),
-codGuarda int (15),
-codProduto int (15),
-observacao varchar (100),
-dia1 varchar (15), 
-hora1 varchar (10),
-cautelado boolean,
-dia2 varchar (15), 
-hora2 varchar (10),
-primary key (id),
-CONSTRAINT FK_nomeArmeiro_nome FOREIGN KEY (codArmeiro) REFERENCES guardas (id),
-CONSTRAINT FK_nomeGuarda_nome FOREIGN KEY (codGuarda) REFERENCES guardas (id),
-CONSTRAINT FK_codProduto_produto FOREIGN KEY (codProduto) REFERENCES produto (id));
+    PRIMARY KEY (id),
+    CONSTRAINT FK_guarda_login FOREIGN KEY (id_login) REFERENCES login (id)
+);
+
+CREATE TABLE livroparte (
+    id           INT (10) NOT NULL auto_increment,
+    nome_armeiro VARCHAR (15),
+    dia_entrada  VARCHAR (10),
+    hora_entrada VARCHAR (10),
+    historico    VARCHAR (1000),
+    dia_saida    VARCHAR (10),
+    hora_saida   VARCHAR (10),
+
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE produto (
+    id INT (15) NOT NULL auto_increment,	
+    cod VARCHAR (10),
+    marca VARCHAR (15),
+    tipo VARCHAR (20),
+    numero_serie VARCHAR (20),
+    descricao VARCHAR (50),
+    observacao VARCHAR (80),
+    localizacao VARCHAR (50),
+    historico VARCHAR (1000),
+
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE carga_diaria (
+    id INT (15) NOT NULL auto_increment,
+    id_armeiro INT (15),
+    id_guarda INT (15),
+    id_produto INT (15),
+    observacao VARCHAR (100),
+    cautelado BOOLEAN,
+    dia VARCHAR (10) NOT NULL,
+    created_at datetime,
+    dia2 VARCHAR (15), 
+    hora2 VARCHAR (10),
+
+    PRIMARY KEY (id),
+    CONSTRAINT FK_carga_diaria_armeiro FOREIGN KEY (id_armeiro) REFERENCES guarda (id),
+    CONSTRAINT FK_carga_diaria_guarda  FOREIGN KEY (id_guarda)  REFERENCES guarda (id),
+    CONSTRAINT FK_carga_diaria_produto FOREIGN KEY (id_produto) REFERENCES produto (id)
+);
