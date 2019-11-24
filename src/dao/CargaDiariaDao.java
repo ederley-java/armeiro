@@ -59,31 +59,36 @@ public class CargaDiariaDao {
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, idArmeiro);
         stmt.setBoolean(2, true);
+        
+        List<CargaDiaria> lista = new ArrayList<CargaDiaria>();
+        
         ResultSet rs = stmt.executeQuery();
-        
-        List<CargaDiaria> minhaListaControle = new ArrayList<CargaDiaria>();
-        
-        while(rs.next()){
+        while(rs.next()) {
             CargaDiaria cargaDiaria = new CargaDiaria();
 
             cargaDiaria.setId(rs.getInt("Id"));  
+
             cargaDiaria.setDataArmeiroControle(rs.getString("dia"));
+            
             cargaDiaria.setArmeiroControle(rs.getString("armeiro"));
             cargaDiaria.setAgenteControle(rs.getString("guarda"));
-            cargaDiaria.setCodproduto(rs.getString("cod"));
             
+            cargaDiaria.setCodproduto(rs.getString("cod"));
             cargaDiaria.setObservacao(rs.getString("observacao"));
-            cargaDiaria.setCreatedAt(rs.getDate("created_at"));
+
+            Date createdAt = new Date(rs.getTimestamp("created_at").getTime());
+            cargaDiaria.setCreatedAt(createdAt);
+
             cargaDiaria.setDia2(rs.getString("dia2"));
             cargaDiaria.setHora2(rs.getString("hora2"));
             cargaDiaria.setCautelado(rs.getBoolean("cautelado"));
           
-            minhaListaControle.add(cargaDiaria);
+            lista.add(cargaDiaria);
        }
 
        rs.close();
        stmt.close();
-       return minhaListaControle;
+       return lista;
     }
       
        public void altera (CargaDiaria cargaDiaria) throws SQLException{
