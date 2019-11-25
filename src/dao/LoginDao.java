@@ -26,7 +26,7 @@ public class LoginDao {
     }
         
      public void logar(LoginDTO login) {
-        String sql = "select * from login where usuario=? and senha=?;";
+        String sql = "SELECT * from login WHERE usuario=? and senha=?;";
         try {
             pst = conexao.prepareStatement(sql);
             
@@ -48,7 +48,7 @@ public class LoginDao {
     }
         
     public void CadastrarUsuario(LoginDTO c1){
-        String sql = "select * from login where usuario=? and senha=?";
+        String sql = "SELECT * from login WHERE usuario=? and senha=?";
         try{
             pst = conexao.prepareStatement(sql);
             pst.setString(1, c1.getUsuario());

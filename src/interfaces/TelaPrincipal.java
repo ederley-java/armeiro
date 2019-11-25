@@ -970,13 +970,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             habilitaDadosProduto();
             jTextIdProduto.setText(String.valueOf(produto.get(tabela.getSelectedRow()).getId()));
             jTextCodProduto.setText(produto.get(tabela.getSelectedRow()).getCodigo());
-            jTextMarcaProduto.setText(produto.get(tabela.getSelectedRow()).getMarcaProduto()); // na tabela e coloca-os nos campos para serem editados
-            jTextTipoProduto.setText(produto.get(tabela.getSelectedRow()).getTipoProduto());
-            jTextNumeroSerieProduto.setText(produto.get(tabela.getSelectedRow()).getNumeroSerieProduto());
-            jTextDescricaoProduto.setText(produto.get(tabela.getSelectedRow()).getDescricaoProduto());
-            jTextObservacaoProduto.setText(produto.get(tabela.getSelectedRow()).getObservacaoProduto());
-            jTextLocalizacaoProduto.setText(produto.get(tabela.getSelectedRow()).getLocalizacaoProduto());
-            jTextHistoricoProduto.setText(produto.get(tabela.getSelectedRow()).getHistoricoManutencaoProduto());// tambem tem que adicionar codigo de pos inicializacao nas propriedades da tabela
+            jTextMarcaProduto.setText(produto.get(tabela.getSelectedRow()).getMarca()); // na tabela e coloca-os nos campos para serem editados
+            jTextTipoProduto.setText(produto.get(tabela.getSelectedRow()).getTipo());
+            jTextNumeroSerieProduto.setText(produto.get(tabela.getSelectedRow()).getNumeroSerie());
+            jTextDescricaoProduto.setText(produto.get(tabela.getSelectedRow()).getDescricao());
+            jTextObservacaoProduto.setText(produto.get(tabela.getSelectedRow()).getObservacao());
+            jTextLocalizacaoProduto.setText(produto.get(tabela.getSelectedRow()).getLocalizacao());
+            jTextHistoricoProduto.setText(produto.get(tabela.getSelectedRow()).getHistoricoManutencao());// tambem tem que adicionar codigo de pos inicializacao nas propriedades da tabela
 
         } else {
             jTextCodProduto.setText("");
@@ -1289,13 +1289,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 ProdutoDao dao = new ProdutoDao();
                 c1.setId(Integer.parseInt(jTextIdProduto.getText()));
                 c1.setCodigo(jTextCodProduto.getText());
-                c1.setMarcaProduto(jTextMarcaProduto.getText());
-                c1.setTipoProduto(jTextTipoProduto.getText());
-                c1.setNumeroSerieProduto(jTextNumeroSerieProduto.getText());
-                c1.setDescricaoProduto(jTextDescricaoProduto.getText());
-                c1.setObservacaoProduto(jTextObservacaoProduto.getText());
-                c1.setLocalizacaoProduto(jTextLocalizacaoProduto.getText());
-                c1.setHistoricoManutencaoProduto(jTextHistoricoProduto.getText());
+                c1.setMarca(jTextMarcaProduto.getText());
+                c1.setTipo(jTextTipoProduto.getText());
+                c1.setNumeroSerie(jTextNumeroSerieProduto.getText());
+                c1.setDescricao(jTextDescricaoProduto.getText());
+                c1.setObservacao(jTextObservacaoProduto.getText());
+                c1.setLocalizacao(jTextLocalizacaoProduto.getText());
+                c1.setHistoricoManutencao(jTextHistoricoProduto.getText());
 
                 dao.altera(c1);
                 JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!!");
@@ -1438,13 +1438,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Produto produto = new Produto();
         //  c1.setIdProduto(Integer.parseInt(jTextIdProduto.getText()));   Nao precisa no cadastro
         produto.setCodigo(jTextCodProduto.getText());
-        produto.setMarcaProduto(jTextMarcaProduto.getText());
-        produto.setTipoProduto(jTextTipoProduto.getText());
-        produto.setNumeroSerieProduto(jTextNumeroSerieProduto.getText());
-        produto.setDescricaoProduto(jTextDescricaoProduto.getText());
-        produto.setObservacaoProduto(jTextObservacaoProduto.getText());
-        produto.setLocalizacaoProduto(jTextLocalizacaoProduto.getText());
-        produto.setHistoricoManutencaoProduto(jTextHistoricoProduto.getText());
+        produto.setMarca(jTextMarcaProduto.getText());
+        produto.setTipo(jTextTipoProduto.getText());
+        produto.setNumeroSerie(jTextNumeroSerieProduto.getText());
+        produto.setDescricao(jTextDescricaoProduto.getText());
+        produto.setObservacao(jTextObservacaoProduto.getText());
+        produto.setLocalizacao(jTextLocalizacaoProduto.getText());
+        produto.setHistoricoManutencao(jTextHistoricoProduto.getText());
 
         ProdutoDao dao;
         try {
@@ -1592,16 +1592,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextTipoProduto;
 
     private void mostraPesquisa(List<Usuario> lista) {
-        while (tmUsuario.getRowCount() > 0) {           // trecho de codigo para que serve para,
-            tmUsuario.removeRow(0);               // exibir somente as linhas selecionadas.
+        while (tmUsuario.getRowCount() > 0) {
+            tmUsuario.removeRow(0);
         }
 
-        if (lista.size() == 0) {                     //if para comparar se a lista esta vazia, dai nem exibirá a lista
-            JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
-            String[] linha = new String[]{null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
-            //para receber os dados da lista que vem do banco. sempre inicia com nulo.
-            // o for adiciona os valores na jtable
+            String[] linha = new String[]{null, null, null, null, null, null, null};
             for (int i = 0; i < lista.size(); i++) {
                 tmUsuario.addRow(linha);
 
@@ -1619,16 +1617,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     private void mostraPesquisaLivroParte(List<LivroParte> lista) {
-        while (tmLivroParte.getRowCount() > 0) {          // trecho de codigo para que serve para,
-            tmLivroParte.removeRow(0);                // exibir somente as linhas selecionadas.
+        while (tmLivroParte.getRowCount() > 0) {
+            tmLivroParte.removeRow(0);
         }
 
-        if (lista.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
-            JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
-            String[] linha = new String[]{null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
-            //para receber os dados da lista que vem do banco. sempre inicia com nulo.
-            // o for adiciona os valores na jtable
+            String[] linha = new String[]{null, null, null, null, null, null, null};
             for (int i = 0; i < lista.size(); i++) {
                 tmLivroParte.addRow(linha);
 
@@ -1645,12 +1641,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     private void mostraPesquisaProduto(List<Produto> lista) {
-        while (tmProduto.getRowCount() > 0) {          // trecho de codigo para que serve para,
-            tmProduto.removeRow(0);                // exibir somente as linhas selecionadas.
+        while (tmProduto.getRowCount() > 0) {
+            tmProduto.removeRow(0);
         }
 
-        if (lista.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
-            JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
             String[] linha = new String[]{null, null, null, null, null, null, null, null, null};
             for (int i = 0; i < lista.size(); i++) {
@@ -1659,23 +1655,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 Produto produto = lista.get(i);
                 tmProduto.setValueAt(produto.getId(), i, 0);
                 tmProduto.setValueAt(produto.getCodigo(), i, 1);
-                tmProduto.setValueAt(produto.getMarcaProduto(), i, 2);
-                tmProduto.setValueAt(produto.getTipoProduto(), i, 3);
-                tmProduto.setValueAt(produto.getNumeroSerieProduto(), i, 4);
-                tmProduto.setValueAt(produto.getDescricaoProduto(), i, 5);
-                tmProduto.setValueAt(produto.getObservacaoProduto(), i, 6);
-                tmProduto.setValueAt(produto.getLocalizacaoProduto(), i, 7);
-                tmProduto.setValueAt(produto.getHistoricoManutencaoProduto(), i, 8);
+                tmProduto.setValueAt(produto.getMarca(), i, 2);
+                tmProduto.setValueAt(produto.getTipo(), i, 3);
+                tmProduto.setValueAt(produto.getNumeroSerie(), i, 4);
+                tmProduto.setValueAt(produto.getDescricao(), i, 5);
+                tmProduto.setValueAt(produto.getObservacao(), i, 6);
+                tmProduto.setValueAt(produto.getLocalizacao(), i, 7);
+                tmProduto.setValueAt(produto.getHistoricoManutencao(), i, 8);
             }
         }
     }
 
     private void mostraPesquisaControle(List<CargaDiaria> lista) {
-        while (tmControle.getRowCount() > 0) {          // trecho de codigo para que serve para,
-            tmControle.removeRow(0);                // exibir somente as linhas selecionadas.
+        while (tmControle.getRowCount() > 0) {
+            tmControle.removeRow(0);
         }
         
-        if (lista.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
+        if (lista.size() == 0) {
             JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
             String[] linha = new String[]{null, null, null, null, null, null, null, null, null, null};

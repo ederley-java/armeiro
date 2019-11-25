@@ -28,18 +28,18 @@ public class ProdutoDao {
     
     public void adiciona (Produto c1) throws SQLException{
         // prepara a conexao com o banco
-        String sql = "insert into produto (cod, marca, tipo, numero_serie, descricao, observacao, localizacao, historico )" + "values (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT into produto (cod, marca, tipo, numero_serie, descricao, observacao, localizacao, historico )" + "values (?,?,?,?,?,?,?,?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
         stmt.setString(1, c1.getCodigo());
-        stmt.setString(2, c1.getMarcaProduto());
-        stmt.setString(3, c1.getTipoProduto());
-        stmt.setString(4, c1.getNumeroSerieProduto());
-        stmt.setString(5, c1.getDescricaoProduto());
-        stmt.setString(6, c1.getObservacaoProduto());
-        stmt.setString(7, c1.getLocalizacaoProduto());
-        stmt.setString(8, c1.getHistoricoManutencaoProduto());
+        stmt.setString(2, c1.getMarca());
+        stmt.setString(3, c1.getTipo());
+        stmt.setString(4, c1.getNumeroSerie());
+        stmt.setString(5, c1.getDescricao());
+        stmt.setString(6, c1.getObservacao());
+        stmt.setString(7, c1.getLocalizacao());
+        stmt.setString(8, c1.getHistoricoManutencao());
         
         // executa o codigo sql
         stmt.execute();
@@ -49,7 +49,7 @@ public class ProdutoDao {
     public List<Produto> getLista(String id) throws SQLException{
         System.out.println("chamada do metodo:  public List<Produto> getLista(String id) ");
         
-        String sql = "select * from Produto where cod like ?";
+        String sql = "SELECT * from Produto WHERE cod like ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, id);
         ResultSet rs = stmt.executeQuery();
@@ -61,13 +61,13 @@ public class ProdutoDao {
 
             produto.setId(rs.getInt("id"));
             produto.setCodigo(rs.getString("cod"));
-            produto.setMarcaProduto(rs.getString("marca"));
-            produto.setTipoProduto(rs.getString("tipo"));
-            produto.setNumeroSerieProduto(rs.getString("numero_serie"));
-            produto.setDescricaoProduto(rs.getString("descricao"));
-            produto.setObservacaoProduto(rs.getString("observacao"));
-            produto.setLocalizacaoProduto(rs.getString("localizacao"));
-            produto.setHistoricoManutencaoProduto(rs.getString("historico"));
+            produto.setMarca(rs.getString("marca"));
+            produto.setTipo(rs.getString("tipo"));
+            produto.setNumeroSerie(rs.getString("numero_serie"));
+            produto.setDescricao(rs.getString("descricao"));
+            produto.setObservacao(rs.getString("observacao"));
+            produto.setLocalizacao(rs.getString("localizacao"));
+            produto.setHistoricoManutencao(rs.getString("historico"));
             
             minhaLista.add(produto);
        }
@@ -77,18 +77,18 @@ public class ProdutoDao {
     }
     
        public void altera (Produto produto) throws SQLException{
-        String sql = "update produto set marca=?, tipo=?, numero_serie=?, descricao=?" +
-                ",observacao=?, localizacao=?, historico=? where id=?";          // String sql
+        String sql = "UPDATE produto set marca=?, tipo=?, numero_serie=?, descricao=?" +
+                ",observacao=?, localizacao=?, historico=? WHERE id=?";          // String sql
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
-        stmt.setString(1, produto.getMarcaProduto());
-        stmt.setString(2, produto.getTipoProduto());
-        stmt.setString(3, produto.getNumeroSerieProduto());
-        stmt.setString(4, produto.getDescricaoProduto());
-        stmt.setString(5, produto.getObservacaoProduto());     // A ordem passada tem que ser a mesma da String sql (lá em cima)
-        stmt.setString(6, produto.getLocalizacaoProduto());
-        stmt.setString(7, produto.getHistoricoManutencaoProduto());
+        stmt.setString(1, produto.getMarca());
+        stmt.setString(2, produto.getTipo());
+        stmt.setString(3, produto.getNumeroSerie());
+        stmt.setString(4, produto.getDescricao());
+        stmt.setString(5, produto.getObservacao());     // A ordem passada tem que ser a mesma da String sql (lá em cima)
+        stmt.setString(6, produto.getLocalizacao());
+        stmt.setString(7, produto.getHistoricoManutencao());
         stmt.setString(8, produto.getCodigo());
         
         // executa o codigo sql
@@ -97,7 +97,7 @@ public class ProdutoDao {
     }
     
     public void remove(Produto c1) throws SQLException{
-        String sql = "delete from produto where id=?";
+        String sql = "DELETE from produto WHERE id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setString(1, c1.getCodigo());
         stmt.execute();

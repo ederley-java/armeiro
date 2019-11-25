@@ -7,13 +7,13 @@ package models;
 public class Produto {
     private int id;
     private String codigo;
-    private String marcaProduto;
-    private String tipoProduto;
-    private String numeroSerieProduto;
-    private String descricaoProduto;
-    private String observacaoProduto;
-    private String localizacaoProduto;
-    private String historicoManutencaoProduto;
+    private String marca;
+    private String tipo;
+    private String numeroSerie;
+    private String descricao;
+    private String observacao;
+    private String localizacao;
+    private String historicoManutencao;
 
     public int getId() {
         return id;
@@ -31,59 +31,59 @@ public class Produto {
         this.codigo = codigo;
     }
 
-    public String getMarcaProduto() {
-        return marcaProduto;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setMarcaProduto(String marcaProduto) {
-        this.marcaProduto = marcaProduto;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public String getTipoProduto() {
-        return tipoProduto;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoProduto(String tipoProduto) {
-        this.tipoProduto = tipoProduto;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getNumeroSerieProduto() {
-        return numeroSerieProduto;
+    public String getNumeroSerie() {
+        return numeroSerie;
     }
 
-    public void setNumeroSerieProduto(String numeroSerieProduto) {
-        this.numeroSerieProduto = numeroSerieProduto;
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
     }
 
-    public String getDescricaoProduto() {
-        return descricaoProduto;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescricaoProduto(String descricaoProduto) {
-        this.descricaoProduto = descricaoProduto;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getObservacaoProduto() {
-        return observacaoProduto;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setObservacaoProduto(String observacaoProduto) {
-        this.observacaoProduto = observacaoProduto;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
-    public String getLocalizacaoProduto() {
-        return localizacaoProduto;
+    public String getLocalizacao() {
+        return localizacao;
     }
 
-    public void setLocalizacaoProduto(String localizacaoProduto) {
-        this.localizacaoProduto = localizacaoProduto;
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
     }
 
-    public String getHistoricoManutencaoProduto() {
-        return historicoManutencaoProduto;
+    public String getHistoricoManutencao() {
+        return historicoManutencao;
     }
 
-    public void setHistoricoManutencaoProduto(String historicoManutencaoProduto) {
-        this.historicoManutencaoProduto = historicoManutencaoProduto;
+    public void setHistoricoManutencao(String historicoManutencao) {
+        this.historicoManutencao = historicoManutencao;
     }
 }

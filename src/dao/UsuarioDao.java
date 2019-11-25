@@ -26,7 +26,7 @@ public class UsuarioDao {
 
     public void adiciona(Usuario c1) throws SQLException {
         // prepara a conexao com oo banco
-        String sql = "insert into guarda (matricula, nome, endereco, telefone, email, sexo, situacao )" + "values (?,?,?,?,?,?,?)";
+        String sql = "INSERT into guarda (matricula, nome, endereco, telefone, email, sexo, situacao )" + "values (?,?,?,?,?,?,?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
         // seta os valores 
@@ -44,7 +44,7 @@ public class UsuarioDao {
     }
 
     public List<Usuario> getLista(String nome) throws SQLException {
-        String sql = "select * from guarda where nome like ?";
+        String sql = "SELECT * from guarda WHERE nome like ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, nome);
         ResultSet rs = stmt.executeQuery();
@@ -70,8 +70,8 @@ public class UsuarioDao {
     }
 
     public void altera(Usuario c1) throws SQLException {
-        String sql = "update guarda set nome=?, endereco=?, telefone=?, email=?"
-                + ",sexo=?, situacao=? where matricula=?";
+        String sql = "UPDATE guarda set nome=?, endereco=?, telefone=?, email=?"
+                + ",sexo=?, situacao=? WHERE matricula=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
         // seta os valores 
