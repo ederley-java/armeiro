@@ -9,7 +9,7 @@ INSERT INTO login
     (usuario, senha)
 VALUES
     ('zeca', 'zeca'),
-    ('lemes', 'lemes');
+    ('admin', 'admin');
 
 INSERT INTO guarda
     (id_login, matricula, nome, status)

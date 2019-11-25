@@ -29,23 +29,6 @@ import utils.Formatter;
  * @author Lemes
  */
 public class Principal extends javax.swing.JFrame {
-    DefaultTableModel tmUsuario = new DefaultTableModel(null, new String[]{"ID", "Maticula", "Nome", "Endereço", "Telefone", "Email", "Sexo", "Situação"});   // modelo que a tabela pegará para criar as culunas (tem que inserir tmusuarios nas 
-    List<Usuario> usuarios;                                                                                                                              // propriedades da tabela "model".         
-    ListSelectionModel lsmUsuario;
-
-    DefaultTableModel tmLivroParte = new DefaultTableModel(null, new String[]{"ID", "Armeiro", "Data Entrada", "Hora Entrada", "Histórico", "Data Saída", "Hora Saída"});
-    List<LivroParte> livroParte;
-    ListSelectionModel lsmLivroParte;
-
-    DefaultTableModel tmProduto = new DefaultTableModel(null, new String[]{"ID", "Cod.", "Marca", "Tipo", "Numero de Serie", "Descrição", "Observação", "Localização", "Historico de Manutenção"});
-    List<Produto> produto;
-    ListSelectionModel lsmProduto;
-
-    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data", "Cautelado", "Data 2", "Hora 2"});
-    List<CargaDiaria> cargaDiaria;
-    ListSelectionModel lsmControle;
-    
-
     /**
      * Creates new form Principal
      */
@@ -57,6 +40,35 @@ public class Principal extends javax.swing.JFrame {
         desabilitaDadosProduto();
 
         // jTDataControle.setText(dataSistema());  retirado para ser colocado no botao
+    }
+
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new Principal().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -1448,46 +1460,22 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    DefaultTableModel tmUsuario = new DefaultTableModel(null, new String[]{"ID", "Maticula", "Nome", "Endereço", "Telefone", "Email", "Sexo", "Situação"});   // modelo que a tabela pegará para criar as culunas (tem que inserir tmusuarios nas 
+    List<Usuario> usuarios;                                                                                                                              // propriedades da tabela "model".         
+    ListSelectionModel lsmUsuario;
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new Principal().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+    DefaultTableModel tmLivroParte = new DefaultTableModel(null, new String[]{"ID", "Armeiro", "Data Entrada", "Hora Entrada", "Histórico", "Data Saída", "Hora Saída"});
+    List<LivroParte> livroParte;
+    ListSelectionModel lsmLivroParte;
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    DefaultTableModel tmProduto = new DefaultTableModel(null, new String[]{"ID", "Cod.", "Marca", "Tipo", "Numero de Serie", "Descrição", "Observação", "Localização", "Historico de Manutenção"});
+    List<Produto> produto;
+    ListSelectionModel lsmProduto;
+
+    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data", "Data 2", "Hora 2"});
+    List<CargaDiaria> cargaDiaria;
+    ListSelectionModel lsmControle;
+
     private javax.swing.JButton jBAlterar;
     private javax.swing.JButton jBAlterarControle;
     private javax.swing.JButton jBAlterarParte;
@@ -1607,12 +1595,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextPesquisaParte;
     private javax.swing.JTextField jTextPesquisaProduto;
     private javax.swing.JTextField jTextTipoProduto;
-    // End of variables declaration//GEN-END:variables
 
     private void mostraPesquisa(List<Usuario> usuarios) {
         while (tmUsuario.getRowCount() > 0) {           // trecho de codigo para que serve para,
             tmUsuario.removeRow(0);               // exibir somente as linhas selecionadas.
         }
+
         if (usuarios.size() == 0) {                     //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
         } else {
@@ -1637,6 +1625,7 @@ public class Principal extends javax.swing.JFrame {
         while (tmLivroParte.getRowCount() > 0) {          // trecho de codigo para que serve para,
             tmLivroParte.removeRow(0);                // exibir somente as linhas selecionadas.
         }
+
         if (livroParte.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
         } else {
@@ -1660,12 +1649,11 @@ public class Principal extends javax.swing.JFrame {
         while (tmProduto.getRowCount() > 0) {          // trecho de codigo para que serve para,
             tmProduto.removeRow(0);                // exibir somente as linhas selecionadas.
         }
+
         if (produto.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
         } else {
-            String[] linha = new String[]{null, null, null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
-            //para receber os dados da lista que vem do banco. sempre inicia com nulo.
-            // o for adiciona os valores na jtable
+            String[] linha = new String[]{null, null, null, null, null, null, null, null, null};
             for (int i = 0; i < produto.size(); i++) {
                 tmProduto.addRow(linha);
                 tmProduto.setValueAt(produto.get(i).getIdProduto(), i, 0);
@@ -1687,12 +1675,9 @@ public class Principal extends javax.swing.JFrame {
         }
         
         if (cargaDiaria.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
-            JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
+            JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
-            String[] linha = new String[]{null, null, null, null, null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
-            // para receber os dados da lista que vem do banco. sempre inicia com nulo.
-            // o for adiciona os valores na jtable
-
+            String[] linha = new String[]{null, null, null, null, null, null, null, null, null, null};
             for (int i = 0; i < cargaDiaria.size(); i++) {
                 tmControle.addRow(linha);
                 tmControle.setValueAt(cargaDiaria.get(i).getId(), i, 0);
@@ -1703,28 +1688,20 @@ public class Principal extends javax.swing.JFrame {
                 tmControle.setValueAt(cargaDiaria.get(i).getObservacao(), i, 5);
                 String createdAt = Converter.dateToString(cargaDiaria.get(i).getCreatedAt());
                 tmControle.setValueAt(createdAt, i, 6);
-                String labelCautelado = Formatter.getLabelSimOuNao(cargaDiaria.get(i).isCautelado());
-                tmControle.setValueAt(labelCautelado, i, 7);
-                tmControle.setValueAt(cargaDiaria.get(i).getDia2(), i, 8);
-                tmControle.setValueAt(cargaDiaria.get(i).getHora2(), i, 9);
+                tmControle.setValueAt(cargaDiaria.get(i).getDia2(), i, 7);
+                tmControle.setValueAt(cargaDiaria.get(i).getHora2(), i, 8);
             }
         }
     }
 
-    //AQUI
     public void preencherComboGuarda() throws SQLException {
-
         jComboArmeiro.removeAllItems();
         UsuarioDao user = new UsuarioDao();
 
         List<Usuario> listaUser = user.listarGuardas();
 
         for (Usuario u : listaUser) {
-
             jComboArmeiro.addItem(u.getNome());
-
         }
-
     }
-
 }
