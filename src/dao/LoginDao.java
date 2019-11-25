@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-import Interface.TelaCadastroLogin;
 import dao.CriaConexao;
 import interfaces.Login;
 import interfaces.Principal;
+import interfaces.TelaCadastroLogin;
 import models.LoginDTO;
 
 /**

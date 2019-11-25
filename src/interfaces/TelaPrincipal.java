@@ -28,18 +28,13 @@ import utils.Formatter;
  *
  * @author Lemes
  */
-public class Principal extends javax.swing.JFrame {
-    /**
-     * Creates new form Principal
-     */
-    public Principal() throws SQLException {
+public class TelaPrincipal extends javax.swing.JFrame {
+    public TelaPrincipal() throws SQLException {
         initComponents();
         preencherComboGuarda();
         desabilitaDados();
-        desabilitaDadosLivroParte();//chama o metodo no inicio.
+        desabilitaDadosLivroParte();
         desabilitaDadosProduto();
-
-        // jTDataControle.setText(dataSistema());  retirado para ser colocado no botao
     }
 
     public static void main(String args[]) {
@@ -51,21 +46,21 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Principal().setVisible(true);
+                    new TelaPrincipal().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -1034,7 +1029,7 @@ public class Principal extends javax.swing.JFrame {
             try {
                 listarContatos();
             } catch (SQLException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -1140,7 +1135,7 @@ public class Principal extends javax.swing.JFrame {
             try {
                 listarProduto();
             } catch (SQLException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             desabilitaDadosProduto();
         }
@@ -1151,7 +1146,7 @@ public class Principal extends javax.swing.JFrame {
             //  jTextPesquisaProduto.setText("");  //Limpa o campo antes de fazer qualquer coisa (descartado por nao se aplicar a situação).
             listarProduto();
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBPesquisarProdutoActionPerformed
 
@@ -1176,7 +1171,7 @@ public class Principal extends javax.swing.JFrame {
             alteraProduto();
             listarProduto();  // nome do metodo certo é "listarProduto".
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBAlterarProdutoActionPerformed
 
@@ -1186,7 +1181,7 @@ public class Principal extends javax.swing.JFrame {
             try {
                 listarControle();
             } catch (SQLException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             //desabilitaDadosProduto();
         }
@@ -1225,7 +1220,7 @@ public class Principal extends javax.swing.JFrame {
             listarControle();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBPesquisarControleActionPerformed
 
@@ -1234,7 +1229,7 @@ public class Principal extends javax.swing.JFrame {
             alteraControle();
             listarProduto();  // nome do metodo certo é "listarProduto".
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBAlterarControleActionPerformed
 
@@ -1393,7 +1388,7 @@ public class Principal extends javax.swing.JFrame {
             dao = new LivroParteDao();
             dao.adiciona(p1);
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1415,7 +1410,7 @@ public class Principal extends javax.swing.JFrame {
             dao = new CargaDiariaDao();
             dao.adiciona(cargaDiaria);
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1435,7 +1430,7 @@ public class Principal extends javax.swing.JFrame {
             dao = new UsuarioDao();
             dao.adiciona(c1);
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1456,7 +1451,7 @@ public class Principal extends javax.swing.JFrame {
             dao = new ProdutoDao();
             dao.adiciona(c1);
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

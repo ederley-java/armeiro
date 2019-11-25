@@ -11,12 +11,38 @@ import dao.LoginDao;
  *
  * @author Lemes
  */
-public class Login extends javax.swing.JFrame {
-    public Login() {
+public class TelaLogin extends javax.swing.JFrame {
+    private static final long serialVersionUID = 1L;
+
+    public TelaLogin() {
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaLogin().setVisible(true);
+            }
+        });
+    }
+
     private void initComponents() {
         jButtonAcessar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -72,7 +98,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jButtonNovoUsuario);
         jButtonNovoUsuario.setBounds(350, 170, 90, 30);
 
-        jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arquivos/imagens/fotoGMSJ01.jpg"))); // NOI18N
+        jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arquivos/imagens/fotoGMSJ01.jpg")));
         getContentPane().add(jLabelFundoLogin);
         jLabelFundoLogin.setBounds(10, 0, 720, 327);
 
@@ -91,16 +117,15 @@ public class Login extends javax.swing.JFrame {
             dispose();
         } catch (SQLException ex) {
            // JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválido!");
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
-    }//GEN-LAST:event_jButtonSairActionPerformed
+    }
 
-    private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
+    private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             LoginDTO c1 = new LoginDTO();
             LoginDao dao = new LoginDao();
@@ -111,37 +136,8 @@ public class Login extends javax.swing.JFrame {
             dispose();
         } catch (SQLException ex) {
            // JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha Inválido!");
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
     }
 
     private javax.swing.JButton jButtonAcessar;
