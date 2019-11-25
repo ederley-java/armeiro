@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.CargaDiaria;
+import models.Produto;
+import models.Usuario;
 
 /**
  *
@@ -26,9 +28,10 @@ public class CargaDiariaDao {
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         stmt.setString(1, cargaDiaria.getDataArmeiroControle());
-        stmt.setString(2, cargaDiaria.getArmeiroControle());
-        stmt.setString(3, cargaDiaria.getAgenteControle());
-        stmt.setString(4, cargaDiaria.getCodproduto());
+        // TODO ZECA
+        // stmt.setString(2, cargaDiaria.getArmeiro());
+        // stmt.setString(3, cargaDiaria.getGuarda());
+        // stmt.setString(4, cargaDiaria.getProduto());
         stmt.setString(5, cargaDiaria.getObservacao());
         stmt.setDate(6, new Date(cargaDiaria.getCreatedAt().getTime()));
         stmt.setBoolean(8, cargaDiaria.isCautelado());
@@ -40,21 +43,31 @@ public class CargaDiariaDao {
     }
     
     public List<CargaDiaria> getLista(String idArmeiro) throws SQLException{
-        String sql = "select ca.id,\n" +
-        "ar.nome as armeiro,\n" +
-        "gu.nome as guarda,\n" +
-        "ca.dia,\n" +
-        "pr.cod,\n" +
-        "ca.observacao,\n" +
-        "ca.created_at,\n" +
-        "ca.cautelado,\n" +
-        "ca.dia2,\n" +
-        "ca.hora2\n" +
-        "from carga_diaria ca\n" +
-        "inner join guarda ar on (ar.id = ca.id_armeiro)\n" +
-        "inner join guarda gu on (gu.id = ca.id_guarda)\n" +
-        "inner join produto pr on (pr.id = ca.id_produto)\n" +
-        "where ca.id_armeiro like  ? and ca.cautelado = ? order by 1";
+        String sql = "select carga.id,\n" +
+        
+        "armeiro.id   as id_armeiro,\n" +
+        "armeiro.nome as nome_armeiro,\n" +
+        
+        "carga.dia,\n" +
+        
+        "guarda.id   as id_guarda,\n" +
+        "guarda.nome as nome_guarda,\n" +
+        
+        "prod.id as id_produto,\n" +
+        "prod.cod as cod_produto,\n" +
+        
+        "carga.observacao,\n" +
+        "carga.created_at,\n" +
+        "carga.cautelado,\n" +
+        "carga.dia2,\n" +
+        "carga.hora2\n" +
+
+        "from carga_diaria carga\n" +
+        "inner join guarda  armeiro on (armeiro.id = carga.id_armeiro)\n" +
+        "inner join guarda  guarda  on (guarda.id  = carga.id_guarda)\n" +
+        "inner join produto prod    on (prod.id    = carga.id_produto)\n" +
+        
+        "where carga.id_armeiro like ? and carga.cautelado = ? order by 1";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, idArmeiro);
@@ -70,10 +83,21 @@ public class CargaDiariaDao {
 
             cargaDiaria.setDataArmeiroControle(rs.getString("dia"));
             
-            cargaDiaria.setArmeiroControle(rs.getString("armeiro"));
-            cargaDiaria.setAgenteControle(rs.getString("guarda"));
-            
-            cargaDiaria.setCodproduto(rs.getString("cod"));
+            Usuario armeiro = new Usuario();
+            armeiro.setId(rs.getInt("id_armeiro"));
+            armeiro.setNome(rs.getString("nome_armeiro"));
+            cargaDiaria.setArmeiro(armeiro);
+
+            Usuario guarda = new Usuario();
+            guarda.setId(rs.getInt("id_guarda"));
+            guarda.setNome(rs.getString("nome_guarda"));
+            cargaDiaria.setGuarda(guarda);
+
+            Produto produto = new Produto();
+            produto.setId(rs.getInt("id_produto"));
+            produto.setCodigo(rs.getString("cod_produto"));
+            cargaDiaria.setProduto(produto);
+
             cargaDiaria.setObservacao(rs.getString("observacao"));
 
             Date createdAt = new Date(rs.getTimestamp("created_at").getTime());
@@ -98,9 +122,10 @@ public class CargaDiariaDao {
         
         // seta os valores 
         stmt.setString(1, cargaDiaria.getDataArmeiroControle());
-        stmt.setString(2, cargaDiaria.getArmeiroControle());
-        stmt.setString(3, cargaDiaria.getAgenteControle());     // veificar esse metodo pois deve estar errado, nao pode ser update livro parte...
-        stmt.setString(4, cargaDiaria.getCodproduto());
+        // TODO ZECA
+        // stmt.setString(2, cargaDiaria.getArmeiro());
+        // stmt.setString(3, cargaDiaria.getGuarda());
+        // stmt.setString(4, cargaDiaria.getProduto());
         stmt.setString(5, cargaDiaria.getObservacao());
         stmt.setDate(6, new Date(cargaDiaria.getCreatedAt().getTime()));
         stmt.setBoolean(8, cargaDiaria.isCautelado());

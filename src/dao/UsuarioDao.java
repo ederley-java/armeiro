@@ -53,7 +53,7 @@ public class UsuarioDao {
 
         while (rs.next()) {
             Usuario c1 = new Usuario();
-            c1.setIdUsuario(rs.getInt("id"));
+            c1.setId(rs.getInt("id"));
             c1.setMatricula(Long.valueOf(rs.getString("matricula")));
             c1.setNome(rs.getString("nome"));
             c1.setEndereco(rs.getString("endereco"));

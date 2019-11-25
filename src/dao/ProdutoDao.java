@@ -32,7 +32,7 @@ public class ProdutoDao {
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores 
-        stmt.setString(1, c1.getCod());
+        stmt.setString(1, c1.getCodigo());
         stmt.setString(2, c1.getMarcaProduto());
         stmt.setString(3, c1.getTipoProduto());
         stmt.setString(4, c1.getNumeroSerieProduto());
@@ -59,8 +59,8 @@ public class ProdutoDao {
         while(rs.next()){
             Produto produto = new Produto();
 
-            produto.setIdProduto(rs.getInt("id"));
-            produto.setCod(rs.getString("cod"));
+            produto.setId(rs.getInt("id"));
+            produto.setCodigo(rs.getString("cod"));
             produto.setMarcaProduto(rs.getString("marca"));
             produto.setTipoProduto(rs.getString("tipo"));
             produto.setNumeroSerieProduto(rs.getString("numero_serie"));
@@ -89,7 +89,7 @@ public class ProdutoDao {
         stmt.setString(5, produto.getObservacaoProduto());     // A ordem passada tem que ser a mesma da String sql (lá em cima)
         stmt.setString(6, produto.getLocalizacaoProduto());
         stmt.setString(7, produto.getHistoricoManutencaoProduto());
-        stmt.setString(8, produto.getCod());
+        stmt.setString(8, produto.getCodigo());
         
         // executa o codigo sql
         stmt.execute();
@@ -99,7 +99,7 @@ public class ProdutoDao {
     public void remove(Produto c1) throws SQLException{
         String sql = "delete from produto where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, c1.getCod());
+        stmt.setString(1, c1.getCodigo());
         stmt.execute();
         stmt.close();
           

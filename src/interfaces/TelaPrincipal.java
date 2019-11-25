@@ -923,7 +923,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (jTTabela.getSelectedRow() != -1) {   //se a linha selecionada da tabela for diferente de -1, entao...
             habilitaDados();
             // faz o parse de long para string
-            jTIdUsuario.setText(String.valueOf(usuarios.get(tabela.getSelectedRow()).getIdUsuario()));
+            jTIdUsuario.setText(String.valueOf(usuarios.get(tabela.getSelectedRow()).getId()));
             jTMatricula.setText(String.valueOf(usuarios.get(tabela.getSelectedRow()).getMatricula())); // na tabela e coloca-os nos campos para serem editados
             jTNome.setText(usuarios.get(tabela.getSelectedRow()).getNome());
             jTTelefone.setText(usuarios.get(tabela.getSelectedRow()).getTelefone());
@@ -968,8 +968,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (jTableProduto.getSelectedRow() != -1) {   //se a linha selecionada da tabela for diferente de -1, entao...
 
             habilitaDadosProduto();
-            jTextIdProduto.setText(String.valueOf(produto.get(tabela.getSelectedRow()).getIdProduto()));
-            jTextCodProduto.setText(produto.get(tabela.getSelectedRow()).getCod());
+            jTextIdProduto.setText(String.valueOf(produto.get(tabela.getSelectedRow()).getId()));
+            jTextCodProduto.setText(produto.get(tabela.getSelectedRow()).getCodigo());
             jTextMarcaProduto.setText(produto.get(tabela.getSelectedRow()).getMarcaProduto()); // na tabela e coloca-os nos campos para serem editados
             jTextTipoProduto.setText(produto.get(tabela.getSelectedRow()).getTipoProduto());
             jTextNumeroSerieProduto.setText(produto.get(tabela.getSelectedRow()).getNumeroSerieProduto());
@@ -997,8 +997,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jTextId.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getId()));
            // jTArmeiroControle.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getArmeiroControle() ));
             jTDataControle.setText(cargaDiaria.get(tabela.getSelectedRow()).getDataArmeiroControle()); // na tabela e coloca-os nos campos para serem editados
-            jTAgente.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getAgenteControle()));
-            jTCodProduto.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getCodproduto()));
+            jTAgente.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getGuarda()));
+            jTCodProduto.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getProduto()));
             String createdAt = Converter.dateToString(cargaDiaria.get(tabela.getSelectedRow()).getCreatedAt());
             jTDataEntradaAgente.setText(createdAt);
             jTDataSaidaAgente.setText(cargaDiaria.get(tabela.getSelectedRow()).getDia2());
@@ -1216,13 +1216,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jBPesquisarControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarControleActionPerformed
         try {
-            jTextPesquisaProduto.setText("");  //Limpa o campo antes de fazer qualquer coisa (descartado por nao se aplicar a situação).
+            jTextPesquisaProduto.setText("");
             listarControle();
-
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jBPesquisarControleActionPerformed
+    }
 
     private void jBAlterarControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarControleActionPerformed
         try {
@@ -1247,7 +1246,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 Usuario c1 = new Usuario();
                 UsuarioDao dao = new UsuarioDao();
-                c1.setIdUsuario(Integer.parseInt(jTIdUsuario.getText()));
+                c1.setId(Integer.parseInt(jTIdUsuario.getText()));
                 c1.setMatricula(Long.valueOf(jTMatricula.getText()));
                 c1.setNome(jTNome.getText());
                 c1.setEndereco(jTEndereco.getText());
@@ -1288,8 +1287,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 Produto c1 = new Produto();
                 ProdutoDao dao = new ProdutoDao();
-                c1.setIdProduto(Integer.parseInt(jTextIdProduto.getText()));
-                c1.setCod(jTextCodProduto.getText());
+                c1.setId(Integer.parseInt(jTextIdProduto.getText()));
+                c1.setCodigo(jTextCodProduto.getText());
                 c1.setMarcaProduto(jTextMarcaProduto.getText());
                 c1.setTipoProduto(jTextTipoProduto.getText());
                 c1.setNumeroSerieProduto(jTextNumeroSerieProduto.getText());
@@ -1307,14 +1306,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void alteraControle() throws SQLException {
         if (jTableProduto.getSelectedRow() != -1) {    // se a tabela nao for negativa...
             if (verificaDadosControle()) {                // e se passar por esse metodo...
-
                 CargaDiaria p1 = new CargaDiaria();
                 CargaDiariaDao dao = new CargaDiariaDao();
                 p1.setId(Integer.parseInt(jTextId.getText()));
                 p1.setDataArmeiroControle(jTDataControle.getText());
-                p1.setArmeiroControle(String.valueOf(jComboArmeiro.getSelectedIndex()));
-                p1.setAgenteControle(jTAgente.getText());
-                p1.setCodproduto(jTCodProduto.getText());
+                // TODO ZECA
+                // p1.setArmeiro(String.valueOf(jComboArmeiro.getSelectedIndex()));
+                // p1.setGuarda(jTAgente.getText());
+                // p1.setProduto(jTCodProduto.getText());
 
                 dao.altera(p1);
                 JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!!");
@@ -1394,10 +1393,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public void cadastroControle() {
         CargaDiaria cargaDiaria = new CargaDiaria();
-        cargaDiaria.setArmeiroControle(jTextArmeiroControle.getText());
+        // TODO ZECA
+        // cargaDiaria.setArmeiro(jTextArmeiroControle.getText());
+        // cargaDiaria.setGuarda(jTAgente.getText());
+        // cargaDiaria.setProduto(jTCodProduto.getText());
         cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
-        cargaDiaria.setAgenteControle(jTAgente.getText());
-        cargaDiaria.setCodproduto(jTCodProduto.getText());
         cargaDiaria.setObservacao(jTObservacao.getText());
         Date createdAt = Converter.stringToDate(jTDataEntradaAgente.getText());
         cargaDiaria.setCreatedAt(createdAt);
@@ -1435,21 +1435,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void cadastroProduto() {
-        Produto c1 = new Produto();
+        Produto produto = new Produto();
         //  c1.setIdProduto(Integer.parseInt(jTextIdProduto.getText()));   Nao precisa no cadastro
-        c1.setCod(jTextCodProduto.getText());
-        c1.setMarcaProduto(jTextMarcaProduto.getText());
-        c1.setTipoProduto(jTextTipoProduto.getText());
-        c1.setNumeroSerieProduto(jTextNumeroSerieProduto.getText());
-        c1.setDescricaoProduto(jTextDescricaoProduto.getText());
-        c1.setObservacaoProduto(jTextObservacaoProduto.getText());
-        c1.setLocalizacaoProduto(jTextLocalizacaoProduto.getText());
-        c1.setHistoricoManutencaoProduto(jTextHistoricoProduto.getText());
+        produto.setCodigo(jTextCodProduto.getText());
+        produto.setMarcaProduto(jTextMarcaProduto.getText());
+        produto.setTipoProduto(jTextTipoProduto.getText());
+        produto.setNumeroSerieProduto(jTextNumeroSerieProduto.getText());
+        produto.setDescricaoProduto(jTextDescricaoProduto.getText());
+        produto.setObservacaoProduto(jTextObservacaoProduto.getText());
+        produto.setLocalizacaoProduto(jTextLocalizacaoProduto.getText());
+        produto.setHistoricoManutencaoProduto(jTextHistoricoProduto.getText());
 
         ProdutoDao dao;
         try {
             dao = new ProdutoDao();
-            dao.adiciona(c1);
+            dao.adiciona(produto);
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1591,100 +1591,109 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextPesquisaProduto;
     private javax.swing.JTextField jTextTipoProduto;
 
-    private void mostraPesquisa(List<Usuario> usuarios) {
+    private void mostraPesquisa(List<Usuario> lista) {
         while (tmUsuario.getRowCount() > 0) {           // trecho de codigo para que serve para,
             tmUsuario.removeRow(0);               // exibir somente as linhas selecionadas.
         }
 
-        if (usuarios.size() == 0) {                     //if para comparar se a lista esta vazia, dai nem exibirá a lista
+        if (lista.size() == 0) {                     //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
         } else {
             String[] linha = new String[]{null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
             //para receber os dados da lista que vem do banco. sempre inicia com nulo.
             // o for adiciona os valores na jtable
-            for (int i = 0; i < usuarios.size(); i++) {
+            for (int i = 0; i < lista.size(); i++) {
                 tmUsuario.addRow(linha);
-                tmUsuario.setValueAt(usuarios.get(i).getIdUsuario(), i, 0);
-                tmUsuario.setValueAt(usuarios.get(i).getMatricula(), i, 1);
-                tmUsuario.setValueAt(usuarios.get(i).getNome(), i, 2);
-                tmUsuario.setValueAt(usuarios.get(i).getEndereco(), i, 3);
-                tmUsuario.setValueAt(usuarios.get(i).getTelefone(), i, 4);
-                tmUsuario.setValueAt(usuarios.get(i).getEmail(), i, 5);
-                tmUsuario.setValueAt(usuarios.get(i).getSexo(), i, 6);
-                tmUsuario.setValueAt(usuarios.get(i).getSituacao(), i, 7);
+
+                Usuario usuario = lista.get(i);
+                tmUsuario.setValueAt(usuario.getId(), i, 0);
+                tmUsuario.setValueAt(usuario.getMatricula(), i, 1);
+                tmUsuario.setValueAt(usuario.getNome(), i, 2);
+                tmUsuario.setValueAt(usuario.getEndereco(), i, 3);
+                tmUsuario.setValueAt(usuario.getTelefone(), i, 4);
+                tmUsuario.setValueAt(usuario.getEmail(), i, 5);
+                tmUsuario.setValueAt(usuario.getSexo(), i, 6);
+                tmUsuario.setValueAt(usuario.getSituacao(), i, 7);
             }
         }
     }
 
-    private void mostraPesquisaLivroParte(List<LivroParte> livroParte) {
+    private void mostraPesquisaLivroParte(List<LivroParte> lista) {
         while (tmLivroParte.getRowCount() > 0) {          // trecho de codigo para que serve para,
             tmLivroParte.removeRow(0);                // exibir somente as linhas selecionadas.
         }
 
-        if (livroParte.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
+        if (lista.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
         } else {
             String[] linha = new String[]{null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
             //para receber os dados da lista que vem do banco. sempre inicia com nulo.
             // o for adiciona os valores na jtable
-            for (int i = 0; i < livroParte.size(); i++) {
+            for (int i = 0; i < lista.size(); i++) {
                 tmLivroParte.addRow(linha);
-                tmLivroParte.setValueAt(livroParte.get(i).getId(), i, 0);
-                tmLivroParte.setValueAt(livroParte.get(i).getNomeArmeiro(), i, 1);
-                tmLivroParte.setValueAt(livroParte.get(i).getDiaEntrada(), i, 2);
-                tmLivroParte.setValueAt(livroParte.get(i).getHoraEntrada(), i, 3);
-                tmLivroParte.setValueAt(livroParte.get(i).getHistorico(), i, 4);
-                tmLivroParte.setValueAt(livroParte.get(i).getDiaSaida(), i, 5);
-                tmLivroParte.setValueAt(livroParte.get(i).getHoraSaida(), i, 6);
+
+                LivroParte livroParte = lista.get(i);
+                tmLivroParte.setValueAt(livroParte.getId(), i, 0);
+                tmLivroParte.setValueAt(livroParte.getNomeArmeiro(), i, 1);
+                tmLivroParte.setValueAt(livroParte.getDiaEntrada(), i, 2);
+                tmLivroParte.setValueAt(livroParte.getHoraEntrada(), i, 3);
+                tmLivroParte.setValueAt(livroParte.getHistorico(), i, 4);
+                tmLivroParte.setValueAt(livroParte.getDiaSaida(), i, 5);
+                tmLivroParte.setValueAt(livroParte.getHoraSaida(), i, 6);
             }
         }
     }
 
-    private void mostraPesquisaProduto(List<Produto> produto) {
+    private void mostraPesquisaProduto(List<Produto> lista) {
         while (tmProduto.getRowCount() > 0) {          // trecho de codigo para que serve para,
             tmProduto.removeRow(0);                // exibir somente as linhas selecionadas.
         }
 
-        if (produto.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
+        if (lista.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
         } else {
             String[] linha = new String[]{null, null, null, null, null, null, null, null, null};
-            for (int i = 0; i < produto.size(); i++) {
+            for (int i = 0; i < lista.size(); i++) {
                 tmProduto.addRow(linha);
-                tmProduto.setValueAt(produto.get(i).getIdProduto(), i, 0);
-                tmProduto.setValueAt(produto.get(i).getCod(), i, 1);
-                tmProduto.setValueAt(produto.get(i).getMarcaProduto(), i, 2);
-                tmProduto.setValueAt(produto.get(i).getTipoProduto(), i, 3);
-                tmProduto.setValueAt(produto.get(i).getNumeroSerieProduto(), i, 4);
-                tmProduto.setValueAt(produto.get(i).getDescricaoProduto(), i, 5);
-                tmProduto.setValueAt(produto.get(i).getObservacaoProduto(), i, 6);
-                tmProduto.setValueAt(produto.get(i).getLocalizacaoProduto(), i, 7);
-                tmProduto.setValueAt(produto.get(i).getHistoricoManutencaoProduto(), i, 8);
+
+                Produto produto = lista.get(i);
+                tmProduto.setValueAt(produto.getId(), i, 0);
+                tmProduto.setValueAt(produto.getCodigo(), i, 1);
+                tmProduto.setValueAt(produto.getMarcaProduto(), i, 2);
+                tmProduto.setValueAt(produto.getTipoProduto(), i, 3);
+                tmProduto.setValueAt(produto.getNumeroSerieProduto(), i, 4);
+                tmProduto.setValueAt(produto.getDescricaoProduto(), i, 5);
+                tmProduto.setValueAt(produto.getObservacaoProduto(), i, 6);
+                tmProduto.setValueAt(produto.getLocalizacaoProduto(), i, 7);
+                tmProduto.setValueAt(produto.getHistoricoManutencaoProduto(), i, 8);
             }
         }
     }
 
-    private void mostraPesquisaControle(List<CargaDiaria> cargaDiaria) {
+    private void mostraPesquisaControle(List<CargaDiaria> lista) {
         while (tmControle.getRowCount() > 0) {          // trecho de codigo para que serve para,
             tmControle.removeRow(0);                // exibir somente as linhas selecionadas.
         }
         
-        if (cargaDiaria.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
+        if (lista.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
             JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
             String[] linha = new String[]{null, null, null, null, null, null, null, null, null, null};
-            for (int i = 0; i < cargaDiaria.size(); i++) {
+
+            for (int i = 0; i < lista.size(); i++) {
                 tmControle.addRow(linha);
-                tmControle.setValueAt(cargaDiaria.get(i).getId(), i, 0);
-                tmControle.setValueAt(cargaDiaria.get(i).getDataArmeiroControle(), i, 1);
-                tmControle.setValueAt(cargaDiaria.get(i).getArmeiroControle(), i, 2);
-                tmControle.setValueAt(cargaDiaria.get(i).getAgenteControle(), i, 3);
-                tmControle.setValueAt(cargaDiaria.get(i).getCodproduto(), i, 4);
-                tmControle.setValueAt(cargaDiaria.get(i).getObservacao(), i, 5);
-                String createdAt = Converter.dateToString(cargaDiaria.get(i).getCreatedAt());
+                
+                CargaDiaria cargaDiaria = lista.get(i);
+                tmControle.setValueAt(cargaDiaria.getId(), i, 0);
+                tmControle.setValueAt(cargaDiaria.getDataArmeiroControle(), i, 1);
+                tmControle.setValueAt(cargaDiaria.getArmeiro().getNome(), i, 2);
+                tmControle.setValueAt(cargaDiaria.getGuarda().getNome(), i, 3);
+                tmControle.setValueAt(cargaDiaria.getProduto().getCodigo(), i, 4);
+                tmControle.setValueAt(cargaDiaria.getObservacao(), i, 5);
+                String createdAt = Converter.dateToString(cargaDiaria.getCreatedAt());
                 tmControle.setValueAt(createdAt, i, 6);
-                tmControle.setValueAt(cargaDiaria.get(i).getDia2(), i, 7);
-                tmControle.setValueAt(cargaDiaria.get(i).getHora2(), i, 8);
+                tmControle.setValueAt(cargaDiaria.getDia2(), i, 7);
+                tmControle.setValueAt(cargaDiaria.getHora2(), i, 8);
             }
         }
     }

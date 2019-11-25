@@ -5,8 +5,8 @@ package models;
  * @author Lemes
  */
 public class Produto {
-    private int IdProduto;
-    private String cod;
+    private int id;
+    private String codigo;
     private String marcaProduto;
     private String tipoProduto;
     private String numeroSerieProduto;
@@ -15,20 +15,20 @@ public class Produto {
     private String localizacaoProduto;
     private String historicoManutencaoProduto;
 
-    public int getIdProduto() {
-        return IdProduto;
+    public int getId() {
+        return id;
     }
 
-    public void setIdProduto(int IdProduto) {
-        this.IdProduto = IdProduto;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getCod() {
-        return cod;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCod(String cod) {
-        this.cod = cod;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getMarcaProduto() {

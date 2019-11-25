@@ -5,7 +5,7 @@ package models;
  * @author Lemes
  */
 public class Usuario {
-    private int idUsuario;
+    private int id;
     private Long matricula;
     private String nome;
     private String endereco;
@@ -14,12 +14,12 @@ public class Usuario {
     private String sexo;
     private String situacao;
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
     
     public Long getMatricula() {

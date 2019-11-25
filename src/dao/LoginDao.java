@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import dao.CriaConexao;
-import interfaces.Login;
-import interfaces.Principal;
+import interfaces.TelaLogin;
+import interfaces.TelaPrincipal;
 import interfaces.TelaCadastroLogin;
 import models.LoginDTO;
 
@@ -35,7 +35,7 @@ public class LoginDao {
             
             rs = pst.executeQuery();
             if (rs.next()) {
-                Principal tela = new Principal();
+                TelaPrincipal tela = new TelaPrincipal();
                 tela.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha inválido!");
@@ -77,7 +77,7 @@ public class LoginDao {
             
             int i = pst.executeUpdate();
             if (i == 1) {
-                Login log = new Login();
+                TelaLogin log = new TelaLogin();
                 log.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou Senha Inválido!");
