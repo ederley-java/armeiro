@@ -28,35 +28,42 @@ import utils.Formatter;
  *
  * @author Lemes
  */
-public class Principal extends javax.swing.JFrame {
-    DefaultTableModel tmUsuario = new DefaultTableModel(null, new String[]{"ID", "Maticula", "Nome", "Endereço", "Telefone", "Email", "Sexo", "Situação"});   // modelo que a tabela pegará para criar as culunas (tem que inserir tmusuarios nas 
-    List<Usuario> usuarios;                                                                                                                              // propriedades da tabela "model".         
-    ListSelectionModel lsmUsuario;
-
-    DefaultTableModel tmLivroParte = new DefaultTableModel(null, new String[]{"ID", "Armeiro", "Data Entrada", "Hora Entrada", "Histórico", "Data Saída", "Hora Saída"});
-    List<LivroParte> livroParte;
-    ListSelectionModel lsmLivroParte;
-
-    DefaultTableModel tmProduto = new DefaultTableModel(null, new String[]{"ID", "Cod.", "Marca", "Tipo", "Numero de Serie", "Descrição", "Observação", "Localização", "Historico de Manutenção"});
-    List<Produto> produto;
-    ListSelectionModel lsmProduto;
-
-    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data", "Cautelado", "Data 2", "Hora 2"});
-    List<CargaDiaria> cargaDiaria;
-    ListSelectionModel lsmControle;
-    
-
-    /**
-     * Creates new form Principal
-     */
-    public Principal() throws SQLException {
+public class TelaPrincipal extends javax.swing.JFrame {
+    public TelaPrincipal() throws SQLException {
         initComponents();
         preencherComboGuarda();
         desabilitaDados();
-        desabilitaDadosLivroParte();//chama o metodo no inicio.
+        desabilitaDadosLivroParte();
         desabilitaDadosProduto();
+    }
 
-        // jTDataControle.setText(dataSistema());  retirado para ser colocado no botao
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new TelaPrincipal().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -916,7 +923,7 @@ public class Principal extends javax.swing.JFrame {
         if (jTTabela.getSelectedRow() != -1) {   //se a linha selecionada da tabela for diferente de -1, entao...
             habilitaDados();
             // faz o parse de long para string
-            jTIdUsuario.setText(String.valueOf(usuarios.get(tabela.getSelectedRow()).getIdUsuario()));
+            jTIdUsuario.setText(String.valueOf(usuarios.get(tabela.getSelectedRow()).getId()));
             jTMatricula.setText(String.valueOf(usuarios.get(tabela.getSelectedRow()).getMatricula())); // na tabela e coloca-os nos campos para serem editados
             jTNome.setText(usuarios.get(tabela.getSelectedRow()).getNome());
             jTTelefone.setText(usuarios.get(tabela.getSelectedRow()).getTelefone());
@@ -961,15 +968,15 @@ public class Principal extends javax.swing.JFrame {
         if (jTableProduto.getSelectedRow() != -1) {   //se a linha selecionada da tabela for diferente de -1, entao...
 
             habilitaDadosProduto();
-            jTextIdProduto.setText(String.valueOf(produto.get(tabela.getSelectedRow()).getIdProduto()));
-            jTextCodProduto.setText(produto.get(tabela.getSelectedRow()).getCod());
-            jTextMarcaProduto.setText(produto.get(tabela.getSelectedRow()).getMarcaProduto()); // na tabela e coloca-os nos campos para serem editados
-            jTextTipoProduto.setText(produto.get(tabela.getSelectedRow()).getTipoProduto());
-            jTextNumeroSerieProduto.setText(produto.get(tabela.getSelectedRow()).getNumeroSerieProduto());
-            jTextDescricaoProduto.setText(produto.get(tabela.getSelectedRow()).getDescricaoProduto());
-            jTextObservacaoProduto.setText(produto.get(tabela.getSelectedRow()).getObservacaoProduto());
-            jTextLocalizacaoProduto.setText(produto.get(tabela.getSelectedRow()).getLocalizacaoProduto());
-            jTextHistoricoProduto.setText(produto.get(tabela.getSelectedRow()).getHistoricoManutencaoProduto());// tambem tem que adicionar codigo de pos inicializacao nas propriedades da tabela
+            jTextIdProduto.setText(String.valueOf(produto.get(tabela.getSelectedRow()).getId()));
+            jTextCodProduto.setText(produto.get(tabela.getSelectedRow()).getCodigo());
+            jTextMarcaProduto.setText(produto.get(tabela.getSelectedRow()).getMarca()); // na tabela e coloca-os nos campos para serem editados
+            jTextTipoProduto.setText(produto.get(tabela.getSelectedRow()).getTipo());
+            jTextNumeroSerieProduto.setText(produto.get(tabela.getSelectedRow()).getNumeroSerie());
+            jTextDescricaoProduto.setText(produto.get(tabela.getSelectedRow()).getDescricao());
+            jTextObservacaoProduto.setText(produto.get(tabela.getSelectedRow()).getObservacao());
+            jTextLocalizacaoProduto.setText(produto.get(tabela.getSelectedRow()).getLocalizacao());
+            jTextHistoricoProduto.setText(produto.get(tabela.getSelectedRow()).getHistoricoManutencao());// tambem tem que adicionar codigo de pos inicializacao nas propriedades da tabela
 
         } else {
             jTextCodProduto.setText("");
@@ -990,8 +997,8 @@ public class Principal extends javax.swing.JFrame {
             jTextId.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getId()));
            // jTArmeiroControle.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getArmeiroControle() ));
             jTDataControle.setText(cargaDiaria.get(tabela.getSelectedRow()).getDataArmeiroControle()); // na tabela e coloca-os nos campos para serem editados
-            jTAgente.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getAgenteControle()));
-            jTCodProduto.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getCodproduto()));
+            jTAgente.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getGuarda()));
+            jTCodProduto.setText(String.valueOf(cargaDiaria.get(tabela.getSelectedRow()).getProduto()));
             String createdAt = Converter.dateToString(cargaDiaria.get(tabela.getSelectedRow()).getCreatedAt());
             jTDataEntradaAgente.setText(createdAt);
             jTDataSaidaAgente.setText(cargaDiaria.get(tabela.getSelectedRow()).getDia2());
@@ -1022,7 +1029,7 @@ public class Principal extends javax.swing.JFrame {
             try {
                 listarContatos();
             } catch (SQLException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -1128,7 +1135,7 @@ public class Principal extends javax.swing.JFrame {
             try {
                 listarProduto();
             } catch (SQLException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             desabilitaDadosProduto();
         }
@@ -1139,7 +1146,7 @@ public class Principal extends javax.swing.JFrame {
             //  jTextPesquisaProduto.setText("");  //Limpa o campo antes de fazer qualquer coisa (descartado por nao se aplicar a situação).
             listarProduto();
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBPesquisarProdutoActionPerformed
 
@@ -1164,7 +1171,7 @@ public class Principal extends javax.swing.JFrame {
             alteraProduto();
             listarProduto();  // nome do metodo certo é "listarProduto".
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBAlterarProdutoActionPerformed
 
@@ -1174,7 +1181,7 @@ public class Principal extends javax.swing.JFrame {
             try {
                 listarControle();
             } catch (SQLException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             //desabilitaDadosProduto();
         }
@@ -1209,20 +1216,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void jBPesquisarControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarControleActionPerformed
         try {
-            jTextPesquisaProduto.setText("");  //Limpa o campo antes de fazer qualquer coisa (descartado por nao se aplicar a situação).
+            jTextPesquisaProduto.setText("");
             listarControle();
-
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jBPesquisarControleActionPerformed
+    }
 
     private void jBAlterarControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarControleActionPerformed
         try {
             alteraControle();
             listarProduto();  // nome do metodo certo é "listarProduto".
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBAlterarControleActionPerformed
 
@@ -1240,7 +1246,7 @@ public class Principal extends javax.swing.JFrame {
 
                 Usuario c1 = new Usuario();
                 UsuarioDao dao = new UsuarioDao();
-                c1.setIdUsuario(Integer.parseInt(jTIdUsuario.getText()));
+                c1.setId(Integer.parseInt(jTIdUsuario.getText()));
                 c1.setMatricula(Long.valueOf(jTMatricula.getText()));
                 c1.setNome(jTNome.getText());
                 c1.setEndereco(jTEndereco.getText());
@@ -1281,15 +1287,15 @@ public class Principal extends javax.swing.JFrame {
 
                 Produto c1 = new Produto();
                 ProdutoDao dao = new ProdutoDao();
-                c1.setIdProduto(Integer.parseInt(jTextIdProduto.getText()));
-                c1.setCod(jTextCodProduto.getText());
-                c1.setMarcaProduto(jTextMarcaProduto.getText());
-                c1.setTipoProduto(jTextTipoProduto.getText());
-                c1.setNumeroSerieProduto(jTextNumeroSerieProduto.getText());
-                c1.setDescricaoProduto(jTextDescricaoProduto.getText());
-                c1.setObservacaoProduto(jTextObservacaoProduto.getText());
-                c1.setLocalizacaoProduto(jTextLocalizacaoProduto.getText());
-                c1.setHistoricoManutencaoProduto(jTextHistoricoProduto.getText());
+                c1.setId(Integer.parseInt(jTextIdProduto.getText()));
+                c1.setCodigo(jTextCodProduto.getText());
+                c1.setMarca(jTextMarcaProduto.getText());
+                c1.setTipo(jTextTipoProduto.getText());
+                c1.setNumeroSerie(jTextNumeroSerieProduto.getText());
+                c1.setDescricao(jTextDescricaoProduto.getText());
+                c1.setObservacao(jTextObservacaoProduto.getText());
+                c1.setLocalizacao(jTextLocalizacaoProduto.getText());
+                c1.setHistoricoManutencao(jTextHistoricoProduto.getText());
 
                 dao.altera(c1);
                 JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!!");
@@ -1300,14 +1306,14 @@ public class Principal extends javax.swing.JFrame {
     private void alteraControle() throws SQLException {
         if (jTableProduto.getSelectedRow() != -1) {    // se a tabela nao for negativa...
             if (verificaDadosControle()) {                // e se passar por esse metodo...
-
                 CargaDiaria p1 = new CargaDiaria();
                 CargaDiariaDao dao = new CargaDiariaDao();
                 p1.setId(Integer.parseInt(jTextId.getText()));
                 p1.setDataArmeiroControle(jTDataControle.getText());
-                p1.setArmeiroControle(String.valueOf(jComboArmeiro.getSelectedIndex()));
-                p1.setAgenteControle(jTAgente.getText());
-                p1.setCodproduto(jTCodProduto.getText());
+                // TODO ZECA
+                // p1.setArmeiro(String.valueOf(jComboArmeiro.getSelectedIndex()));
+                // p1.setGuarda(jTAgente.getText());
+                // p1.setProduto(jTCodProduto.getText());
 
                 dao.altera(p1);
                 JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!!");
@@ -1381,16 +1387,17 @@ public class Principal extends javax.swing.JFrame {
             dao = new LivroParteDao();
             dao.adiciona(p1);
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void cadastroControle() {
         CargaDiaria cargaDiaria = new CargaDiaria();
-        cargaDiaria.setArmeiroControle(jTextArmeiroControle.getText());
+        // TODO ZECA
+        // cargaDiaria.setArmeiro(jTextArmeiroControle.getText());
+        // cargaDiaria.setGuarda(jTAgente.getText());
+        // cargaDiaria.setProduto(jTCodProduto.getText());
         cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
-        cargaDiaria.setAgenteControle(jTAgente.getText());
-        cargaDiaria.setCodproduto(jTCodProduto.getText());
         cargaDiaria.setObservacao(jTObservacao.getText());
         Date createdAt = Converter.stringToDate(jTDataEntradaAgente.getText());
         cargaDiaria.setCreatedAt(createdAt);
@@ -1403,7 +1410,7 @@ public class Principal extends javax.swing.JFrame {
             dao = new CargaDiariaDao();
             dao.adiciona(cargaDiaria);
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1423,71 +1430,47 @@ public class Principal extends javax.swing.JFrame {
             dao = new UsuarioDao();
             dao.adiciona(c1);
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void cadastroProduto() {
-        Produto c1 = new Produto();
+        Produto produto = new Produto();
         //  c1.setIdProduto(Integer.parseInt(jTextIdProduto.getText()));   Nao precisa no cadastro
-        c1.setCod(jTextCodProduto.getText());
-        c1.setMarcaProduto(jTextMarcaProduto.getText());
-        c1.setTipoProduto(jTextTipoProduto.getText());
-        c1.setNumeroSerieProduto(jTextNumeroSerieProduto.getText());
-        c1.setDescricaoProduto(jTextDescricaoProduto.getText());
-        c1.setObservacaoProduto(jTextObservacaoProduto.getText());
-        c1.setLocalizacaoProduto(jTextLocalizacaoProduto.getText());
-        c1.setHistoricoManutencaoProduto(jTextHistoricoProduto.getText());
+        produto.setCodigo(jTextCodProduto.getText());
+        produto.setMarca(jTextMarcaProduto.getText());
+        produto.setTipo(jTextTipoProduto.getText());
+        produto.setNumeroSerie(jTextNumeroSerieProduto.getText());
+        produto.setDescricao(jTextDescricaoProduto.getText());
+        produto.setObservacao(jTextObservacaoProduto.getText());
+        produto.setLocalizacao(jTextLocalizacaoProduto.getText());
+        produto.setHistoricoManutencao(jTextHistoricoProduto.getText());
 
         ProdutoDao dao;
         try {
             dao = new ProdutoDao();
-            dao.adiciona(c1);
+            dao.adiciona(produto);
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    DefaultTableModel tmUsuario = new DefaultTableModel(null, new String[]{"ID", "Maticula", "Nome", "Endereço", "Telefone", "Email", "Sexo", "Situação"});   // modelo que a tabela pegará para criar as culunas (tem que inserir tmusuarios nas 
+    List<Usuario> usuarios;                                                                                                                              // propriedades da tabela "model".         
+    ListSelectionModel lsmUsuario;
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new Principal().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+    DefaultTableModel tmLivroParte = new DefaultTableModel(null, new String[]{"ID", "Armeiro", "Data Entrada", "Hora Entrada", "Histórico", "Data Saída", "Hora Saída"});
+    List<LivroParte> livroParte;
+    ListSelectionModel lsmLivroParte;
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    DefaultTableModel tmProduto = new DefaultTableModel(null, new String[]{"ID", "Cod.", "Marca", "Tipo", "Numero de Serie", "Descrição", "Observação", "Localização", "Historico de Manutenção"});
+    List<Produto> produto;
+    ListSelectionModel lsmProduto;
+
+    DefaultTableModel tmControle = new DefaultTableModel(null, new String[]{"ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data", "Data 2", "Hora 2"});
+    List<CargaDiaria> cargaDiaria;
+    ListSelectionModel lsmControle;
+
     private javax.swing.JButton jBAlterar;
     private javax.swing.JButton jBAlterarControle;
     private javax.swing.JButton jBAlterarParte;
@@ -1607,124 +1590,118 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextPesquisaParte;
     private javax.swing.JTextField jTextPesquisaProduto;
     private javax.swing.JTextField jTextTipoProduto;
-    // End of variables declaration//GEN-END:variables
 
-    private void mostraPesquisa(List<Usuario> usuarios) {
-        while (tmUsuario.getRowCount() > 0) {           // trecho de codigo para que serve para,
-            tmUsuario.removeRow(0);               // exibir somente as linhas selecionadas.
+    private void mostraPesquisa(List<Usuario> lista) {
+        while (tmUsuario.getRowCount() > 0) {
+            tmUsuario.removeRow(0);
         }
-        if (usuarios.size() == 0) {                     //if para comparar se a lista esta vazia, dai nem exibirá a lista
-            JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
+
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
-            String[] linha = new String[]{null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
-            //para receber os dados da lista que vem do banco. sempre inicia com nulo.
-            // o for adiciona os valores na jtable
-            for (int i = 0; i < usuarios.size(); i++) {
+            String[] linha = new String[]{null, null, null, null, null, null, null};
+            for (int i = 0; i < lista.size(); i++) {
                 tmUsuario.addRow(linha);
-                tmUsuario.setValueAt(usuarios.get(i).getIdUsuario(), i, 0);
-                tmUsuario.setValueAt(usuarios.get(i).getMatricula(), i, 1);
-                tmUsuario.setValueAt(usuarios.get(i).getNome(), i, 2);
-                tmUsuario.setValueAt(usuarios.get(i).getEndereco(), i, 3);
-                tmUsuario.setValueAt(usuarios.get(i).getTelefone(), i, 4);
-                tmUsuario.setValueAt(usuarios.get(i).getEmail(), i, 5);
-                tmUsuario.setValueAt(usuarios.get(i).getSexo(), i, 6);
-                tmUsuario.setValueAt(usuarios.get(i).getSituacao(), i, 7);
+
+                Usuario usuario = lista.get(i);
+                tmUsuario.setValueAt(usuario.getId(), i, 0);
+                tmUsuario.setValueAt(usuario.getMatricula(), i, 1);
+                tmUsuario.setValueAt(usuario.getNome(), i, 2);
+                tmUsuario.setValueAt(usuario.getEndereco(), i, 3);
+                tmUsuario.setValueAt(usuario.getTelefone(), i, 4);
+                tmUsuario.setValueAt(usuario.getEmail(), i, 5);
+                tmUsuario.setValueAt(usuario.getSexo(), i, 6);
+                tmUsuario.setValueAt(usuario.getSituacao(), i, 7);
             }
         }
     }
 
-    private void mostraPesquisaLivroParte(List<LivroParte> livroParte) {
-        while (tmLivroParte.getRowCount() > 0) {          // trecho de codigo para que serve para,
-            tmLivroParte.removeRow(0);                // exibir somente as linhas selecionadas.
+    private void mostraPesquisaLivroParte(List<LivroParte> lista) {
+        while (tmLivroParte.getRowCount() > 0) {
+            tmLivroParte.removeRow(0);
         }
-        if (livroParte.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
-            JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
+
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
-            String[] linha = new String[]{null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
-            //para receber os dados da lista que vem do banco. sempre inicia com nulo.
-            // o for adiciona os valores na jtable
-            for (int i = 0; i < livroParte.size(); i++) {
+            String[] linha = new String[]{null, null, null, null, null, null, null};
+            for (int i = 0; i < lista.size(); i++) {
                 tmLivroParte.addRow(linha);
-                tmLivroParte.setValueAt(livroParte.get(i).getId(), i, 0);
-                tmLivroParte.setValueAt(livroParte.get(i).getNomeArmeiro(), i, 1);
-                tmLivroParte.setValueAt(livroParte.get(i).getDiaEntrada(), i, 2);
-                tmLivroParte.setValueAt(livroParte.get(i).getHoraEntrada(), i, 3);
-                tmLivroParte.setValueAt(livroParte.get(i).getHistorico(), i, 4);
-                tmLivroParte.setValueAt(livroParte.get(i).getDiaSaida(), i, 5);
-                tmLivroParte.setValueAt(livroParte.get(i).getHoraSaida(), i, 6);
+
+                LivroParte livroParte = lista.get(i);
+                tmLivroParte.setValueAt(livroParte.getId(), i, 0);
+                tmLivroParte.setValueAt(livroParte.getNomeArmeiro(), i, 1);
+                tmLivroParte.setValueAt(livroParte.getDiaEntrada(), i, 2);
+                tmLivroParte.setValueAt(livroParte.getHoraEntrada(), i, 3);
+                tmLivroParte.setValueAt(livroParte.getHistorico(), i, 4);
+                tmLivroParte.setValueAt(livroParte.getDiaSaida(), i, 5);
+                tmLivroParte.setValueAt(livroParte.getHoraSaida(), i, 6);
             }
         }
     }
 
-    private void mostraPesquisaProduto(List<Produto> produto) {
-        while (tmProduto.getRowCount() > 0) {          // trecho de codigo para que serve para,
-            tmProduto.removeRow(0);                // exibir somente as linhas selecionadas.
+    private void mostraPesquisaProduto(List<Produto> lista) {
+        while (tmProduto.getRowCount() > 0) {
+            tmProduto.removeRow(0);
         }
-        if (produto.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
-            JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
+
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
-            String[] linha = new String[]{null, null, null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
-            //para receber os dados da lista que vem do banco. sempre inicia com nulo.
-            // o for adiciona os valores na jtable
-            for (int i = 0; i < produto.size(); i++) {
+            String[] linha = new String[]{null, null, null, null, null, null, null, null, null};
+            for (int i = 0; i < lista.size(); i++) {
                 tmProduto.addRow(linha);
-                tmProduto.setValueAt(produto.get(i).getIdProduto(), i, 0);
-                tmProduto.setValueAt(produto.get(i).getCod(), i, 1);
-                tmProduto.setValueAt(produto.get(i).getMarcaProduto(), i, 2);
-                tmProduto.setValueAt(produto.get(i).getTipoProduto(), i, 3);
-                tmProduto.setValueAt(produto.get(i).getNumeroSerieProduto(), i, 4);
-                tmProduto.setValueAt(produto.get(i).getDescricaoProduto(), i, 5);
-                tmProduto.setValueAt(produto.get(i).getObservacaoProduto(), i, 6);
-                tmProduto.setValueAt(produto.get(i).getLocalizacaoProduto(), i, 7);
-                tmProduto.setValueAt(produto.get(i).getHistoricoManutencaoProduto(), i, 8);
+
+                Produto produto = lista.get(i);
+                tmProduto.setValueAt(produto.getId(), i, 0);
+                tmProduto.setValueAt(produto.getCodigo(), i, 1);
+                tmProduto.setValueAt(produto.getMarca(), i, 2);
+                tmProduto.setValueAt(produto.getTipo(), i, 3);
+                tmProduto.setValueAt(produto.getNumeroSerie(), i, 4);
+                tmProduto.setValueAt(produto.getDescricao(), i, 5);
+                tmProduto.setValueAt(produto.getObservacao(), i, 6);
+                tmProduto.setValueAt(produto.getLocalizacao(), i, 7);
+                tmProduto.setValueAt(produto.getHistoricoManutencao(), i, 8);
             }
         }
     }
 
-    private void mostraPesquisaControle(List<CargaDiaria> cargaDiaria) {
-        while (tmControle.getRowCount() > 0) {          // trecho de codigo para que serve para,
-            tmControle.removeRow(0);                // exibir somente as linhas selecionadas.
+    private void mostraPesquisaControle(List<CargaDiaria> lista) {
+        while (tmControle.getRowCount() > 0) {
+            tmControle.removeRow(0);
         }
         
-        if (cargaDiaria.size() == 0) {   //if para comparar se a lista esta vazia, dai nem exibirá a lista
-            JOptionPane.showMessageDialog(null, "Nenhun usuario cadastrado!");
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
-            String[] linha = new String[]{null, null, null, null, null, null, null, null, null, null, null};    //cria um vetor de string de nome "linha" 
-            // para receber os dados da lista que vem do banco. sempre inicia com nulo.
-            // o for adiciona os valores na jtable
+            String[] linha = new String[]{null, null, null, null, null, null, null, null, null, null};
 
-            for (int i = 0; i < cargaDiaria.size(); i++) {
+            for (int i = 0; i < lista.size(); i++) {
                 tmControle.addRow(linha);
-                tmControle.setValueAt(cargaDiaria.get(i).getId(), i, 0);
-                tmControle.setValueAt(cargaDiaria.get(i).getDataArmeiroControle(), i, 1);
-                tmControle.setValueAt(cargaDiaria.get(i).getArmeiroControle(), i, 2);
-                tmControle.setValueAt(cargaDiaria.get(i).getAgenteControle(), i, 3);
-                tmControle.setValueAt(cargaDiaria.get(i).getCodproduto(), i, 4);
-                tmControle.setValueAt(cargaDiaria.get(i).getObservacao(), i, 5);
-                String createdAt = Converter.dateToString(cargaDiaria.get(i).getCreatedAt());
+                
+                CargaDiaria cargaDiaria = lista.get(i);
+                tmControle.setValueAt(cargaDiaria.getId(), i, 0);
+                tmControle.setValueAt(cargaDiaria.getDataArmeiroControle(), i, 1);
+                tmControle.setValueAt(cargaDiaria.getArmeiro().getNome(), i, 2);
+                tmControle.setValueAt(cargaDiaria.getGuarda().getNome(), i, 3);
+                tmControle.setValueAt(cargaDiaria.getProduto().getCodigo(), i, 4);
+                tmControle.setValueAt(cargaDiaria.getObservacao(), i, 5);
+                String createdAt = Converter.dateToString(cargaDiaria.getCreatedAt());
                 tmControle.setValueAt(createdAt, i, 6);
-                String labelCautelado = Formatter.getLabelSimOuNao(cargaDiaria.get(i).isCautelado());
-                tmControle.setValueAt(labelCautelado, i, 7);
-                tmControle.setValueAt(cargaDiaria.get(i).getDia2(), i, 8);
-                tmControle.setValueAt(cargaDiaria.get(i).getHora2(), i, 9);
+                tmControle.setValueAt(cargaDiaria.getDia2(), i, 7);
+                tmControle.setValueAt(cargaDiaria.getHora2(), i, 8);
             }
         }
     }
 
-    //AQUI
     public void preencherComboGuarda() throws SQLException {
-
         jComboArmeiro.removeAllItems();
         UsuarioDao user = new UsuarioDao();
 
         List<Usuario> listaUser = user.listarGuardas();
 
         for (Usuario u : listaUser) {
-
             jComboArmeiro.addItem(u.getNome());
-
         }
-
     }
-
 }

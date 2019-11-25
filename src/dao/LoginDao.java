@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-import Interface.TelaCadastroLogin;
 import dao.CriaConexao;
-import interfaces.Login;
-import interfaces.Principal;
+import interfaces.TelaLogin;
+import interfaces.TelaPrincipal;
+import interfaces.TelaCadastroLogin;
 import models.LoginDTO;
 
 /**
@@ -26,7 +26,7 @@ public class LoginDao {
     }
         
      public void logar(LoginDTO login) {
-        String sql = "select * from login where usuario=? and senha=?;";
+        String sql = "SELECT * from login WHERE usuario=? and senha=?;";
         try {
             pst = conexao.prepareStatement(sql);
             
@@ -35,7 +35,7 @@ public class LoginDao {
             
             rs = pst.executeQuery();
             if (rs.next()) {
-                Principal tela = new Principal();
+                TelaPrincipal tela = new TelaPrincipal();
                 tela.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha inválido!");
@@ -48,7 +48,7 @@ public class LoginDao {
     }
         
     public void CadastrarUsuario(LoginDTO c1){
-        String sql = "select * from login where usuario=? and senha=?";
+        String sql = "SELECT * from login WHERE usuario=? and senha=?";
         try{
             pst = conexao.prepareStatement(sql);
             pst.setString(1, c1.getUsuario());
@@ -77,7 +77,7 @@ public class LoginDao {
             
             int i = pst.executeUpdate();
             if (i == 1) {
-                Login log = new Login();
+                TelaLogin log = new TelaLogin();
                 log.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou Senha Inválido!");

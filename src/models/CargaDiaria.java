@@ -2,15 +2,18 @@ package models;
 
 import java.util.Date;
 
+import models.Produto;
+import models.Usuario;
+
 /**
  *
  * @author Lemes
  */
 public class CargaDiaria {
     private int id;
-    private String codproduto;
-    private String armeiroControle;
-    private String agenteControle;
+    private Usuario armeiro;
+    private Usuario guarda;
+    private Produto produto;
     private String dataArmeiroControle;
     private String observacao;
     private Date createdAt;
@@ -26,12 +29,12 @@ public class CargaDiaria {
         this.id = id;
     }
 
-    public String getArmeiroControle() {
-        return armeiroControle;
+    public Usuario getArmeiro() {
+        return armeiro;
     }
 
-    public void setArmeiroControle(String armeiroControle) {
-        this.armeiroControle = armeiroControle;
+    public void setArmeiro(Usuario armeiro) {
+        this.armeiro = armeiro;
     }
 
     public String getDataArmeiroControle() {
@@ -42,20 +45,20 @@ public class CargaDiaria {
         this.dataArmeiroControle = dataArmeiroControle;
     }
 
-    public String getAgenteControle() {
-        return agenteControle;
+    public Usuario getGuarda() {
+        return guarda;
     }
 
-    public void setAgenteControle(String agenteControle) {
-        this.agenteControle = agenteControle;
+    public void setGuarda(Usuario guarda) {
+        this.guarda = guarda;
     }
 
-    public String getCodproduto() {
-        return codproduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setCodproduto(String codproduto) {
-        this.codproduto = codproduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public String getObservacao() {
