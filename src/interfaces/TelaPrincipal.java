@@ -804,7 +804,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void habilitaDadosLivroParte() {   //desabilita campos que nao queremos que sejam editadoos
-        jTextIDLivro.setEditable(false);
+        jTextIDLivro.setEditable(true);
         jTextNomeArmeiro.setEditable(true);
         jFormattedTextDataEntrada.setEditable(true);
         jFormattedTextHoraEntrada.setEditable(true);
@@ -825,7 +825,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void habilitaDados() {   //habilita campos que queremos que sejam editadoos
-        jTIdUsuario.setEditable(false);
+        jTIdUsuario.setEditable(true);
         jTMatricula.setEditable(true);
         jTNome.setEditable(true);
         jTEndereco.setEditable(true);
@@ -849,7 +849,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void habilitaDadosProduto() {   //habilita campos que nao queremos que sejam editadoos
-        jTextIdProduto.setEditable(false);
+        jTextIdProduto.setEditable(true);
         jTextCodProduto.setEditable(true);
         jTextMarcaProduto.setEditable(true);
         jTextTipoProduto.setEditable(true);
@@ -1034,7 +1034,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         try {
             listarContatos();
         } catch (SQLException ex) {
@@ -1042,7 +1042,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {                                          
         try {
             excluirContato();
             mostraPesquisa(usuarios);
@@ -1056,7 +1056,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
+    private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         try {
             alteraContato();
             listarContatos();
@@ -1093,7 +1093,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    private void jBExcluirParteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirParteActionPerformed
+    private void jBExcluirParteActionPerformed(java.awt.event.ActionEvent evt) {                                               
         try {
             excluirContatoLivro();
         } catch (SQLException ex) {
@@ -1214,7 +1214,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
          //  Finalizar turno
     }//GEN-LAST:event_jBFinalizarTurnoActionPerformed
 
-    private void jBPesquisarControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarControleActionPerformed
+    private void jBPesquisarControleActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         try {
             jTextPesquisaProduto.setText("");
             listarControle();
@@ -1386,6 +1386,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             dao = new LivroParteDao();
             dao.adiciona(p1);
+            listarLivroParte();
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1455,7 +1456,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    DefaultTableModel tmUsuario = new DefaultTableModel(null, new String[]{"ID", "Maticula", "Nome", "Endereço", "Telefone", "Email", "Sexo", "Situação"});   // modelo que a tabela pegará para criar as culunas (tem que inserir tmusuarios nas 
+    DefaultTableModel tmUsuario = new DefaultTableModel(null, new String[]{"ID", "Maticula", "Nome", "Endereço", "Telefone", "Email", "Sexo", "Função"});   // modelo que a tabela pegará para criar as culunas (tem que inserir tmusuarios nas 
     List<Usuario> usuarios;                                                                                                                              // propriedades da tabela "model".         
     ListSelectionModel lsmUsuario;
 
