@@ -12,16 +12,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import models.Produto;
 
 /**
  *
  * @author Lemes
  */
 public class ProdutoDao {
-    
-       
     private Connection conexao;
-    
+    Connection con = null;
+    String sql;
+    ResultSet rs;
+    PreparedStatement pstm; 
+       
+      
     public ProdutoDao() throws SQLException{
         this.conexao = CriaConexao.getConexao();
     }
@@ -105,4 +110,28 @@ public class ProdutoDao {
           
     }
     
+    
+     public List<Produto> preencherComboItens() {
+        ArrayList<Produto> listUser = new ArrayList<>();
+
+        try {
+            con = CriaConexao.getConexao();
+            sql = "SELECT cod FROM produto GROUP BY id ORDER BY id ASC";
+            pstm = con.prepareStatement(sql);
+            rs = pstm.executeQuery(sql);
+
+            while (rs.next()) {
+                Produto item = new Produto();
+
+                item.setCodigo(rs.getString("cod"));
+                //user.setCatDescricao(rs.getString(2));
+                //user.setCatValorDiaria(rs.getDouble(3));           
+                listUser.add(item);
+            }
+     } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro PSTM " + erro.getMessage());
+     }
+
+        return listUser;
+    }
 }
