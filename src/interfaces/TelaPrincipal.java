@@ -1395,9 +1395,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void cadastroControle() {
         CargaDiaria cargaDiaria = new CargaDiaria();
         // TODO ZECA
-        cargaDiaria.setArmeiro(jTextArmeiroControle.getText());
-        cargaDiaria.setGuarda(jTAgente.getText());
-        cargaDiaria.setProduto(jTCodProduto.getText());
+       // cargaDiaria.setArmeiro(jTextArmeiroControle.getText());
+       // cargaDiaria.setGuarda(jTAgente.getText());
+       // cargaDiaria.setProduto(jTCodProduto.getText());
         cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
         cargaDiaria.setObservacao(jTObservacao.getText());
         Date createdAt = Converter.stringToDate(jTDataEntradaAgente.getText());
@@ -1717,6 +1717,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
     
-    
+       public void preencherComboItens() throws SQLException {
+        jComboArmeiro.removeAllItems();
+        UsuarioDao user = new UsuarioDao();
+
+        List<Usuario> listaUser = user.listarGuardas();
+
+        for (Usuario u : listaUser) {
+            jComboArmeiro.addItem(u.getNome());
+        }
+    }
     
 }
