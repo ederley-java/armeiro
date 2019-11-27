@@ -1695,7 +1695,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void preencherComboGuarda() throws SQLException {
+    public void preencherComboArmeiro() throws SQLException {
         jComboArmeiro.removeAllItems();
         UsuarioDao user = new UsuarioDao();
 
@@ -1705,4 +1705,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jComboArmeiro.addItem(u.getNome());
         }
     }
+    
+        public void preencherComboGuarda() throws SQLException {
+        jComboArmeiro.removeAllItems();
+        UsuarioDao user = new UsuarioDao();
+
+        List<Usuario> listaUser = user.listarGuardas();
+
+        for (Usuario u : listaUser) {
+            jComboArmeiro.addItem(u.getNome());
+        }
+    }
+    
+    
+    
 }
