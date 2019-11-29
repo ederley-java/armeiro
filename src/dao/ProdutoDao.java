@@ -94,7 +94,7 @@ public class ProdutoDao {
         stmt.setString(5, produto.getObservacao());     // A ordem passada tem que ser a mesma da String sql (lá em cima)
         stmt.setString(6, produto.getLocalizacao());
         stmt.setString(7, produto.getHistoricoManutencao());
-        stmt.setString(8, produto.getCodigo());
+        stmt.setInt(8, produto.getId());
         
         // executa o codigo sql
         stmt.execute();
@@ -104,7 +104,7 @@ public class ProdutoDao {
     public void remove(Produto c1) throws SQLException{
         String sql = "DELETE from produto WHERE id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, c1.getCodigo());
+        stmt.setInt(1, c1.getId());
         stmt.execute();
         stmt.close();
           
