@@ -984,20 +984,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void jTTabelaLinhaSelecionadaControle(JTable tabela) {
         if (jTableControle.getSelectedRow() != -1) {
-            CargaDiaria cargaDiaria = cargasDiarias.get(tabela.getSelectedRow());
-            
             habilitaDadosControle();
+            permitirDevolucao(true);
+            
+            CargaDiaria cargaDiaria = cargasDiarias.get(tabela.getSelectedRow());
             
             jTextId.setText(String.valueOf(cargaDiaria.getId()));
             jTDataControle.setText(cargaDiaria.getDataArmeiroControle());
             
             String guarda = String.valueOf(cargaDiaria.getGuarda().getId());
             jTAgente.setText(guarda);
-            jTAgente.setEnabled(false);
             
             String produto = String.valueOf(cargaDiaria.getProduto().getId());
             jTCodProduto.setText(produto);
-            jTCodProduto.setEnabled(false);
             
             String createdAt = Converter.dateToString(cargaDiaria.getCreatedAt());
             jTDataEntradaAgente.setText(createdAt);
@@ -1005,7 +1004,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jTDataSaidaAgente.setText(cargaDiaria.getDia2());
             jTHoraSaidaAgente.setText(cargaDiaria.getHora2());
             
-            verificaBotaoDevolucao(true);
         } else {
             jTDataControle.setText("");
             jTAgente.setText("");
@@ -1017,10 +1015,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void verificaBotaoDevolucao(boolean isCautelado) {
-        if (isCautelado) {
-            jBFinalizarTurno.setVisible(true);
-        }
+    private void permitirDevolucao(boolean permitir) {
+        jBFinalizarTurno.setVisible(permitir);
+
+        jTAgente.setEnabled(!permitir);
+        jTCodProduto.setEnabled(!permitir);   
     }
     
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1190,6 +1189,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void jBNovoControleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBNovoControleActionPerformed
         habilitaDadosControle();
+        permitirDevolucao(false);
+        
         jTDataSaidaAgente.setText(Converter.dataSistema());
         jTHoraEntradaAgente.setText(Converter.horaSistema());
         
@@ -1217,6 +1218,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             jTextPesquisaProduto.setText("");
             listarControle();
+            permitirDevolucao(false);
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1225,7 +1227,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jBAlterarControleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBAlterarControleActionPerformed
         try {
             alteraControle();
-            listarProduto(); // nome do metodo certo é "listarProduto".
+            listarProduto();
+            permitirDevolucao(false);
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
