@@ -1004,6 +1004,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
     
+    private CargaDiaria cargaDiariaLinhaSelecionada = null;
     private void jTTabelaLinhaSelecionadaControle(JTable tabela) {
         if (jTableControle.getSelectedRow() != -1) {
             habilitaDadosControle();
@@ -1014,21 +1015,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jBExcluirControle.setEnabled(true);
             jBAlterarControle.setEnabled(true);
             
-            CargaDiaria cargaDiaria = cargasDiarias.get(tabela.getSelectedRow());
+            cargaDiariaLinhaSelecionada = cargasDiarias.get(tabela.getSelectedRow());
             
-            jTextId.setText(String.valueOf(cargaDiaria.getId()));
-            jTDataControle.setText(cargaDiaria.getDataArmeiroControle());
+            jTextId.setText(String.valueOf(cargaDiariaLinhaSelecionada.getId()));
+            jTDataControle.setText(cargaDiariaLinhaSelecionada.getDataArmeiroControle());
             
-            String guarda = String.valueOf(cargaDiaria.getGuarda().getNome());
+            String guarda = String.valueOf(cargaDiariaLinhaSelecionada.getGuarda().getNome());
             jTAgente.setText(guarda);
             
-            String produto = String.valueOf(cargaDiaria.getProduto().getCodigo());
+            String produto = String.valueOf(cargaDiariaLinhaSelecionada.getProduto().getCodigo());
             jTCodProduto.setText(produto);
             
-            String createdAtDate = Converter.dateToString(cargaDiaria.getCreatedAt(), "dd/MM/yyyy");
+            String createdAtDate = Converter.dateToString(cargaDiariaLinhaSelecionada.getCreatedAt(), "dd/MM/yyyy");
             jTDataEntradaAgente.setText(createdAtDate);
             
-            String createdAtTime = Converter.dateToString(cargaDiaria.getCreatedAt(), "HH:mm");
+            String createdAtTime = Converter.dateToString(cargaDiariaLinhaSelecionada.getCreatedAt(), "HH:mm");
             jTHoraEntradaAgente.setText(createdAtTime);
         } else {
             jTDataControle.setText("");
@@ -1239,11 +1240,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
     
-    private void jBFinalizarTurnoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBFinalizarTurnoActionPerformed
-        CargaDiaria c1 = new CargaDiaria();
-        c1.setCautelado(false);
-        // Finalizar turno
-    }// GEN-LAST:event_jBFinalizarTurnoActionPerformed
+    private void jBFinalizarTurnoActionPerformed(java.awt.event.ActionEvent evt) {
+        CargaDiariaDao dao;
+        try {
+            dao = new CargaDiariaDao();
+            dao.devolveProduto(cargaDiariaLinhaSelecionada);
+            listarControle();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
     private void jBPesquisarControleActionPerformed(java.awt.event.ActionEvent evt) {
         try {

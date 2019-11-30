@@ -53,11 +53,11 @@ VALUES
 INSERT INTO carga_diaria
     (dia, id_armeiro, id_guarda, id_produto, created_at, cautelado)
 VALUES
-    ('10/09/2019', 2, 1, 1, '2019-09-10 08:00', true),
-    ('10/09/2019', 2, 1, 8, '2019-09-10 08:00', true),
-    ('10/09/2019', 2, 1, 10, '2019-09-10 08:00', true),
-    ('10/09/2019', 2, 4, 2, '2019-09-10 08:00', true),
-    ('10/09/2019', 2, 4, 11, '2019-09-10 08:00', true);
+    ('09/09/2019', 2, 1, 1, '2019-09-10 08:00', true),
+    ('09/09/2019', 2, 1, 8, '2019-09-10 08:00', true),
+    ('09/09/2019', 2, 1, 10, '2019-09-10 08:00', true),
+    ('09/09/2019', 2, 4, 2, '2019-09-10 08:00', true),
+    ('09/09/2019', 2, 4, 11, '2019-09-10 08:00', true);
 
 INSERT INTO carga_diaria
     (dia, id_armeiro, id_guarda, id_produto, created_at, cautelado)
@@ -70,5 +70,5 @@ VALUES
 INSERT INTO carga_diaria
     (dia, id_armeiro, id_guarda, id_produto, created_at, cautelado)
 VALUES
-    ('10/09/2019', 6, 4, 2, '2019-09-15 08:00', true),
-    ('10/09/2019', 6, 4, 11, '2019-09-15 08:00', true);
+    ('14/09/2019', 6, 5, 2, '2019-09-15 08:00', true),
+    ('14/09/2019', 6, 5, 11, '2019-09-15 08:00', true);

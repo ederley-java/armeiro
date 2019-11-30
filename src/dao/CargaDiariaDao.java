@@ -75,11 +75,17 @@ public class CargaDiariaDao {
         "carga.hora2\n" +
 
         "from carga_diaria carga\n" +
-        "inner join guarda  armeiro on (armeiro.id = carga.id_armeiro)\n" +
-        "inner join guarda  guarda  on (guarda.id  = carga.id_guarda)\n" +
-        "inner join produto prod    on (prod.id    = carga.id_produto)\n" +
+        "LEFT JOIN carga_diaria devolvido ON (\n" +
+        "    devolvido.id_armeiro = carga.id_armeiro AND\n" +
+        "    devolvido.id_guarda  = carga.id_guarda  AND\n" +
+        "    devolvido.id_produto = carga.id_produto AND\n" +
+        "    devolvido.cautelado  = 0\n" +
+        ")\n" +
+        "JOIN guarda  armeiro on (armeiro.id = carga.id_armeiro)\n" +
+        "JOIN guarda  guarda  on (guarda.id  = carga.id_guarda)\n" +
+        "JOIN produto prod    on (prod.id    = carga.id_produto)\n" +
         
-        "WHERE carga.id_armeiro like ? and carga.cautelado = ? \n" +
+        "WHERE carga.id_armeiro like ? and carga.cautelado = ? AND devolvido.id IS NULL \n" +
         "GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12 \n" +
         "ORDER BY 4, 10, 3, 6";
 
@@ -177,10 +183,8 @@ public class CargaDiariaDao {
         "dia,\n" +
         "observacao,\n" +
         "created_at,\n" +
-        "cautelado,\n" +
-        "dia2,\n" +
-        "hora2\n" +
-        ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        "cautelado\n" +
+        ") VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         stmt.setInt(1, cargaDiaria.getArmeiro().getId());
@@ -191,13 +195,11 @@ public class CargaDiariaDao {
         
         java.util.Date now = new java.util.Date();
         Date createdAt = new Date(now.getTime());
+        System.out.println(createdAt);
         stmt.setDate(6, createdAt);
 
-        stmt.setBoolean(8, false);
+        stmt.setBoolean(7, false);
 
-        stmt.setString(9, cargaDiaria.getDia2());
-        stmt.setString(10, cargaDiaria.getHora2());
-     
         stmt.execute();
         stmt.close();
     }
