@@ -136,13 +136,9 @@ public class CargaDiariaDao {
     }
       
     public void altera(CargaDiaria cargaDiaria) throws SQLException {
-
         String sql = "UPDATE carga_diaria SET \n" +
         "id_armeiro=?,\n" +
-        "id_guarda=?,\n" +
-        "id_produto=?,\n" +
         "observacao=?,\n" +
-        "cautelado=?,\n" +
         "dia=?,\n" +
         "created_at=?,\n" +
         "dia2=?,\n" +
@@ -152,14 +148,12 @@ public class CargaDiariaDao {
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
         stmt.setInt(1, cargaDiaria.getArmeiro().getId());
-        stmt.setInt(2, cargaDiaria.getGuarda().getId());
-        stmt.setInt(3, cargaDiaria.getProduto().getId());
-        stmt.setString(4, cargaDiaria.getObservacao());
-        stmt.setBoolean(5, cargaDiaria.isCautelado());
-        stmt.setString(6, cargaDiaria.getDataArmeiroControle());
-        stmt.setDate(7, new Date(cargaDiaria.getCreatedAt().getTime()));
-        stmt.setString(8, cargaDiaria.getDia2());
-        stmt.setString(9, cargaDiaria.getHora2());
+        stmt.setString(2, cargaDiaria.getObservacao());
+        stmt.setString(3, cargaDiaria.getDataArmeiroControle());
+        stmt.setDate(4, new Date(cargaDiaria.getCreatedAt().getTime()));
+        stmt.setString(5, cargaDiaria.getDia2());
+        stmt.setString(6, cargaDiaria.getHora2());
+        stmt.setInt(7, cargaDiaria.getId());
 
         stmt.execute();
         stmt.close();   

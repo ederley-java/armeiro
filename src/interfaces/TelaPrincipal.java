@@ -1203,8 +1203,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void jBSalvarControleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBSalvarControleActionPerformed
         if (verificaDadosControle()) {
-            cadastroControle();
             try {
+                cadastroControle();
                 listarControle();
             } catch (SQLException ex) {
                 Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -1269,7 +1269,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jBAlterarControleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBAlterarControleActionPerformed
         try {
             alteraControle();
-            listarProduto();
+            listarControle();
             permitirDevolucao(false);
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -1350,19 +1350,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private void alteraControle() throws SQLException {
-        if (jTableProduto.getSelectedRow() != -1) { // se a tabela nao for negativa...
-            if (verificaDadosControle()) { // e se passar por esse metodo...
-                CargaDiaria cargaDiaria = new CargaDiaria();
-                CargaDiariaDao dao = new CargaDiariaDao();
-                cargaDiaria.setId(Integer.parseInt(jTextId.getText()));
-                cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
-                // TODO ZECA
-                
-                cargaDiaria.setArmeiro(this.armeiroLogado);
-                
-                dao.altera(cargaDiaria);
-                JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!!");
-            }
+        if (jTableControle.getSelectedRow() != -1) { // se a tabela nao for negativa...
+            CargaDiaria cargaDiaria = new CargaDiaria();
+            CargaDiariaDao dao = new CargaDiariaDao();
+            
+            cargaDiaria.setId(Integer.parseInt(jTextId.getText()));
+            
+            cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
+            cargaDiaria.setObservacao(jTObservacao.getText());
+            
+            cargaDiaria.setArmeiro(this.armeiroLogado);
+            
+            String datahora = jTDataEntradaAgente.getText() + " " + jTHoraEntradaAgente.getText();
+            System.out.println(datahora);
+            Date createdAt = Converter.stringToDate(datahora);
+            System.out.println(createdAt);
+            cargaDiaria.setCreatedAt(createdAt);
+            
+            dao.altera(cargaDiaria);
+            JOptionPane.showMessageDialog(null, "Carga diária Alterada com sucesso!!");
         }
     }
     
@@ -1456,7 +1462,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
             cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
             cargaDiaria.setObservacao(jTObservacao.getText());
-
+            
             String datahora = jTDataEntradaAgente.getText() + " " + jTHoraEntradaAgente.getText();
             Date createdAt = Converter.stringToDate(datahora);
             cargaDiaria.setCreatedAt(createdAt);
