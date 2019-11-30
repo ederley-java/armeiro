@@ -11,6 +11,7 @@ import interfaces.TelaLogin;
 import interfaces.TelaPrincipal;
 import interfaces.TelaCadastroLogin;
 import models.LoginDTO;
+import models.Usuario;
 
 /**
  *
@@ -26,7 +27,9 @@ public class LoginDao {
     }
         
      public void logar(LoginDTO login) {
-        String sql = "SELECT * from login WHERE usuario=? and senha=?;";
+        String sql = "SELECT g.* FROM guarda g JOIN login l ON (g.id_login = l.id)"
+            + "WHERE l.usuario=? and l.senha=?;";
+
         try {
             pst = conexao.prepareStatement(sql);
             
@@ -35,7 +38,17 @@ public class LoginDao {
             
             rs = pst.executeQuery();
             if (rs.next()) {
-                TelaPrincipal tela = new TelaPrincipal();
+                Usuario armeiro = new Usuario();
+                armeiro.setId(rs.getInt("id"));
+                armeiro.setMatricula(Long.valueOf(rs.getString("matricula")));
+                armeiro.setNome(rs.getString("nome"));
+                armeiro.setEndereco(rs.getString("endereco"));
+                armeiro.setTelefone(rs.getString("telefone"));
+                armeiro.setEmail(rs.getString("email"));
+                armeiro.setSexo(rs.getString("sexo"));
+                armeiro.setSituacao(rs.getString("situacao"));
+
+                TelaPrincipal tela = new TelaPrincipal(armeiro);
                 tela.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha inválido!");
@@ -76,7 +89,7 @@ public class LoginDao {
             pst.setString(2, c1.getSenha());
             
             int i = pst.executeUpdate();
-            if (i == 1) {
+            if (i == 1) {              
                 TelaLogin log = new TelaLogin();
                 log.setVisible(true);
             } else {

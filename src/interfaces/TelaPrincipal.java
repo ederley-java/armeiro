@@ -29,12 +29,34 @@ import utils.Formatter;
 * @author Lemes
 */
 public class TelaPrincipal extends javax.swing.JFrame {
+    Usuario armeiroLogado = null;
+    
     public TelaPrincipal() throws SQLException {
+        init();
+    }
+    
+    public TelaPrincipal(Usuario armeiroLogado) throws SQLException {
+        this.armeiroLogado = armeiroLogado;
+        
+        init();
+        
+        this.jTextArmeiroControle.setText(armeiroLogado.getNome());
+    }
+    
+    private void init() throws SQLException {
         initComponents();
         preencherComboGuarda();
+        
         desabilitaDados();
         desabilitaDadosLivroParte();
         desabilitaDadosProduto();
+        
+        listarControle();
+        
+        jBNovoControle.setEnabled(true);
+        jBSalvarControle.setEnabled(false);
+        jBExcluirControle.setEnabled(false);
+        jBAlterarControle.setEnabled(false);
     }
     
     public static void main(String args[]) {
@@ -987,23 +1009,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
             habilitaDadosControle();
             permitirDevolucao(true);
             
+            jBNovoControle.setEnabled(true);
+            jBSalvarControle.setEnabled(false);
+            jBExcluirControle.setEnabled(true);
+            jBAlterarControle.setEnabled(true);
+            
             CargaDiaria cargaDiaria = cargasDiarias.get(tabela.getSelectedRow());
             
             jTextId.setText(String.valueOf(cargaDiaria.getId()));
             jTDataControle.setText(cargaDiaria.getDataArmeiroControle());
             
-            String guarda = String.valueOf(cargaDiaria.getGuarda().getId());
+            String guarda = String.valueOf(cargaDiaria.getGuarda().getNome());
             jTAgente.setText(guarda);
             
-            String produto = String.valueOf(cargaDiaria.getProduto().getId());
+            String produto = String.valueOf(cargaDiaria.getProduto().getCodigo());
             jTCodProduto.setText(produto);
             
-            String createdAt = Converter.dateToString(cargaDiaria.getCreatedAt());
-            jTDataEntradaAgente.setText(createdAt);
-            jTHoraEntradaAgente.setText(createdAt);
-            jTDataSaidaAgente.setText(cargaDiaria.getDia2());
-            jTHoraSaidaAgente.setText(cargaDiaria.getHora2());
+            String createdAtDate = Converter.dateToString(cargaDiaria.getCreatedAt(), "dd/MM/yyyy");
+            jTDataEntradaAgente.setText(createdAtDate);
             
+            String createdAtTime = Converter.dateToString(cargaDiaria.getCreatedAt(), "HH:mm");
+            jTHoraEntradaAgente.setText(createdAtTime);
         } else {
             jTDataControle.setText("");
             jTAgente.setText("");
@@ -1017,7 +1043,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void permitirDevolucao(boolean permitir) {
         jBFinalizarTurno.setVisible(permitir);
-
+        
         jTAgente.setEnabled(!permitir);
         jTCodProduto.setEnabled(!permitir);   
     }
@@ -1191,6 +1217,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         habilitaDadosControle();
         permitirDevolucao(false);
         
+        jBNovoControle.setEnabled(true);
+        jBSalvarControle.setEnabled(true);
+        jBExcluirControle.setEnabled(false);
+        jBAlterarControle.setEnabled(false);
+        
         jTDataSaidaAgente.setText(Converter.dataSistema());
         jTHoraEntradaAgente.setText(Converter.horaSistema());
         
@@ -1219,6 +1250,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jTextPesquisaProduto.setText("");
             listarControle();
             permitirDevolucao(false);
+            
+            jBNovoControle.setEnabled(true);
+            jBSalvarControle.setEnabled(false);
+            jBExcluirControle.setEnabled(false);
+            jBAlterarControle.setEnabled(false);
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1496,7 +1532,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     ListSelectionModel lsmProduto;
     
     DefaultTableModel tmControle = new DefaultTableModel(null,
-    new String[] { "ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data", "Data 2", "Hora 2" });
+    new String[] { "ID", "Data", "Armeiro", "Guarda", "Item", "Observação", "Data" });
     List<CargaDiaria> cargasDiarias;
     ListSelectionModel lsmControle;
     
@@ -1703,7 +1739,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (lista.size() == 0) {
             JOptionPane.showMessageDialog(null, "Nenhun registro para exibir!");
         } else {
-            String[] linha = new String[] { null, null, null, null, null, null, null, null, null, null };
+            String[] linha = new String[] { null, null, null, null, null, null, null, null };
             
             for (int i = 0; i < lista.size(); i++) {
                 tmControle.addRow(linha);
@@ -1717,8 +1753,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 tmControle.setValueAt(cargaDiaria.getObservacao(), i, 5);
                 String createdAt = Converter.dateToString(cargaDiaria.getCreatedAt());
                 tmControle.setValueAt(createdAt, i, 6);
-                tmControle.setValueAt(cargaDiaria.getDia2(), i, 7);
-                tmControle.setValueAt(cargaDiaria.getHora2(), i, 8);
             }
         }
     }

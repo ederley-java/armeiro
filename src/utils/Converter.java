@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Converter {
-    private static String PATTERN_DATETIME = "dd/MM/yyyy HH:mm:ss";
+    private static String PATTERN_DATETIME = "dd/MM/yyyy HH:mm";
     
     public static String dateToString(Date date) {
         return dateToString(date, PATTERN_DATETIME);

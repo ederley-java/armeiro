@@ -24,20 +24,20 @@ public class UsuarioDao {
         this.conexao = CriaConexao.getConexao();
     }
     
-    public void adiciona(Usuario c1) throws SQLException {
+    public void adiciona(Usuario usuario) throws SQLException {
         // prepara a conexao com oo banco
         String sql = "INSERT into guarda (matricula, nome, endereco, telefone, email, sexo, situacao )"
         + "values (?,?,?,?,?,?,?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         // seta os valores
-        stmt.setLong(1, c1.getMatricula());
-        stmt.setString(2, c1.getNome());
-        stmt.setString(3, c1.getEndereco());
-        stmt.setString(4, c1.getTelefone());
-        stmt.setString(5, c1.getEmail());
-        stmt.setString(6, c1.getSexo());
-        stmt.setString(7, c1.getSituacao());
+        stmt.setLong(1, usuario.getMatricula());
+        stmt.setString(2, usuario.getNome());
+        stmt.setString(3, usuario.getEndereco());
+        stmt.setString(4, usuario.getTelefone());
+        stmt.setString(5, usuario.getEmail());
+        stmt.setString(6, usuario.getSexo());
+        stmt.setString(7, usuario.getSituacao());
         
         // executa o codigo sql
         stmt.execute();
@@ -53,16 +53,16 @@ public class UsuarioDao {
         List<Usuario> minhaLista = new ArrayList<Usuario>();
         
         while (rs.next()) {
-            Usuario c1 = new Usuario();
-            c1.setId(rs.getInt("id"));
-            c1.setMatricula(Long.valueOf(rs.getString("matricula")));
-            c1.setNome(rs.getString("nome"));
-            c1.setEndereco(rs.getString("endereco"));
-            c1.setTelefone(rs.getString("telefone"));
-            c1.setEmail(rs.getString("email"));
-            c1.setSexo(rs.getString("sexo"));
-            c1.setSituacao(rs.getString("situacao"));
-            minhaLista.add(c1);
+            Usuario usuario = new Usuario();
+            usuario.setId(rs.getInt("id"));
+            usuario.setMatricula(Long.valueOf(rs.getString("matricula")));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setEndereco(rs.getString("endereco"));
+            usuario.setTelefone(rs.getString("telefone"));
+            usuario.setEmail(rs.getString("email"));
+            usuario.setSexo(rs.getString("sexo"));
+            usuario.setSituacao(rs.getString("situacao"));
+            minhaLista.add(usuario);
         }
         
         rs.close();
@@ -70,29 +70,29 @@ public class UsuarioDao {
         return minhaLista;
     }
     
-    public void altera(Usuario c1) throws SQLException {
+    public void altera(Usuario usuario) throws SQLException {
         String sql = "UPDATE guarda set nome=?, endereco=?, telefone=?, email=?"
         + ",sexo=?, situacao=? WHERE matricula=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
-        stmt.setString(1, c1.getNome());
-        stmt.setString(2, c1.getEndereco());
-        stmt.setString(3, c1.getTelefone());
-        stmt.setString(4, c1.getEmail());
-        stmt.setString(5, c1.getSexo());
-        stmt.setString(6, c1.getSituacao());
-        stmt.setLong(7, c1.getMatricula());
+        stmt.setString(1, usuario.getNome());
+        stmt.setString(2, usuario.getEndereco());
+        stmt.setString(3, usuario.getTelefone());
+        stmt.setString(4, usuario.getEmail());
+        stmt.setString(5, usuario.getSexo());
+        stmt.setString(6, usuario.getSituacao());
+        stmt.setLong(7, usuario.getMatricula());
         
         stmt.execute();
         stmt.close();
     }
     
-    public void remove(Usuario c1) throws SQLException {
+    public void remove(Usuario usuario) throws SQLException {
         String sql = "DELETE FROM guarda WHERE matricula=?";
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
-        stmt.setLong(1, c1.getMatricula());
+        stmt.setLong(1, usuario.getMatricula());
         
         stmt.execute();
         stmt.close();
@@ -108,11 +108,11 @@ public class UsuarioDao {
             rs = pstm.executeQuery(sql);
             
             while (rs.next()) {
-                Usuario user = new Usuario();
+                Usuario usuario = new Usuario();
                 
-                user.setId(rs.getInt("id"));
-                user.setNome(rs.getString("nome"));
-                listUser.add(user);
+                usuario.setId(rs.getInt("id"));
+                usuario.setNome(rs.getString("nome"));
+                listUser.add(usuario);
             }
             
         } catch (Exception erro) {
