@@ -34,7 +34,7 @@ public class CargaDiariaDao {
         "cautelado,\n" +
         "dia2,\n" +
         "hora2\n" +
-        ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         stmt.setInt(1, cargaDiaria.getArmeiro().getId());
@@ -47,9 +47,9 @@ public class CargaDiariaDao {
         Date createdAt = new Date(now.getTime());
         stmt.setDate(6, createdAt);
         
-        stmt.setBoolean(8, cargaDiaria.isCautelado());
-        stmt.setString(9, cargaDiaria.getDia2());
-        stmt.setString(10, cargaDiaria.getHora2());
+        stmt.setBoolean(7, cargaDiaria.isCautelado());
+        stmt.setString(8, cargaDiaria.getDia2());
+        stmt.setString(9, cargaDiaria.getHora2());
      
         stmt.execute();
         stmt.close();

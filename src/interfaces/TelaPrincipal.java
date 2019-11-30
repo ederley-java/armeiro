@@ -1352,16 +1352,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void alteraControle() throws SQLException {
         if (jTableProduto.getSelectedRow() != -1) { // se a tabela nao for negativa...
             if (verificaDadosControle()) { // e se passar por esse metodo...
-                CargaDiaria p1 = new CargaDiaria();
+                CargaDiaria cargaDiaria = new CargaDiaria();
                 CargaDiariaDao dao = new CargaDiariaDao();
-                p1.setId(Integer.parseInt(jTextId.getText()));
-                p1.setDataArmeiroControle(jTDataControle.getText());
+                cargaDiaria.setId(Integer.parseInt(jTextId.getText()));
+                cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
                 // TODO ZECA
-                // p1.setArmeiro(String.valueOf(jComboArmeiro.getSelectedIndex()));
-                // p1.setGuarda(jTAgente.getText());
-                // p1.setProduto(jTCodProduto.getText());
                 
-                dao.altera(p1);
+                cargaDiaria.setArmeiro(this.armeiroLogado);
+                
+                dao.altera(cargaDiaria);
                 JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!!");
             }
         }
@@ -1423,18 +1422,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     public void cadastroLivroParte() {
-        LivroParte p1 = new LivroParte();
-        p1.setNomeArmeiro(jTextNomeArmeiro.getText());
-        p1.setDiaEntrada(jFormattedTextDataEntrada.getText());
-        p1.setHoraEntrada(jFormattedTextHoraEntrada.getText());
-        p1.setHistorico(jTextHistorico.getText());
-        p1.setDiaSaida(jFormattedTextDataSaida.getText());
-        p1.setHoraSaida(jFormattedTextHoraSaida.getText());
+        LivroParte livroParte = new LivroParte();
+        livroParte.setNomeArmeiro(jTextNomeArmeiro.getText());
+        livroParte.setDiaEntrada(jFormattedTextDataEntrada.getText());
+        livroParte.setHoraEntrada(jFormattedTextHoraEntrada.getText());
+        livroParte.setHistorico(jTextHistorico.getText());
+        livroParte.setDiaSaida(jFormattedTextDataSaida.getText());
+        livroParte.setHoraSaida(jFormattedTextHoraSaida.getText());
         
         LivroParteDao dao;
         try {
             dao = new LivroParteDao();
-            dao.adiciona(p1);
+            dao.adiciona(livroParte);
             listarLivroParte();
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -1445,10 +1444,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             CargaDiaria cargaDiaria = new CargaDiaria();
             
-            UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario armeiro = usuarioDao.getByMatricula(jTextArmeiroControle.getText());
-            cargaDiaria.setArmeiro(armeiro);
+            cargaDiaria.setArmeiro(this.armeiroLogado);
             
+            UsuarioDao usuarioDao = new UsuarioDao();
             Usuario guarda = usuarioDao.getByMatricula(jTAgente.getText());
             cargaDiaria.setGuarda(guarda);
             
@@ -1458,7 +1456,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
             cargaDiaria.setDataArmeiroControle(jTDataControle.getText());
             cargaDiaria.setObservacao(jTObservacao.getText());
-            Date createdAt = Converter.stringToDate(jTDataEntradaAgente.getText());
+
+            String datahora = jTDataEntradaAgente.getText() + " " + jTHoraEntradaAgente.getText();
+            Date createdAt = Converter.stringToDate(datahora);
             cargaDiaria.setCreatedAt(createdAt);
             cargaDiaria.setCautelado(true);
             cargaDiaria.setDia2(jTDataSaidaAgente.getText());

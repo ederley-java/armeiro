@@ -107,7 +107,7 @@ public class ProdutoDao {
     }
 
 	public Produto getByCodigo(String codigo) throws SQLException {
-        String sql = "SELECT * FROM produto WHERE cod = ?";
+        String sql = "SELECT * FROM produto WHERE cod = ?;";
 
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, codigo);
@@ -115,7 +115,7 @@ public class ProdutoDao {
         ResultSet rs = stmt.executeQuery();
 
         Produto produto = null;
-        while (rs.next()) {
+        if (rs.next()) {
             produto = new Produto();
 
             produto.setId(rs.getInt("id"));

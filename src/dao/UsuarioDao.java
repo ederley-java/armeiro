@@ -123,7 +123,7 @@ public class UsuarioDao {
     }
     
     public Usuario getByMatricula(String matricula) throws SQLException {
-        String sql = "SELECT * from guarda WHERE matricula = ?;";
+        String sql = "SELECT id, nome FROM guarda WHERE matricula = ?;";
         
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, matricula);
@@ -131,10 +131,11 @@ public class UsuarioDao {
         ResultSet rs = stmt.executeQuery();
         
         Usuario usuario = null;
-        while (rs.next()) {
+        if (rs.next()) {
             usuario = new Usuario();
 
             usuario.setId(rs.getInt("id"));
+            usuario.setNome(rs.getString("nome"));
         }
         
         rs.close();
