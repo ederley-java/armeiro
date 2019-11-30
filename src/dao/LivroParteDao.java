@@ -38,8 +38,6 @@ public class LivroParteDao {
     }
     
     public List<LivroParte> getLista(String nomeArmeiro) throws SQLException{
-        System.out.println("chamada do metodo:  public List<LivroParte> getLista(String nomeArmeiro) ");
-                        //"select * from livroparte where nome_armeiro like ? or historico like ?"
         String sql = "select * from livroparte where nome_armeiro like ?";
         PreparedStatement stmt = this.conexao.prepareStatement(sql);
         stmt.setString(1, nomeArmeiro);
