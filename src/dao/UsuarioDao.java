@@ -72,7 +72,7 @@ public class UsuarioDao {
     
     public void altera(Usuario usuario) throws SQLException {
         String sql = "UPDATE guarda set nome=?, endereco=?, telefone=?, email=?"
-        + ",sexo=?, situacao=? WHERE matricula=?";
+        + ",sexo=?, situacao=?, matricula=? WHERE id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         stmt.setString(1, usuario.getNome());
@@ -82,6 +82,7 @@ public class UsuarioDao {
         stmt.setString(5, usuario.getSexo());
         stmt.setString(6, usuario.getSituacao());
         stmt.setLong(7, usuario.getMatricula());
+        stmt.setInt(8, usuario.getId());
         
         stmt.execute();
         stmt.close();

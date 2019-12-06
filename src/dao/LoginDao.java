@@ -49,7 +49,7 @@ public class LoginDao {
                 armeiro.setSituacao(rs.getString("situacao"));
 
                 TelaPrincipal tela = new TelaPrincipal(armeiro);
-                tela.setVisible(true);
+                 tela.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha inválido!");
             }
