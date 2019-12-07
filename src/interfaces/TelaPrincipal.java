@@ -213,6 +213,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTTabelaLivro = new javax.swing.JTable();
+        desligarJcombo(false);        // desliga o botao da Jcombobox
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(new java.awt.Color(102, 102, 255));
@@ -1047,6 +1048,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         jTAgente.setEnabled(!permitir);
         jTCodProduto.setEnabled(!permitir);   
+    }
+    
+     private void desligarJcombo(boolean permitir) {
+        jComboArmeiro.setVisible(permitir);
+           
     }
     
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {

@@ -28,10 +28,10 @@ public class CargaDiariaDao {
         "id_armeiro,\n" +
         "id_guarda,\n" +
         "id_produto,\n" +
-        "dia,\n" +
         "observacao,\n" +
-        "created_at,\n" +
         "cautelado,\n" +
+        "dia,\n" +
+        "created_at,\n" +
         "dia2,\n" +
         "hora2\n" +
         ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -40,14 +40,14 @@ public class CargaDiariaDao {
         stmt.setInt(1, cargaDiaria.getArmeiro().getId());
         stmt.setInt(2, cargaDiaria.getGuarda().getId());
         stmt.setInt(3, cargaDiaria.getProduto().getId());
-        stmt.setString(4, cargaDiaria.getDataArmeiroControle());
-        stmt.setString(5, cargaDiaria.getObservacao());
-
+        stmt.setString(4, cargaDiaria.getObservacao());
+        stmt.setBoolean(5, cargaDiaria.isCautelado());
+        stmt.setString(6, cargaDiaria.getDataArmeiroControle());
+        
         java.util.Date now = new java.util.Date();
         Date createdAt = new Date(now.getTime());
-        stmt.setDate(6, createdAt);
+        stmt.setDate(7, createdAt);
         
-        stmt.setBoolean(7, cargaDiaria.isCautelado());
         stmt.setString(8, cargaDiaria.getDia2());
         stmt.setString(9, cargaDiaria.getHora2());
      
